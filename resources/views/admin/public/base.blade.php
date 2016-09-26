@@ -39,14 +39,22 @@
                     <strong>Well Success!</strong> {{Session::get('success')}}
                 </div>
             @endif
-            @if($errors->has('status'))
+            @if(Session::has('error'))
                 <div class="alert-msg alert alert-block alert-danger fade in" style="position: fixed;width:89.11%;z-index: 555">
                     <button data-dismiss="alert" class="close close-sm" type="button">
                         <i class="icon-remove"></i>
                     </button>
-                    <strong>Oh Warning!</strong> {{$errors->first('error')}}
+                    <strong>Oh Warning!</strong> {{Session::get('error')}}
                 </div>
             @endif
+            {{--@if($errors->has('status'))--}}
+                {{--<div class="alert-msg alert alert-block alert-danger fade in" style="position: fixed;width:89.11%;z-index: 555">--}}
+                    {{--<button data-dismiss="alert" class="close close-sm" type="button">--}}
+                        {{--<i class="icon-remove"></i>--}}
+                    {{--</button>--}}
+                    {{--<strong>Oh Warning!</strong> {{$errors->first('error')}}--}}
+                {{--</div>--}}
+            {{--@endif--}}
             @yield('body')
             <!--footer section start-->
             @include('admin.public.footer')

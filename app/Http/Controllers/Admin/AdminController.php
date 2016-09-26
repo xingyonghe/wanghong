@@ -81,11 +81,26 @@ class AdminController extends Controller{
             'password.min'        => '新密码不能低于6位数',
             'password.confirmed'  => '新密码确认不一致',
         ];
+        //成功提示用redirect('admin/admin/resetpass')->withSuccess();视图判断Session::has('success')，视图调用消息Session::get('success')
+        //错误提示用redirect()->back()->withInput()->with('error','msg');视图判断Session::has('success')，视图调用消息Session::get('success')
+//        return redirect()->back()->withInput()->with('errors','123123213123');die;
+//        return Redirect::back()->withErrors(['error'=>'新增失败！','status'=>0]);
+//        $this->validate($request, $rules, $messages);这样写用的是默认的错误返回，返回所有的错误提示
+        //自己构造Validator::make可以自定义返回信息
+        $validator = Validator::make($request->all(), $rules, $messages);
 
-        dd($request->all());
-        $this->validate($request, $rules, $messages);
-        Validator::make($request->all(), $rules, $messages);
-        dd(123123);
+        $validator->after(function($validator) {
+            if ($this->somethingElseIsInvalid()) {
+                $validator->errors()->add('field', 'Something is wrong with this field!');
+            }
+        });
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error',$validator->messages()->first());
+        }
+        dd(213123);
         $info = SysAdmin::where(array(['username','=',$request->username]))->first();
         if(empty($info)){
             return redirect()->back()->withInput([$request->username,'username'])->withErrors(['error'=>'用户账号信息不存在','status'=>0]);
