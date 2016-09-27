@@ -51,4 +51,15 @@ class SysAdmin extends Authenticatable{
         }
         return $request;
     }
+
+    /**
+     * 重置密码
+     */
+    protected function resetPassword($request){
+        $resualt = $this->where(array(['username','=',$request->username]))->update(array('password'=>bcrypt($request->password)));
+        if($resualt === false){
+            return false;
+        }
+        return $request;
+    }
 }
