@@ -12,14 +12,9 @@ use Illuminate\Support\Facades\Input;
 use View;
 use Request;
 use Response;
-use Redirect;
 use URL;
 
 class AuthController extends Controller{
-
-    public function index(){
-
-    }
 
     /**
      * 权限分组列表
@@ -35,9 +30,9 @@ class AuthController extends Controller{
     public function addGroup(){
         if(Request::ajax()){
             $view = View::make('admin.auth.group_add');
-            return Response::json(array('html'=>$view->render(),'title'=>'添加用户组'));
+            return Response::json(array('html'=>$view->render(),'title'=>'添加用户组','status'=>1));
         }else{
-            return Redirect::back()->withErrors(['error'=>'请求超时','status'=>0]);
+            return redirect()->back()->withErrors('error','请求超时');
         }
     }
 
@@ -48,10 +43,10 @@ class AuthController extends Controller{
         if(Request::ajax()){
             $info = SysAuthGroup::find($id);
             $view = View::make('admin.auth.group_edit',compact('info'));
-            return Response::json(array('html'=>$view->render(),'title'=>'修改用户组'));
+            return Response::json(array('html'=>$view->render(),'title'=>'修改用户组','status'=>1));
 
         }else{
-            return Redirect::back()->withErrors(['error'=>'请求超时','status'=>0]);
+            return redirect()->back()->with('error','请求超时');
         }
     }
 
@@ -74,9 +69,9 @@ class AuthController extends Controller{
     public function destroyGroup($id){
         $datas = SysAuthGroup::find($id);
         if($datas->delete()){
-            return Redirect::back()->with('success', '删除用户组成功!');
+            return redirect()->back()->withSuccess('删除用户组成功!');
         }else{
-            return Redirect::back()->withErrors(['error'=>'删除用户组失败','status'=>0]);
+            return redirect()->back()->withErrors('error','删除用户组失败');
         }
     }
 
@@ -97,19 +92,23 @@ class AuthController extends Controller{
         $thisRules = json_encode($data['rules']);
 
         $groupId = $id;
-
         return view('admin.auth.access',compact('nodeList','mainRules','childRules','groupId','thisRules'));
     }
 
+    /**
+     * 更新权限组
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function writeGroup(Request $request){
         $rules = Input::get('rules');
         $id = Input::get('id');
         $data = SysAuthGroup::findOrFail($id);
         $res = $data->update(array('rules'=>$rules,'id'=>$id));
         if($res){
-            return Redirect::back()->with('success', '更新用户组权限成功!');
+            return redirect('admin/auth/group')->withSuccess('更新用户组权限成功!');
         }else{
-            return Redirect::back()->withErrors(['error'=>'更新用户组权限失败','status'=>0]);
+            return redirect()->back()->with('error','更新用户组权限失败');
         }
     }
 

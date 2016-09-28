@@ -6,9 +6,8 @@ use App\Models\SysAdmin;
 use App\Models\SysAuthGroup;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Redirect;
-use View;
+use Illuminate\Http\Request as HttpRequest;
+use Request;
 use Response;
 use Validator;
 use App\Http\Requests\Admin\AdminRequest;
@@ -21,62 +20,142 @@ class AdminController extends Controller{
      * 列表
      */
     public function index(){
-        $datas = SysAdmin::getLists();
+        $datas = SysAdmin::getLists(10,array(['status','>=','0']));
         $pages = array();
         return view('admin.admin.index',compact('datas','pages'));
     }
 
     /**
-     * 添加管理员
+     * 新增管理员
      * @return mixed
      */
     public function add(){
         if(Request::ajax()){
             //用户组
             $groups = SysAuthGroup::where('status','=',1)->get()->toArray();
-            $view = View::make('admin.admin.add',compact('groups'));
-            return Response::json(array('html'=>$view->render(),'title'=>'添加管理员账号'));
+            $view = view('admin.admin.add',compact('groups'));
+            return Response::json(array('html'=>$view->render(),'title'=>'新增管理员账号','status'=>1));
         }else{
-            return Redirect::back()->withErrors(['error'=>'请求超时','status'=>0]);
+            return redirect()->back()->with('error','请求超时');
         }
     }
 
-    public function edit($id){
-//        if(Request::ajax()){
-//            $info = SysAuthGroup::find($id);
-//            $view = View::make('admin.auth.group_edit',compact('info'));
-//            return Response::json(array('html'=>$view->render(),'title'=>'修改管理员账号'));
-//
-//        }else{
-//            return Redirect::back()->withErrors(['error'=>'请求超时','status'=>0]);
-//        }
-    }
-
+    /**
+     * 添加管理员
+     * @param AdminRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(AdminRequest $request){
+        $info = SysAdmin::where(array(['username','=',$request->username],['status','>','-1']))->first();
+        if(!empty($info)){
+            return Response::json(array('error'=> '管理员账号已存在','status'=>0));
+        }
         $res = SysAdmin::updateData($request);
         if($res){
-            return Response::json(array('success'=> '管理员信息新增成功','status'=>1,'url'=>URL::previous()));
+            return Response::json(array('success'=> '管理员信息添加成功','status'=>1,'url'=>URL::previous()));
         }else{
-            return Response::json(array('error'=> '管理员信息新增失败','status'=>0));
+            return Response::json(array('error'=> '管理员信息添加失败','status'=>0));
         }
     }
 
-    public function destroy($id){
+    /**
+     * 编辑
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function edit($id){
+        if(Request::ajax()){
+            $info = SysAdmin::find($id);
+            $groups = SysAuthGroup::where('status','=',1)->get()->toArray();//用户组
+            $view = view('admin.admin.edit',compact('info','groups'));
+            return Response::json(array('html'=>$view->render(),'title'=>'编辑管理员账号','status'=>1));
+        }else{
+            return redirect()->back()->with('error','请求超时');
+        }
+    }
 
+    /**
+     * 修改管理员
+     * @param AdminRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function editUpdate(HttpRequest $request){
+        $info = SysAdmin::findOrFail($request->id);
+        $resualt = $info->update(Input::get());
+        if($resualt){
+            return Response::json(array('success'=> '修改管理员信息新增成功','status'=>1,'url'=>URL::previous()));
+        }else{
+            return Response::json(array('error'=> '修改管理员信息新增失败','status'=>0));
+        }
     }
 
 
+    /**
+     * 删除，状态变为-1
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id){
+        $info = SysAdmin::findOrFail($id);
+        $resualt = $info->update(array('status'=>-1));
+        if($resualt){
+            return redirect()->back()->withSuccess('删除管理员信息成功!');
+        }else{
+            return redirect()->back()->with('error','删除管理员信息失败');
+        }
+    }
+
+    /**
+     * 禁用，状态变为0
+     * @param $id
+     * @return mixed
+     */
+    public function forbid($id){
+        $info = SysAdmin::findOrFail($id);
+        $resualt = $info->update(array('status'=>0));
+        if($resualt){
+            return redirect()->back()->withSuccess('禁用管理员信息成功!');
+        }else{
+            return redirect()->back()->with('error','禁用管理员信息失败');
+        }
+    }
+
+    /**
+     * 启用，状态变为1
+     * @param $id
+     * @return mixed
+     */
+    public function resume($id){
+        $info = SysAdmin::findOrFail($id);
+        $resualt = $info->update(array('status'=>1));
+        if($resualt){
+            return redirect()->back()->withSuccess('启用管理员信息成功!');
+        }else{
+            return redirect()->back()->with('error','启用管理员信息失败');
+        }
+    }
+
+    /**
+     * 重置密码
+     * @return mixed
+     */
     public function resetpass(){
         return view('admin.admin.resetpass');
     }
 
-    public function updatepass(Request $request){
+    /**
+     * 更新密码
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updatepass(HttpRequest $request){
         $rules = [
-            'username' => 'required',
+            'username' => 'required|exists:sys_admin,username',
             'password' => 'required|min:6|confirmed',
         ];
         $messages = [
             'username.required'   => '请填写重置密码的账号',
+            'username.exists'     => '账号信息不存在',
             'password.required'   => '请填写新密码',
             'password.min'        => '新密码不能低于6位数',
             'password.confirmed'  => '新密码确认不一致',
@@ -89,22 +168,16 @@ class AdminController extends Controller{
         //自己构造Validator::make可以自定义返回信息
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        $validator->after(function($validator) {
-            if ($this->somethingElseIsInvalid()) {
-                $validator->errors()->add('field', 'Something is wrong with this field!');
-            }
-        });
-
         if ($validator->fails()) {
             return redirect()->back()
                 ->withInput()
                 ->with('error',$validator->messages()->first());
         }
-        dd(213123);
-        $info = SysAdmin::where(array(['username','=',$request->username]))->first();
-        if(empty($info)){
-            return redirect()->back()->withInput([$request->username,'username'])->withErrors(['error'=>'用户账号信息不存在','status'=>0]);
+        $res = SysAdmin::resetPassword($request);
+        if($res){
+            return redirect()->back()->withSuccess('重置用户密码成功');
+        }else{
+            return redirect()->back()->withInput()->with('error','重置用户密码失败');
         }
-
     }
 }

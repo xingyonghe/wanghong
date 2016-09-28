@@ -34,7 +34,7 @@
         <i class="icon-404"></i>
         <h1>404</h1>
         <h2>页面不存在</h2>
-        <p class="page-404">一些错误或页面不存在。 <a href="{{ url('admin/index') }}">返回 Home</a></p>
+        <p class="page-404">一些错误或页面不存在。 <a href="{{ url('admin/index/index') }}">返回 Home</a></p>
     </section>
 
 </div>

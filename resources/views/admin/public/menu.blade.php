@@ -14,7 +14,7 @@
                     </a>
                     <ul class="sub">
                         @foreach($menu as $m)
-                        <li><a  href="{{ url($m->url) }}">{{ $m->title }}</a></li>
+                        <li><a  href="{{ url($m['url']) }}">{{ $m['title'] }}</a></li>
                         @endforeach
                     </ul>
                 </li>

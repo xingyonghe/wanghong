@@ -3,51 +3,40 @@
         <section class="panel">
             <div class="panel-body">
                 <div class=" form">
-                    {!! Form::open(['url' => 'admin/menu/update','class'=>'cmxform form-horizontal tasi-form form-datas']) !!}
+                    {!! Form::open(['url' => 'admin/admin/editUpdate','class'=>'cmxform form-horizontal tasi-form form-datas','autocomplete'=>'off']) !!}
                     <input  type="hidden" name="id" value="{{ $info->id }}"/>
                     <div class="form-group ">
-                        <label for="cname" class="control-label col-lg-2">标题</label>
+                        <label for="cname" class="control-label col-lg-2">用户名</label>
                         <div class="col-lg-10">
-                            <input class=" form-control" placeholder="用于后台显示的配置标题" name="title" type="text" value="{{ $info->title }}" />
+                            <input class=" form-control" disabled type="text" value="{{ $info->username }}" />
                         </div>
                     </div>
                     <div class="form-group ">
-                        <label for="cemail" class="control-label col-lg-2">排序</label>
+                        <label for="curl" class="control-label col-lg-2">昵称</label>
                         <div class="col-lg-10">
-                            <input class="form-control " placeholder="用户分组显示的顺序"  type="text" name="sort" value="{{ $info->sort }}"/>
+                            <input class="form-control " placeholder="填写管理员的昵称" type="text" name="nickname" value="{{ $info->nickname }}"/>
                         </div>
                     </div>
                     <div class="form-group ">
-                        <label for="curl" class="control-label col-lg-2">链接</label>
+                        <label for="curl" class="control-label col-lg-2">用户组</label>
                         <div class="col-lg-10">
-                            <input class="form-control " placeholder="url函数解析的URL或者外链" type="text" name="url" value="{{ $info->url }}"/>
-                        </div>
-                    </div>
-                    <div class="form-group ">
-                        <label for="curl" class="control-label col-lg-2">上级菜单</label>
-                        <div class="col-lg-10">
-                            <select class="form-control m-bot15" name="pid">
-                                @foreach($menus as $menu)
-                                    <option value="{{ $menu['id'] }}" @if($info->pid==$menu['id']) selected @endif>{{ $menu['title_show'] }}</option>
+                            <select class="form-control m-bot15" name="role_id">
+                                <option value="0">请选择</option>
+                                @foreach($groups as $group)
+                                    <option @if($info->role_id==$group['id']) selected @endif value="{{ $group['id'] }}">{{ $group['title'] }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="form-group ">
-                        <label for="curl" class="control-label col-lg-2">是否隐藏</label>
+                        <label for="curl" class="control-label col-lg-2">状态</label>
                         <div class="col-lg-10 radios has-js">
-                            <label class="label_radio @if($info->hide==0) r_on @endif" for="radio-01">
-                                <input name="hide" id="radio-01" value="0" type="radio" @if($info->hide==0) checked @endif /> 显示
+                            <label class="label_radio @if($info->status==1) r_on @endif" for="radio-01">
+                                <input name="status" id="radio-01" value="1" type="radio" @if($info->status==1) checked @endif /> 正常
                             </label>
-                            <label class="label_radio @if($info->hide==1) r_on @endif" for="radio-02">
-                                <input name="hide" id="radio-02" value="1" type="radio" @if($info->pid==1) checked @endif/> 隐藏
+                            <label class="label_radio @if($info->status==0) r_on @endif" for="radio-02">
+                                <input name="status" id="radio-02" value="0" type="radio" @if($info->status==0) checked @endif/> 禁用
                             </label>
-                        </div>
-                    </div>
-                    <div class="form-group ">
-                        <label for="curl" class="control-label col-lg-2">分组</label>
-                        <div class="col-lg-10 radios has-js">
-                            <input class="form-control " placeholder="用于左侧分组的二级菜单" type="text" name="group" value="{{ $info->group }}"/>
                         </div>
                     </div>
                     {!!Form::close()!!}

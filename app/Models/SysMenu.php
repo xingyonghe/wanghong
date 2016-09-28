@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
 use Request;
+use App\Library\Auth;
 
 class SysMenu extends Model{
-
+    use Auth;
     /**
      * 菜单模型
      */
@@ -72,61 +73,6 @@ class SysMenu extends Model{
         return $request;
     }
 
-
-
-    /**
-     * 获取所有权限菜单
-     */
-    protected function getAuthMenus(){
-        $menus = array();
-        $menus['main'] =   $this->select('id','title','url','class')->where(array(['pid','=',0],['hide','=',0]))->orderBy('sort','asc')->get();
-//        $menus['child'] =   array(); //设置子节点
-//        foreach ($menus['main'] as $key => $item) {
-//            // 判断主菜单权限
-//            if ( !IS_ROOT && !$this->checkRule(strtolower(MODULE_NAME.'/'.$item['url']),AuthRuleModel::RULE_MAIN,null) ) {
-//                unset($menus['main'][$key]);
-//                continue;//继续循环
-//            }
-//            if(strtolower(CONTROLLER_NAME.'/'.ACTION_NAME)  == strtolower($item['url'])){
-//                $menus['main'][$key]['class']='current';
-//            }
-//        }
-        // 查找当前子菜单
-
-        $urlResault = explode('/',Request::route()->getUri());
-        $routeUrl = $urlResault[0].'/'.$urlResault[1].'/'.$urlResault[2];
-        $pid = $this->select('pid')->where(array(['pid','>','0'],['url','=',$routeUrl]))->first();
-        if($pid && $pid->pid){
-            // 查找当前主菜单
-            $nav =  $this->find($pid->pid);
-            if($nav->pid){
-                $nav = $this->find($nav->pid);
-            }
-            foreach ($menus['main'] as $key => $item) {
-
-                if($item->id == $nav->id){
-                    $menus['main'][$key]['current']='active';
-                    //生成child 树
-                    $groups = $this->select('group')->where(array(['group','<>',''],['pid','=',$item->id]))->get();
-
-                    foreach ($groups as $g) {
-                        $map = array('group'=>$g);
-                        $menuList = $this->select('id','title','pid','url','class')->where(array(['group','=',$g->group],['hide','=',0],['pid','=',$item->id]))->orderBy('sort','asc')->get();
-//                        $menus['child'][$g->group] = list_to_tree($menuList, 'id', 'pid', 'operater', $item['id']);
-                        $menus['child'][$g->group] = $menuList;
-                    }
-                }
-            }
-        }else{
-            foreach ($menus['main'] as $key => $item) {
-                if($item->id == 1){
-                    $menus['main'][$key]['current']='active';
-                }
-            }
-        }
-
-        return $menus;
-    }
 
     /**
      * 获取所有菜单

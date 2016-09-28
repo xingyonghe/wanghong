@@ -16,6 +16,7 @@ class CreateSysAdminsTable extends Migration{
             $table->increments('id');
             $table->string('username',100)->unique()->comment('用户名');
             $table->string('password')->comment('密码');
+            $table->string('nickname',100)->comment('昵称');
             $table->tinyInteger('status')->default('1')->comment('状态：-1删除，0禁用，1正常');
             $table->rememberToken()->comment('记住我标识');
             $table->timestamp('reg_time')->nullable()->comment('注册时间');

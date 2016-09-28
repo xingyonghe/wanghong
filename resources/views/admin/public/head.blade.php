@@ -12,7 +12,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 @foreach($menus['main'] as $menu)
-                    <a class="navbar-brand {{ $menu->current }}" href="{{ url($menu->url) }}"><i class="{{ $menu->class }}"></i> {{ $menu->title }}</a>
+                    <a class="navbar-brand {{ $menu['current'] }}" href="{{ url($menu['url']) }}"><i class="{{ $menu['icon'] }}"></i> {{ $menu['title'] }}</a>
                 @endforeach
             </div>
         </nav>

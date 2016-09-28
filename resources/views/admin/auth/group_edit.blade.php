@@ -21,10 +21,10 @@
                         <label for="curl" class="control-label col-lg-2">是否启用</label>
                         <div class="col-lg-10 radios has-js">
                             <label class="label_radio @if($info->status==1) r_on @endif" for="radio-01">
-                                <input name="status" id="radio-01" value="1" type="radio" @if($info->hide==1) checked @endif /> 启用
+                                <input name="status" id="radio-01" value="1" type="radio" @if($info->status==1) checked @endif /> 启用
                             </label>
                             <label class="label_radio @if($info->status==0) r_on @endif" for="radio-02">
-                                <input name="status" id="radio-02" value="0" type="radio" @if($info->hide==0) checked @endif/> 禁用
+                                <input name="status" id="radio-02" value="0" type="radio" @if($info->status==0) checked @endif/> 禁用
                             </label>
                         </div>
                     </div>

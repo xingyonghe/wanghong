@@ -13,28 +13,32 @@ $(function(){
         var target = $(this).attr('href');
         var that = this;
         $.get(target).success(function(data){
-            layer.open({
-                type    : 1,
-                skin    : 'layer-ext-admin',
-                closeBtn: 1,
-                title   : data.title,
-                area    : ['650px'],
-                btn     : ['确定', '取消'],
-                shade   : false,
-                content : data.html,
-                yes     : function(index){
-                    var form = $('.form-datas');
-                    var url = form.get(0).action;
-                    var query = form.serialize();
-                    $.post(url,query,function(datas){
-                        if(datas.status==1){
-                            updateAlert(datas.success + ' 页面即将自动跳转~','alert-success',datas.url);
-                        }else{
-                            updateAlert(datas.error);
-                        }
-                    });
-                }
-            });
+            if(data.status == 1){
+                layer.open({
+                    type    : 1,
+                    skin    : 'layer-ext-admin',
+                    closeBtn: 1,
+                    title   : data.title,
+                    area    : ['650px'],
+                    btn     : ['确定', '取消'],
+                    shade   : false,
+                    content : data.html,
+                    yes     : function(index){
+                        var form = $('.form-datas');
+                        var url = form.get(0).action;
+                        var query = form.serialize();
+                        $.post(url,query,function(datas){
+                            if(datas.status==1){
+                                updateAlert(datas.success + ' 页面即将自动跳转~','alert-success',datas.url);
+                            }else{
+                                updateAlert(datas.error);
+                            }
+                        });
+                    }
+                });
+            }else{
+                updateAlert(data.error);
+            }
         });
         return false;
     });
@@ -42,7 +46,16 @@ $(function(){
     //删除确认
     $('body').on('click','.ajax-confirm',function(){
         var target = $(this).attr('href');
-        confirmDialog('确认要删除该信息吗?',target);
+        if($(this).hasClass('destroy')){
+            confirmDialog('确认要删除该信息吗?',target);
+        }
+        if($(this).hasClass('forbid')){
+            confirmDialog('确认要禁用该信息吗?',target);
+        }
+        if($(this).hasClass('resume')){
+            confirmDialog('确认要启用该信息吗?',target);
+        }
+
         return false;
     })
 

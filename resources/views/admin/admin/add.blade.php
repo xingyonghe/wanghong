@@ -3,11 +3,17 @@
         <section class="panel">
             <div class="panel-body">
                 <div class=" form">
-                    {!! Form::open(['url' => 'admin/admin/update','class'=>'cmxform form-horizontal tasi-form form-datas']) !!}
+                    {!! Form::open(['url' => 'admin/admin/update','class'=>'cmxform form-horizontal tasi-form form-datas','autocomplete'=>'off']) !!}
                     <div class="form-group ">
                         <label for="cname" class="control-label col-lg-2">用户名</label>
                         <div class="col-lg-10">
                             <input class=" form-control" placeholder="用于后台登陆的账号" name="username" type="text" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="cname" class="control-label col-lg-2">昵称</label>
+                        <div class="col-lg-10">
+                            <input class=" form-control" placeholder="填写管理员的昵称" name="nickname" type="text" value="" />
                         </div>
                     </div>
                     <div class="form-group ">

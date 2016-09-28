@@ -74,7 +74,7 @@ class LoginController extends Controller{
         return redirect()
             ->back()
             ->withInput($request->only('username', 'remember'))
-            ->withErrors(['username' => '登陆失败',]);
+            ->withErrors(['username' => '账户不存在或密码输入错误',]);
     }
 
     /**

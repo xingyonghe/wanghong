@@ -47,6 +47,7 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/></th>
                             <th>UID</th>
                             <th class="hidden-phone">用户名</th>
+                            <th class="hidden-phone">昵称</th>
                             <th class="hidden-phone">用户组</th>
                             <th class="hidden-phone">注册时间</th>
                             <th class="hidden-phone">最近登录时间</th>
@@ -61,14 +62,25 @@
                                 <td><input type="checkbox" class="checkboxes" value="{{ $data->id }}"/></td>
                                 <td>{{ $data->id }}</td>
                                 <td>{{ $data->username }}</td>
+                                <td>{{ $data->nickname }}</td>
                                 <td>{{ $data->role_id_text }}</td>
                                 <td class="hidden-phone">{{ $data->reg_time }}</td>
                                 <td class="hidden-phone">{{ $data->login_time }}</td>
                                 <td class="hidden-phone">{{ $data->login_ip }} </td>
                                 <td class="hidden-phone">{!!  $data->status_text !!} </td>
                                 <td class="hidden-phone">
-                                    <a class="btn btn-primary btn-xs ajax-edit-menu" href="{{ url('admin/admin/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
-                                    <a class="btn btn-danger btn-xs ajax-confirm" href="{{ url('admin/admin/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
+                                    <!--正常状态-->
+                                    @if($data->status == 1)
+                                        <a class="btn btn-primary btn-xs ajax-update" href="{{ url('admin/admin/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
+                                        <a class="btn btn-warning btn-xs ajax-confirm forbid" href="{{ url('admin/admin/forbid',[$data->id]) }}"><i class="icon-info-sign"></i> 禁用</a>
+                                        <a class="btn btn-danger btn-xs ajax-confirm destroy" href="{{ url('admin/admin/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
+                                    @endif
+                                    <!--禁用状态-->
+                                    @if($data->status == 0)
+                                        <a class="btn btn-primary btn-xs ajax-update" href="{{ url('admin/admin/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
+                                        <a class="btn btn-success btn-xs ajax-confirm resume" href="{{ url('admin/admin/resume',[$data->id]) }}"><i class=" icon-ok-circle"></i> 启用</a>
+                                        <a class="btn btn-danger btn-xs ajax-confirm destroy" href="{{ url('admin/admin/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

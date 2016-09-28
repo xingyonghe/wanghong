@@ -5,70 +5,6 @@
     <script type="text/javascript">
         $(function () {
             highlight_subnav("{{ url('admin/menu/index') }}");
-
-            //新增菜单
-            $('.ajax-add-menu').click(function(){
-                layer.closeAll();
-                var target = $(this).attr('href');
-                var that = this;
-                $.get(target).success(function(data){
-                    layer.open({
-                        type    : 1,
-                        skin    : 'layer-ext-admin',
-                        closeBtn: 1,
-                        title   : '新增菜单',
-                        area    : ['650px'],
-                        btn     : ['确定', '取消'],
-                        shade   : false,
-                        content : data,
-                        yes     : function(index){
-                            var form = $('.form-datas');
-                            var url = form.get(0).action;
-                            var query = form.serialize();
-                            $.post(url,query,function(datas){
-                                if(datas.status==1){
-                                    updateAlert(datas.success + ' 页面即将自动跳转~','alert-success',datas.url);
-                                }else{
-                                    updateAlert(datas.error);
-                                }
-                            });
-                        }
-                    });
-                });
-                return false;
-            });
-
-            $('body').on('click','.ajax-edit-menu',function () {
-                layer.closeAll();
-                var target = $(this).attr('href');
-                var that = this;
-                $.get(target).success(function(data){
-                    layer.open({
-                        type    : 1,
-                        skin    : 'layer-ext-admin',
-                        closeBtn: 1,
-                        title   : '编辑菜单',
-                        area    : ['650px'],
-                        btn     : ['确定', '取消'],
-                        shade   : false,
-                        content : data,
-                        yes     : function(index){
-                            var form = $('.form-datas');
-                            var url = form.get(0).action;
-                            var query = form.serialize();
-                            $.post(url,query,function(datas){
-                                if(datas.status==1){
-                                    updateAlert(datas.success + ' 页面即将自动跳转~','alert-success',datas.url);
-                                }else{
-                                    updateAlert(datas.error);
-                                }
-                            });
-                        }
-                    });
-                });
-                return false;
-            });
-
         })
     </script>
 @stop
@@ -83,7 +19,7 @@
                 <div class="panel-body">
                     <div class="clearfix">
                         <div class="btn-group">
-                            <a href="{{ url('admin/menu/add?pid='.$pages['pid']) }}" class="btn btn-primary ajax-add-menu">
+                            <a href="{{ url('admin/menu/add?pid='.$pages['pid']) }}" class="btn btn-primary ajax-update">
                                 新增 <i class="fa icon-plus"></i>
                             </a>
                         </div>
@@ -136,7 +72,7 @@
                                 <td class="hidden-phone">{{ $data->sort }}</td>
                                 <td class="hidden-phone">{{ $data->hide_text }}</td>
                                 <td class="hidden-phone">
-                                    <a class="btn btn-primary btn-xs ajax-edit-menu" href="{{ url('admin/menu/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
+                                    <a class="btn btn-primary btn-xs ajax-update" href="{{ url('admin/menu/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
                                     <a class="btn btn-danger btn-xs ajax-confirm" href="{{ url('admin/menu/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
                                 </td>
                             </tr>

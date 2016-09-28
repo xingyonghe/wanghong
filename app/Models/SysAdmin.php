@@ -15,7 +15,7 @@ class SysAdmin extends Authenticatable{
     protected $table = 'sys_admin';
     protected $dateFormat = 'U';
     protected $fillable = [
-        'username', 'password','reg_time','login_time','login_ip','role_id'
+        'username', 'password','reg_time','login_time','login_ip','role_id','nickname','status'
     ];
 
     protected $hidden = [
@@ -30,7 +30,7 @@ class SysAdmin extends Authenticatable{
             $roletext[$val['id']] = $val['title'];
         }
         int_to_string($list,array(
-            'status' => array(1=>'<span class="label label-success">正常</span>',0=>'<span class="label label-danger">禁用</span>'),
+            'status' => array(-1=>'<span class="label label-danger">删除</span>',1=>'<span class="label label-success">正常</span>',0=>'<span class="label label-info">禁用</span>'),
             'role_id' => $roletext
         ));
         return $list;
@@ -43,9 +43,29 @@ class SysAdmin extends Authenticatable{
      */
     protected function updateData($request){
         $this->fill($request->all());
-        $this->password = bcrypt($request->password);
-        $this->reg_time = date('Y-m-d H:i:s');
-        $resualt = $this->save();
+        if(empty($request->id)){
+            //新增
+            $this->password = bcrypt($request->password);
+            $this->reg_time = date('Y-m-d H:i:s');
+            $resualt = $this->save();
+        }else{
+            //编辑
+            $info = $this->findOrFail($request->id);
+            $resualt = $info->update(Input::get());
+
+        }
+        if($resualt === false){
+            return false;
+        }
+        return $request;
+    }
+
+
+    /**
+     * 重置密码
+     */
+    protected function resetPassword($request){
+        $resualt = $this->where(array(['username','=',$request->username]))->update(array('password'=>bcrypt($request->password)));
         if($resualt === false){
             return false;
         }

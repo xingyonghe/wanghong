@@ -36,7 +36,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::post('login', 'LoginController@login');//登录提交
     Route::get('logout', 'LoginController@logout');//退出登录
     //
-    Route::group(['middleware'=>'admin.auth'],function (){
+    Route::group(['middleware'=>['admin.auth','menu']],function (){
         //首页
         Route::get('index/index', 'IndexController@index');//首页
         //菜单管理
@@ -57,8 +57,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         //管理员
         Route::get ('admin/index',             'AdminController@index');        //列表
         Route::get ('admin/add',               'AdminController@add');          //新增
+        Route::post('admin/update',            'AdminController@update');       //添加管理员
         Route::get ('admin/edit/{id}',         'AdminController@edit');         //修改
-        Route::post('admin/update',            'AdminController@update');       //更新
+        Route::post('admin/editUpdate',        'AdminController@editUpdate');   //修改管理员
+        Route::get ('admin/forbid/{id}',       'AdminController@forbid');       //禁用
+        Route::get ('admin/resume/{id}',       'AdminController@resume');       //启用
         Route::get ('admin/destroy/{id}',      'AdminController@destroy');      //删除
         Route::get ('admin/destroy/{id}',      'AdminController@destroy');      //删除
         Route::get ('admin/resetpass',         'AdminController@resetpass');    //重置密码

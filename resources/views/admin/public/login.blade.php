@@ -30,13 +30,10 @@
         <h2 class="form-signin-heading">管理系统</h2>
         <div class="login-wrap">
             <input type="text" class="form-control" placeholder="请输入管理员账号" name="username" value="{{ old('username') }}">
-            @if ($errors->has('username'))
-                <p class="help-block">{{ $errors->first('username') }}</p>
+            @if ($errors)
+                <p class="help-block">{{ $errors->first() }}</p>
             @endif
             <input type="password" class="form-control" placeholder="请输入密码" name="password">
-            @if ($errors->has('password'))
-                <p class="help-block">{{ $errors->first('password') }}</p>
-            @endif
             <button class="btn btn-lg btn-login btn-block" type="submit">登 录</button>
         </div>
     {!!Form::close()!!}

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\SysMenu;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use View;
 use Response;
 use Request;
 use Redirect;
@@ -37,10 +36,10 @@ class MenuController extends Controller{
         if(Request::ajax()){
             $pid = Input::get('pid') ?? 0;
             $menus = SysMenu::getMenus();
-            $view = View::make('admin.menu.add',compact('menus','pid'));
-            return Response::json($view->render());
+            $view = view('admin.menu.add',compact('menus','pid'));
+            return Response::json(array('html'=>$view->render(),'status'=>1,'title'=>'新增菜单'));
         }else{
-            return Redirect::back()->withErrors(['error'=>'请求超时','status'=>0]);
+            return redirect()->back()->with('error','请求超时');
         }
     }
 
@@ -62,10 +61,14 @@ class MenuController extends Controller{
      * 菜单修改
      */
     public function edit($id){
-        $info = SysMenu::find($id);
-        $menus = SysMenu::getMenus();
-        $view = View::make('admin.menu.edit',compact('menus','info'));
-        return Response::json($view->render());
+        if(Request::ajax()){
+            $info = SysMenu::find($id);
+            $menus = SysMenu::getMenus();
+            $view = view('admin.menu.edit',compact('menus','info'));
+            return Response::json(array('html'=>$view->render(),'status'=>1,'title'=>'修改菜单'));
+        }else{
+            return redirect()->back()->with('error','请求超时');
+        }
     }
 
     /**
@@ -87,9 +90,9 @@ class MenuController extends Controller{
     public function destroy($id){
         $datas = SysMenu::find($id);
         if($datas->delete()){
-            return Redirect::back()->with('success', '删除信息成功!');
+            return redirect()->back()->withSuccess('删除信息成功!');
         }else{
-            return Redirect::back()->withErrors(['error'=>'删除信息失败','status'=>0]);
+            return redirect()->back()->with('error','删除信息失败');
         }
     }
 

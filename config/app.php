@@ -164,7 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,//表单依赖
         Barryvdh\Debugbar\ServiceProvider::class,//Debugbar调试
-        App\Providers\MenuServiceProvider::class,//菜单服务提供者
+//        App\Providers\MenuServiceProvider::class,//菜单服务提供者
 
         /*
          * Package Service Providers...
