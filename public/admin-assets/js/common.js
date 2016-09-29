@@ -45,6 +45,7 @@ $(function(){
 
     //删除确认
     $('body').on('click','.ajax-confirm',function(){
+        layer.closeAll();
         var target = $(this).attr('href');
         if($(this).hasClass('destroy')){
             confirmDialog('确认要删除该信息吗?',target);
@@ -57,8 +58,49 @@ $(function(){
         }
 
         return false;
-    })
-
+    });
+    
+    //排序
+    $('.ajax-sort').click(function(){
+        layer.closeAll();
+        var target = $(this).attr('href');
+        var that = this;
+        $.get(target).success(function(data){
+            if(data.status == 1){
+                layer.open({
+                    type    : 1,
+                    skin    : 'layer-ext-admin',
+                    closeBtn: 1,
+                    title   : data.title,
+                    area    : ['450px'],
+                    btn     : ['确定', '取消'],
+                    shade   : false,
+                    content : data.html,
+                    yes     : function(index){
+                        var form = $('.form-sort');
+                        var url = form.get(0).action;
+                        var _token = $('.form-sort').find("input[name='_token']").val();
+                        var arr = new Array();
+                        $('.sortids').each(function(){
+                            arr.push($(this).val());
+                        });
+                        $('input[name=ids]').val(arr.join(','));
+                        var query = {'ids' :  arr.join(','), '_token':_token};
+                        $.post(url,query,function(datas){
+                            if(datas.status==1){
+                                updateAlert(datas.success + ' 页面即将自动跳转~','alert-success',datas.url);
+                            }else{
+                                updateAlert(datas.error);
+                            }
+                        });
+                    }
+                });
+            }else{
+                updateAlert(data.error);
+            }
+        });
+        return false;
+    });
 
     //ajax get请求
     $('.ajax-get').click(function(){
@@ -183,7 +225,7 @@ $(function(){
 
     //单选按钮效果重写
     $('body').on('click','.label_radio',function(){
-        $('.label_radio').siblings().removeClass('r_on').find('input').prop('checked',false);
+        $(this).siblings().removeClass('r_on').find('input').prop('checked',false);
         $(this).addClass('r_on').find('input').prop('checked',true);
     });
 })

@@ -48,5 +48,20 @@ function int_to_string(&$data,$map=array('status'=>array(1=>'正常',-1=>'删除
     return $data;
 }
 
+///**
+// * 获取页面头部面包屑
+// */
+//function get_breadcrumb($data){
+//    $breadcrumb = '<ul class="breadcrumb"><li><a href="'.url('admin/index/index').'"><i class="icon-home"></i> Home</a></li>';
+//    foreach($data as $key=>$item){
+//        if(($key+1) == count($data)){
+//            $breadcrumb .= '<li class="active">'.$item['name'].'</li>';
+//        }else{
+//            $breadcrumb .= '<li><a href="'.$item['url'].'">'.$item['name'].'</a></li>';
+//        }
+//    }
+//    $breadcrumb = '</ul>';
+//    return $breadcrumb;
+//}
 
 

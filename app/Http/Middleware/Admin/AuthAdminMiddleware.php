@@ -22,16 +22,16 @@ class AuthAdminMiddleware{
         if (!Auth::guard($guard)->check()) {
             return redirect('admin');
         }
-//        //是否有权限
-//        if($this->checkRules()){
+        //是否有权限
+        if($this->checkRules()){
             return $next($request);
-//        }else{
-//            if($request->ajax()){
-//                return Response::json(array('error'=>'抱歉，您的权限不足','status'=>0));
-//            }else{
-//                return redirect()->back()->with('error','抱歉，您的权限不足');
-//            }
-//
-//        }
+        }else{
+            if($request->ajax()){
+                return Response::json(array('error'=>'抱歉，您的权限不足','status'=>0));
+            }else{
+                return redirect()->back()->with('error','抱歉，您的权限不足');
+            }
+
+        }
     }
 }

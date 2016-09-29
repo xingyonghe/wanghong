@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-09-28 18:30:46
+Date: 2016-09-29 17:39:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,6 +32,8 @@ INSERT INTO `migrations` VALUES ('2016_09_21_015708_create_sys_admins_table', '1
 INSERT INTO `migrations` VALUES ('2016_09_22_044928_create_sys_menus_table', '2');
 INSERT INTO `migrations` VALUES ('2016_09_24_022506_create_sys_auth_groups_table', '3');
 INSERT INTO `migrations` VALUES ('2016_09_24_072156_create_sys_auth_rules_table', '4');
+INSERT INTO `migrations` VALUES ('2016_09_29_122814_create_sys_channels_table', '5');
+INSERT INTO `migrations` VALUES ('2016_09_29_172837_create_sys_configs_table', '6');
 
 -- ----------------------------
 -- Table structure for sys_admin
@@ -54,7 +56,7 @@ CREATE TABLE `sys_admin` (
 -- ----------------------------
 -- Records of sys_admin
 -- ----------------------------
-INSERT INTO `sys_admin` VALUES ('1', 'admin', '$2y$10$ymrgELHNpTgRrYs6OrJxL.o7/LypgOCT691be6xVRGBfZP8RYnpIm', '超管', '1', 'In5REthaH46LKWKDChNZrbfubB30SRt5HQf1X5ubVKqZZfiyLTBy46nT2eIY', '2016-09-23 00:18:44', '2016-09-28 16:08:15', '127.0.0.1', '1');
+INSERT INTO `sys_admin` VALUES ('1', 'admin', '$2y$10$ymrgELHNpTgRrYs6OrJxL.o7/LypgOCT691be6xVRGBfZP8RYnpIm', '超管', '1', 'n2VB20mqvyOuMRzWNvU26jxYRWl8yOtAxFooMKJM5T18t3TC6rQ4h4B9KoYJ', '2016-09-23 00:18:44', '2016-09-29 16:32:19', '127.0.0.1', '1');
 INSERT INTO `sys_admin` VALUES ('2', 'xingyonghe', '$2y$10$IcTAd4v/7ztQTWlOscO0N.2Oor0SzkhIACOF7V3MY4rUQhJPF2/cS', '永和', '1', null, '2016-09-25 03:03:53', null, '', '0');
 INSERT INTO `sys_admin` VALUES ('3', 'xingyingfeng', '$2y$10$TXhGksJwGBDR80lTxxtezeUcYBJkkhj56m4rHxF83G/mvHa6o6/Oe', '颖楓', '0', '85qgsQutUUs8SnR5hsx5jwfcTOIS50e4fLqOyj3IH1VjnGZvIoJ8fQJAF1oa', '2016-09-25 03:04:29', null, '', '0');
 INSERT INTO `sys_admin` VALUES ('4', 'test', '$2y$10$0D3cgZAFIDQf4IKj0yM./eiPCzB12hPz5FKkCoiwyOPZIL9PJLFQK', '测试', '1', 'P5e4Ak2uku02Dq636zEML1G0obSG750SVFqev34rED33LrZFx6pU9GIgbz3f', '2016-09-25 11:07:32', '2016-09-27 12:35:47', '127.0.0.1', '0');
@@ -81,7 +83,7 @@ CREATE TABLE `sys_auth_group` (
 -- ----------------------------
 -- Records of sys_auth_group
 -- ----------------------------
-INSERT INTO `sys_auth_group` VALUES ('1', '超级管理员', '拥有网站所有权限', '1', '[\"84\",\"86\",\"77\",\"78\",\"79\",\"80\",\"81\",\"82\",\"83\",\"76\",\"88\",\"89\",\"90\",\"91\",\"92\",\"93\",\"94\",\"95\",\"96\",\"103\",\"97\",\"98\",\"85\",\"87\",\"74\",\"99\",\"100\",\"101\",\"102\",\"75\"]');
+INSERT INTO `sys_auth_group` VALUES ('1', '超级管理员', '拥有网站所有权限', '1', '[\"84\",\"86\",\"77\",\"78\",\"79\",\"80\",\"81\",\"82\",\"83\",\"76\",\"88\",\"89\",\"90\",\"91\",\"92\",\"93\",\"94\",\"95\",\"96\",\"103\",\"97\",\"98\",\"85\",\"87\",\"74\",\"99\",\"100\",\"101\",\"102\",\"75\",\"104\",\"105\",\"106\",\"107\",\"108\",\"109\",\"112\",\"113\",\"110\",\"114\",\"115\",\"111\",\"116\"]');
 INSERT INTO `sys_auth_group` VALUES ('2', '测试分组2', '用来test的分组2', '1', '');
 INSERT INTO `sys_auth_group` VALUES ('3', '测试分组3', '用来test的分组3', '1', '[\"84\",\"86\",\"77\",\"78\",\"80\",\"81\",\"82\",\"83\",\"76\",\"88\",\"89\",\"90\",\"91\",\"92\",\"93\",\"94\",\"95\",\"96\",\"97\",\"98\",\"85\",\"87\",\"74\",\"99\",\"100\",\"101\",\"102\",\"75\"]');
 
@@ -95,7 +97,7 @@ CREATE TABLE `sys_auth_rule` (
   `name` varchar(100) NOT NULL DEFAULT '' COMMENT '规则唯一英文标识',
   `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '类型:1url，2主菜单',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COMMENT='权限规则';
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COMMENT='权限规则';
 
 -- ----------------------------
 -- Records of sys_auth_rule
@@ -126,10 +128,73 @@ INSERT INTO `sys_auth_rule` VALUES ('96', '禁用', 'admin/admin/forbid', '1');
 INSERT INTO `sys_auth_rule` VALUES ('97', '重置密码', 'admin/admin/resetpass', '1');
 INSERT INTO `sys_auth_rule` VALUES ('98', '更新密码', 'admin/admin/updatepass', '1');
 INSERT INTO `sys_auth_rule` VALUES ('99', '新增', 'admin/menu/add', '1');
-INSERT INTO `sys_auth_rule` VALUES ('100', '编辑', 'admin/menu/eidt', '1');
+INSERT INTO `sys_auth_rule` VALUES ('100', '编辑', 'admin/menu/edit', '1');
 INSERT INTO `sys_auth_rule` VALUES ('101', '更新', 'admin/menu/update', '1');
 INSERT INTO `sys_auth_rule` VALUES ('102', '删除', 'admin/menu/destroy', '1');
 INSERT INTO `sys_auth_rule` VALUES ('103', '修改', 'admin/admin/editUpdate', '1');
+INSERT INTO `sys_auth_rule` VALUES ('104', '新增', 'admin/channel/add', '1');
+INSERT INTO `sys_auth_rule` VALUES ('105', '编辑', 'admin/channel/edit', '1');
+INSERT INTO `sys_auth_rule` VALUES ('106', '更新', 'admin/channel/update', '1');
+INSERT INTO `sys_auth_rule` VALUES ('107', '删除', 'admin/channel/destroy', '1');
+INSERT INTO `sys_auth_rule` VALUES ('108', '排序', 'admin/channel/sort', '1');
+INSERT INTO `sys_auth_rule` VALUES ('109', '更新排序', 'admin/channel/postSort', '1');
+INSERT INTO `sys_auth_rule` VALUES ('110', '网站配置', 'admin/config/index', '1');
+INSERT INTO `sys_auth_rule` VALUES ('111', '更新', 'admin/config/update', '1');
+INSERT INTO `sys_auth_rule` VALUES ('112', '网站设置', 'admin/config/setting', '1');
+INSERT INTO `sys_auth_rule` VALUES ('113', '更新设置', 'admin/config/post', '1');
+INSERT INTO `sys_auth_rule` VALUES ('114', '新增', 'admin/config/add', '1');
+INSERT INTO `sys_auth_rule` VALUES ('115', '编辑', 'admin/config/edit', '1');
+INSERT INTO `sys_auth_rule` VALUES ('116', '删除', 'admin/config/destroy', '1');
+
+-- ----------------------------
+-- Table structure for sys_channel
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_channel`;
+CREATE TABLE `sys_channel` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL COMMENT '导航标题',
+  `url` varchar(150) NOT NULL COMMENT '导航链接',
+  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否隐藏:1显示，0隐藏',
+  `target` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否新窗口打开:0否，1是',
+  `remark` varchar(150) NOT NULL COMMENT '导航备注',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='导航';
+
+-- ----------------------------
+-- Records of sys_channel
+-- ----------------------------
+INSERT INTO `sys_channel` VALUES ('1', '活动订单', 'home/order/index', '5', '1', '0', '', '2016-09-29 13:22:15', '2016-09-29 15:33:54');
+INSERT INTO `sys_channel` VALUES ('2', '资源管理', 'home/resource/index', '4', '1', '0', '', '2016-09-29 13:22:42', '2016-09-29 15:33:54');
+INSERT INTO `sys_channel` VALUES ('3', '派单大厅', 'home/order/index', '2', '1', '0', '', '2016-09-29 13:23:25', '2016-09-29 15:34:15');
+INSERT INTO `sys_channel` VALUES ('4', '账单查询', 'home/account/index', '3', '1', '0', '', '2016-09-29 13:23:56', '2016-09-29 15:34:15');
+INSERT INTO `sys_channel` VALUES ('5', '个人中心', 'member/index/index', '6', '1', '0', '', '2016-09-29 13:24:21', '2016-09-29 15:34:15');
+INSERT INTO `sys_channel` VALUES ('6', '首页', 'home/index/index', '1', '1', '0', '', '2016-09-29 13:25:22', '2016-09-29 15:34:15');
+
+-- ----------------------------
+-- Table structure for sys_config
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_config`;
+CREATE TABLE `sys_config` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '配置标题',
+  `name` varchar(30) NOT NULL DEFAULT '' COMMENT '配置名称',
+  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
+  `type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '配置类型:0数字，1字符，2文本，3数组，4枚举，5图片',
+  `group` tinyint(4) NOT NULL DEFAULT '0' COMMENT '配置分组:0基本设置，1SEO优化',
+  `value` varchar(300) NOT NULL DEFAULT '' COMMENT '配置值',
+  `extra` varchar(300) NOT NULL DEFAULT '' COMMENT '配置项',
+  `remark` varchar(150) NOT NULL DEFAULT '' COMMENT '配置说明',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='网站配置';
+
+-- ----------------------------
+-- Records of sys_config
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -145,7 +210,7 @@ CREATE TABLE `sys_menu` (
   `group` varchar(50) NOT NULL DEFAULT '' COMMENT '分组',
   `icon` varchar(50) NOT NULL DEFAULT '' COMMENT 'class样式名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COMMENT='系统菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COMMENT='系统菜单';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -176,10 +241,23 @@ INSERT INTO `sys_menu` VALUES ('37', '禁用', '31', '0', 'admin/admin/forbid', 
 INSERT INTO `sys_menu` VALUES ('38', '重置密码', '2', '0', 'admin/admin/resetpass', '0', '权限管理', '');
 INSERT INTO `sys_menu` VALUES ('39', '更新密码', '38', '0', 'admin/admin/updatepass', '1', '权限管理', '');
 INSERT INTO `sys_menu` VALUES ('40', '新增', '5', '0', 'admin/menu/add', '1', '系统设置', '');
-INSERT INTO `sys_menu` VALUES ('41', '编辑', '5', '0', 'admin/menu/eidt', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('41', '编辑', '5', '0', 'admin/menu/edit', '1', '系统设置', '');
 INSERT INTO `sys_menu` VALUES ('42', '更新', '5', '0', 'admin/menu/update', '1', '系统设置', '');
 INSERT INTO `sys_menu` VALUES ('43', '删除', '5', '0', 'admin/menu/destroy', '1', '系统设置', '');
 INSERT INTO `sys_menu` VALUES ('44', '修改', '31', '0', 'admin/admin/editUpdate', '1', '权限管理', '');
+INSERT INTO `sys_menu` VALUES ('45', '新增', '6', '0', 'admin/channel/add', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('46', '编辑', '6', '0', 'admin/channel/edit', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('47', '更新', '6', '0', 'admin/channel/update', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('48', '删除', '6', '0', 'admin/channel/destroy', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('49', '排序', '6', '0', 'admin/channel/sort', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('50', '更新排序', '6', '0', 'admin/channel/postSort', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('51', '网站设置', '4', '0', 'admin/config/setting', '0', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('52', '更新设置', '51', '0', 'admin/config/post', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('53', '网站配置', '4', '0', 'admin/config/index', '0', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('54', '新增', '53', '0', 'admin/config/add', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('55', '编辑', '53', '0', 'admin/config/edit', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('56', '更新', '53', '0', 'admin/config/update', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('57', '删除', '53', '0', 'admin/config/destroy', '1', '系统设置', '');
 
 -- ----------------------------
 -- Table structure for user

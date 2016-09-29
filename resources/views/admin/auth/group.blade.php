@@ -46,7 +46,7 @@
                                 <td class="hidden-phone">{{ $data->description }}</td>
                                 <td class="hidden-phone">{!! $data->status_text !!}</td>
                                 <td class="hidden-phone">
-                                    <a class="btn btn-primary btn-xs" href="{{ url('admin/auth/access',[$data->id]) }}"><i class="icon-pencil"></i> 授权</a>
+                                    <a class="btn btn-info btn-xs" href="{{ url('admin/auth/access',[$data->id]) }}"><i class="icon-check"></i> 授权</a>
                                     <a class="btn btn-primary btn-xs ajax-update" href="{{ url('admin/auth/editGroup',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
                                     <a class="btn btn-danger btn-xs ajax-confirm" href="{{ url('admin/auth/destroyGroup',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
                                 </td>

@@ -25,6 +25,17 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
+            {{--<div class="row">--}}
+                {{--<div class="col-lg-12">--}}
+                    {{--<!--breadcrumbs start -->--}}
+                    {{--<ul class="breadcrumb">--}}
+                        {{--<li><a href="#"><i class="icon-home"></i> Home</a></li>--}}
+                        {{--<li><a href="#">Library</a></li>--}}
+                        {{--<li class="active">Data</li>--}}
+                    {{--</ul>--}}
+                    {{--<!--breadcrumbs end -->--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <div id="top-alert" class="alert alert-block alert-danger fade in" style="display:none;position: fixed;width:89.11%;z-index: 555">
                 <button data-dismiss="alert" class="close close-sm" type="button">
                     <i class="icon-remove"></i>
