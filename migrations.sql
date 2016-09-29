@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-09-29 17:39:26
+Date: 2016-09-30 00:44:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -190,11 +190,16 @@ CREATE TABLE `sys_config` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='网站配置';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='网站配置';
 
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
+INSERT INTO `sys_config` VALUES ('1', '网站标题', 'WEB_SITE_TITLE', '0', '1', '0', '网红广告网', '', '网站标题前台显示标题', '2016-09-30 00:12:13', '2016-09-30 00:12:13');
+INSERT INTO `sys_config` VALUES ('2', '网站关键字', 'WEB_SITE_KEYWORD', '0', '2', '0', '网红、广告', '', '网站搜索引擎关键字', '2016-09-30 00:24:28', '2016-09-30 00:42:14');
+INSERT INTO `sys_config` VALUES ('3', '网站描述', 'WEB_SITE_DESCRIPTION', '0', '2', '0', '网红广告平台', '', '网站搜索引擎描述', '2016-09-30 00:25:13', '2016-09-30 00:42:28');
+INSERT INTO `sys_config` VALUES ('4', '配置类型列表', 'CONFIG_TYPE_LIST', '0', '3', '0', '0:数字\r\n1:字符\r\n2:文本\r\n3:数组\r\n4:枚举', '', '主要用于数据解析和页面表单的生成', '2016-09-30 00:27:00', '2016-09-30 00:27:00');
+INSERT INTO `sys_config` VALUES ('5', '配置分组', 'CONFIG_GROUP_LIST', '0', '0', '0', '1:基本设置\r\n2:SEO优化\r\n3:图片管理', '', '配置分组', '2016-09-30 00:28:32', '2016-09-30 00:28:32');
 
 -- ----------------------------
 -- Table structure for sys_menu
