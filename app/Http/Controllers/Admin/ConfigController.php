@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\SysChannel;
+use App\Models\SysConfig;
 use App\Http\Controllers\Controller;
 use Response;
 use Request;
 use Illuminate\Http\Request as HttpRequest;
-use App\Http\Requests\Admin\ChannelRequest;
+use App\Http\Requests\Admin\ConfigRequest;
 use Illuminate\Support\Facades\Input;
 use URL;
 
@@ -29,16 +29,14 @@ class ConfigController extends Controller{
      * 网站配置
      */
     public function index(){
-//        $map = array();
-//        $title = Input::get('title') ?? '';
-//        if(!empty($title)){
-//            $map[] = ['title','like','%'.$title.'%'];
-//        }
-//        $datas = SysChannel::getLists($map);
-//        $pages = array('title'=>$title);
-//
-
-        return view('admin.config.index');
+        $map = array();
+        $title = Input::get('title') ?? '';
+        if(!empty($title)){
+            $map[] = ['title','like','%'.$title.'%'];
+        }
+        $datas = SysConfig::getLists($map);
+        $pages = array('title'=>$title);
+        return view('admin.config.index',compact('datas','pages'));
     }
 
     /**
@@ -54,25 +52,28 @@ class ConfigController extends Controller{
      * 编辑
      */
     public function edit($id){
-        if(Request::ajax()){
-            $info = SysChannel::find($id);
-            $view = view('admin.menu.edit',compact('info'));
-            return Response::json(array('html'=>$view->render(),'status'=>1,'title'=>'修改导航'));
-        }else{
-            return redirect()->back()->with('error','请求超时');
+        if(empty($id) || !is_numeric($id)){
+            return redirect()->back()->with('error','参数错误');
         }
+        $type =  $this->type;
+        $group = $this->group;
+        $info = SysConfig::find($id);
+        if(empty($info)){
+            return redirect()->back()->with('error','抱歉，您要查找的数据不存在');
+        }
+        return view('admin.config.edit',compact('info','type','group'));
     }
 
     /**
      * 更新
      * URL::previous() 获取上一次请求地址
      */
-    public function update(ChannelRequest $request){
-        $res = SysChannel::updateData($request);
+    public function update(ConfigRequest $request){
+        $res = SysConfig::updateData($request);
         if($res){
-            return Response::json(array('success'=> $res['id']?'导航信息修改成功':'导航信息新增成功','status'=>1,'url'=>URL::previous()));
+            return redirect('admin/config/index')->withSuccess($res['id']?'配置信息修改成功':'配置信息新增成功');
         }else{
-            return Response::json(array('error'=> $res['id']?'导航信息更新失败':'导航信息新增失败','status'=>0));
+            return redirect()->back()->with('error',$res['id']?'配置信息更新失败':'配置信息新增失败');
         }
     }
 

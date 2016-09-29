@@ -21,19 +21,19 @@
                     <div class="form-group ">
                         <label for="cname" class="control-label col-lg-2">配置标题</label>
                         <div class="col-lg-10">
-                            <input class=" form-control" placeholder="用于后台显示的配置标题" name="title" type="text" value="" />
+                            <input class=" form-control" placeholder="用于后台显示的配置标题" name="title" type="text" value="{{old('title')}}" />
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="cemail" class="control-label col-lg-2">配置标识</label>
                         <div class="col-lg-10">
-                            <input class="form-control " placeholder="只能使用大写英文且不能重复"  type="text" name="sort" />
+                            <input class="form-control " placeholder="只能使用大写英文且不能重复"  type="text" name="name" value="{{old('name')}}"/>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="cemail" class="control-label col-lg-2">排序</label>
                         <div class="col-lg-10">
-                            <input class="form-control " placeholder="用于分组显示的顺序"  type="text" name="sort" />
+                            <input class="form-control " placeholder="用于分组显示的顺序"  type="text" name="sort" value="{{old('sort')}}"/>
                         </div>
                     </div>
                     <div class="form-group ">
@@ -51,19 +51,19 @@
                     <div class="form-group ">
                         <label for="curl" class="control-label col-lg-2">配置值</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control " placeholder="配置值" type="text" name="remark" /></textarea>
+                            <textarea class="form-control " placeholder="配置值" type="text" name="value" />{{old('value')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="curl" class="control-label col-lg-2">配置项</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control " placeholder="如果是枚举型 需要配置该项" type="text" name="remark" /></textarea>
+                            <textarea class="form-control " placeholder="如果是枚举型 需要配置该项" type="text" name="extra" />{{old('extra')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="curl" class="control-label col-lg-2">配置说明</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control " placeholder="配置备注说明" type="text" name="remark" /></textarea>
+                            <textarea class="form-control " placeholder="配置备注说明" type="text" name="remark" />{{old('remark')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
