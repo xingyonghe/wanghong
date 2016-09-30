@@ -1,0 +1,115 @@
+<extend name="Base/common"/>
+<block name="style">
+    <link rel="stylesheet" type="text/css" href="__USER__/css/personal.css">
+</block>
+<block name="script">
+    <script type="text/javascript" src="__STATIC__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //店铺头像上传
+            var photo = new plupload.Uploader({
+                browse_button : 'photo', //触发文件选择对话框的按钮，为那个元素id
+                url : "{:U('avatar',array('session_id'=>session_id()))}", //服务器端的上传页面地址
+                flash_swf_url : 'js/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
+                silverlight_xap_url : 'js/Moxie.xap', //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+                filters : {
+                    max_file_size : '4mb',
+                    mime_types: [
+                        {title : "Image files", extensions : "jpg,png,jpeg"}
+                    ],
+                    prevent_duplicates:false //不允许选取重复文件
+                },
+                init: {
+                    //添加
+                    FilesAdded: function(up, files) {
+                        photo.start();
+                    },
+                    //每个队列上传完成
+                    FileUploaded: function(up,file,resault) {
+                        var res = $.parseJSON(resault.response);
+                        if(!res.status){
+                            errorDialog(res.info);
+                            uploader.removeFile(file.id);
+                        }else{
+                            $('.img220').css("background","#d9d9d9 url(__STATIC__/loading.gif) no-repeat center");
+                            $('.img220').css("background-size","20px 20px");
+                            $('.img120').css("background","#d9d9d9 url(__STATIC__/loading.gif) no-repeat center");
+                            $('.img120').css("background-size","20px 20px");
+                            $('.img80').css("background","#d9d9d9 url(__STATIC__/loading.gif) no-repeat center");
+                            $('.img80').css("background-size","20px 20px");
+                            setTimeout(function(){
+//                                $('.img220').html('');
+//                                $('.img220').css("background","#d9d9d9 url("+res.url+res.img.img220+") no-repeat center");
+//                                $('.img220').css("background-size","220px 220px");
+//                                $('.img120').html('');
+//                                $('.img120').css("background","#d9d9d9 url("+res.url+res.img.img120+") no-repeat center");
+//                                $('.img120').css("background-size","120px 120px");
+//                                $('.img80').html('');
+//                                $('.img80').css("background","#d9d9d9 url("+res.url+res.img.img80+") no-repeat center");
+//                                $('.img80').css("background-size","80px 80px");
+                                window.location = "{:U('decorateSet')}";
+                            }, 1100);
+                        }
+                    }
+                }
+            });
+            //在实例对象上调用init()方法进行初始化
+            photo.init();
+
+
+        });
+    </script>
+</block>
+<block name="body">
+    <div class="w1200 h_bottom">
+        <include file="Public:dleft"/>
+        <div class="h_right fr">
+            <h5 class="title_name"><span>头像照片</span></h5>
+            <div class="shop-load">
+                <div class="load-box"><a href="javascript:;" class="s-load-btn" id="photo">选择头像</a></div>
+                <div class="l-pic-box clearfix">
+                    <notempty name="avatar">
+                        <ul class="load-pic fl f12 ">
+                            <li>
+                                <div class="l-pic img220"><img src="{$avatar[img220]}" alt="" width="220" height="220"></div>
+                                <p>220*220</p>
+                            </li>
+                            <li class="w120">
+                                <div class="l-pic img120"><img src="{$avatar[img120]}" alt="" width="120" height="120"></div>
+                                <p>120*120</p>
+                            </li>
+                            <li class="w80">
+                                <div class="l-pic img80"><img src="{$avatar[img80]}" alt="" width="80" height="80"></div>
+                                <p>80*80</p>
+                            </li>
+                        </ul>
+                        <else/>
+                        <ul class="load-pic fl f12 ">
+                            <li>
+                                <div class="l-pic img220"><img src="__USER__/images/personal/up-bg.png" alt=""></div>
+                                <p>220*220</p>
+                            </li>
+                            <li class="w120">
+                                <div class="l-pic img120"><img src="__USER__/images/personal/up-bg.png" alt="" width="54" height="41"></div>
+                                <p>120*120</p>
+                            </li>
+                            <li class="w80">
+                                <div class="l-pic img80"><img src="__USER__/images/personal/up-bg.png" alt="" width="38" height="29"></div>
+                                <p>80*80</p>
+                            </li>
+                        </ul>
+                    </notempty>
+                    <div class="load-txt fl f12">
+                        <p>• 请上传您的<b>品牌Logo</b>或者个人<b>真实头像</b>；</p>
+                        <p>• 为了您的安全，请不要上传个人隐私信息到公共区域，比如身份证等；</p>
+                        <p>• <b>仅支持JPG、PNG、JPEG格式，文件小于4M</b>；</p>
+                        <p>• 请勿在形象标示上留有任何联系方式的信息；</p>
+                        <p>• 请保证图片质量，<b>分辨率至少为220*220</b>；</p>
+                        <p>• 请不要在头像上面留电话，QQ，网址，邮箱等联系方式信息，会导致您的头像无法通过审核；</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+

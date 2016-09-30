@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,//表单依赖
         Barryvdh\Debugbar\ServiceProvider::class,//Debugbar调试
+        Intervention\Image\ImageServiceProvider::class,//图片处理
 //        App\Providers\MenuServiceProvider::class,//菜单服务提供者
 
         /*
@@ -231,6 +232,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,//表单依赖
         'Html' => Collective\Html\HtmlFacade::class,//HTML依赖
         'Debugbar' => Barryvdh\Debugbar\Facade::class,//Debugbar调试
+        'Image' => Intervention\Image\Facades\Image::class,//图片处理
 
     ],
 

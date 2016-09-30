@@ -18,6 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/home/image', function(){
+    $img = Image::make('JS.png')->resize(800, 600);
+    return $img->response('jpg');
+});
 
 /**
  * 前台路由组
