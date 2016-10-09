@@ -10,6 +10,7 @@ use Illuminate\Http\Request as HttpRequest;
 use App\Http\Requests\Admin\ConfigRequest;
 use Illuminate\Support\Facades\Input;
 use URL;
+use Cache;
 
 class ConfigController extends Controller{
 
@@ -17,12 +18,8 @@ class ConfigController extends Controller{
     protected $group = array(); //配置分组
 
     public function __construct(){
-        $this->type = array(
-            '数字','字符','文本','数组','枚举','图片'
-        );
-        $this->group = array(
-            '基本设置','SEO优化'
-        );
+        $this->type = parse_config_attr(C('CONFIG_TYPE_LIST'));
+        $this->group = parse_config_attr(C('CONFIG_GROUP_LIST'));
     }
 
     /**
@@ -30,12 +27,12 @@ class ConfigController extends Controller{
      */
     public function index(){
         $map = array();
-        $title = Input::get('title') ?? '';
-        if(!empty($title)){
-            $map[] = ['title','like','%'.$title.'%'];
+        $name = Input::get('name') ?? '';
+        if(!empty($name)){
+            $map[] = ['name','like','%'.$name.'%'];
         }
         $datas = SysConfig::getLists($map);
-        $pages = array('title'=>$title);
+        $pages = array('name'=>$name);
         return view('admin.config.index',compact('datas','pages'));
     }
 
@@ -81,7 +78,7 @@ class ConfigController extends Controller{
      * 删除
      */
     public function destroy($id){
-        $datas = SysChannel::find($id);
+        $datas = SysConfig::find($id);
         if($datas->delete()){
             return redirect()->back()->withSuccess('删除信息成功!');
         }else{
@@ -116,9 +113,28 @@ class ConfigController extends Controller{
         return Response::json(array('success'=> '导航信息排序成功','status'=>1,'url'=>URL::previous()));
     }
 
+    /**
+     * 网站设置
+     */
+    public function setting($group = 1){
+        $type   =   $this->group;
+        $list = SysConfig::where(array(['group','=',$group]))->orderBy('sort','asc')->get();
+        return view('admin.config.setting',compact('list','type','group'));
+    }
 
-
-
-
-
+    /**
+     * 更新网站设置
+     * @param HttpRequest $request
+     */
+    public function post(HttpRequest $request){
+        $config = $request->config;
+        if($config && is_array($config)){
+            foreach ($config as $name => $value) {
+                $info = SysConfig::where(array('name' => $name))->first();
+                $info->update(array('value'=>$value));
+            }
+        }
+        Cache::forget('CONFIG_LIST');
+        return redirect()->back()->withSuccess('更新网站设置成功!');
+    }
 }

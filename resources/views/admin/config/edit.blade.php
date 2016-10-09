@@ -2,7 +2,7 @@
 @section('style')
 @stop
 @section('script')
-    <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
+    <script type="text/javascript">
         $(function () {
             highlight_subnav("{{ url('admin/config/index') }}");
         })
@@ -52,19 +52,19 @@
                         <div class="form-group ">
                             <label for="curl" class="control-label col-lg-2">配置值</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control " placeholder="配置值" type="text" name="value" />{{$info->value}}</textarea>
+                                <textarea class="form-control " rows="6"  placeholder="配置值" type="text" name="value" />{{$info->value}}</textarea>
                             </div>
                         </div>
                         <div class="form-group ">
                             <label for="curl" class="control-label col-lg-2">配置项</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control " placeholder="如果是枚举型 需要配置该项" type="text" name="extra" />{{$info->extra}}</textarea>
+                                <textarea class="form-control " rows="6" placeholder="如果是枚举型 需要配置该项" type="text" name="extra" />{{$info->extra}}</textarea>
                             </div>
                         </div>
                         <div class="form-group ">
                             <label for="curl" class="control-label col-lg-2">配置说明</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control " placeholder="配置备注说明" type="text" name="remark" />{{$info->remark}}</textarea>
+                                <textarea class="form-control " rows="6" placeholder="配置备注说明" type="text" name="remark" />{{$info->remark}}</textarea>
                             </div>
                         </div>
                         <div class="form-group">

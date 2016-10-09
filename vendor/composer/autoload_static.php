@@ -53,6 +53,7 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Symfony\\Component\\ClassLoader\\' => 30,
             'SuperClosure\\' => 13,
         ),
         'R' => 
@@ -103,6 +104,7 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
         ),
         'B' => 
         array (
+            'Barryvdh\\LaravelIdeHelper\\' => 26,
             'Barryvdh\\Debugbar\\' => 18,
         ),
         'A' => 
@@ -190,6 +192,10 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Symfony\\Component\\ClassLoader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/class-loader',
+        ),
         'SuperClosure\\' => 
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
@@ -270,6 +276,10 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
+        'Barryvdh\\LaravelIdeHelper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src',
+        ),
         'Barryvdh\\Debugbar\\' => 
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src',
@@ -320,6 +330,13 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
                 0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src',
             ),
         ),
+        'B' => 
+        array (
+            'Barryvdh' => 
+            array (
+                0 => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -338,6 +355,7 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\PictureController' => __DIR__ . '/../..' . '/app/Http/Controllers/PictureController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Admin\\AuthAdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin/AuthAdminMiddleware.php',
         'App\\Http\\Middleware\\Admin\\LoginAdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin/LoginAdminMiddleware.php',
@@ -351,6 +369,9 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
         'App\\Http\\Requests\\Admin\\ConfigRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/ConfigRequest.php',
         'App\\Http\\Requests\\Admin\\MenuRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/MenuRequest.php',
         'App\\Library\\Auth' => __DIR__ . '/../..' . '/app/Library/Auth.php',
+        'App\\Library\\LocalUpload' => __DIR__ . '/../..' . '/app/Library/LocalUpload.php',
+        'App\\Library\\Upload' => __DIR__ . '/../..' . '/app/Library/Upload.php',
+        'App\\Models\\Picture' => __DIR__ . '/../..' . '/app/Models/Picture.php',
         'App\\Models\\SysAdmin' => __DIR__ . '/../..' . '/app/Models/SysAdmin.php',
         'App\\Models\\SysAuthGroup' => __DIR__ . '/../..' . '/app/Models/SysAuthGroup.php',
         'App\\Models\\SysAuthRule' => __DIR__ . '/../..' . '/app/Models/SysAuthRule.php',
@@ -396,6 +417,38 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
         'Barryvdh\\Debugbar\\Twig\\Extension\\Stopwatch' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/Twig/Extension/Stopwatch.php',
         'Barryvdh\\Debugbar\\Twig\\Node\\StopwatchNode' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/Twig/Node/StopwatchNode.php',
         'Barryvdh\\Debugbar\\Twig\\TokenParser\\StopwatchTokenParser' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/Twig/TokenParser/StopwatchTokenParser.php',
+        'Barryvdh\\LaravelIdeHelper\\Alias' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Alias.php',
+        'Barryvdh\\LaravelIdeHelper\\Console\\GeneratorCommand' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Console/GeneratorCommand.php',
+        'Barryvdh\\LaravelIdeHelper\\Console\\MetaCommand' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Console/MetaCommand.php',
+        'Barryvdh\\LaravelIdeHelper\\Console\\ModelsCommand' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Console/ModelsCommand.php',
+        'Barryvdh\\LaravelIdeHelper\\Generator' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Generator.php',
+        'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/IdeHelperServiceProvider.php',
+        'Barryvdh\\LaravelIdeHelper\\Method' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Method.php',
+        'Barryvdh\\Reflection\\DocBlock' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock.php',
+        'Barryvdh\\Reflection\\DocBlock\\Context' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Context.php',
+        'Barryvdh\\Reflection\\DocBlock\\Description' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Description.php',
+        'Barryvdh\\Reflection\\DocBlock\\Location' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Location.php',
+        'Barryvdh\\Reflection\\DocBlock\\Serializer' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Serializer.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\AuthorTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/AuthorTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\CoversTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/CoversTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\DeprecatedTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/DeprecatedTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\ExampleTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/ExampleTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\LinkTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/LinkTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\MethodTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/MethodTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\ParamTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/ParamTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\PropertyReadTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/PropertyReadTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\PropertyTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/PropertyTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\PropertyWriteTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/PropertyWriteTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\ReturnTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/ReturnTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\SeeTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/SeeTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\SinceTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/SinceTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\SourceTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/SourceTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\ThrowsTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/ThrowsTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\UsesTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/UsesTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\VarTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/VarTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Tag\\VersionTag' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Tag/VersionTag.php',
+        'Barryvdh\\Reflection\\DocBlock\\Type\\Collection' => __DIR__ . '/..' . '/barryvdh/reflection-docblock/src/Barryvdh/Reflection/DocBlock/Type/Collection.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'ClassPreloader\\ClassList' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/ClassList.php',
@@ -420,6 +473,7 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
         'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
+        'CreatePicturesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_01_221315_create_pictures_table.php',
         'CreateSysAdminsTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_21_015708_create_sys_admins_table.php',
         'CreateSysAuthGroupsTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_24_022506_create_sys_auth_groups_table.php',
         'CreateSysAuthRulesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_24_072156_create_sys_auth_rules_table.php',
@@ -3122,6 +3176,14 @@ class ComposerStaticInitdbcef6e998d3c732a7c77634ab86592d
         'SuperClosure\\SerializableClosure' => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src/SerializableClosure.php',
         'SuperClosure\\Serializer' => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src/Serializer.php',
         'SuperClosure\\SerializerInterface' => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src/SerializerInterface.php',
+        'Symfony\\Component\\ClassLoader\\ApcClassLoader' => __DIR__ . '/..' . '/symfony/class-loader/ApcClassLoader.php',
+        'Symfony\\Component\\ClassLoader\\ClassCollectionLoader' => __DIR__ . '/..' . '/symfony/class-loader/ClassCollectionLoader.php',
+        'Symfony\\Component\\ClassLoader\\ClassLoader' => __DIR__ . '/..' . '/symfony/class-loader/ClassLoader.php',
+        'Symfony\\Component\\ClassLoader\\ClassMapGenerator' => __DIR__ . '/..' . '/symfony/class-loader/ClassMapGenerator.php',
+        'Symfony\\Component\\ClassLoader\\MapClassLoader' => __DIR__ . '/..' . '/symfony/class-loader/MapClassLoader.php',
+        'Symfony\\Component\\ClassLoader\\Psr4ClassLoader' => __DIR__ . '/..' . '/symfony/class-loader/Psr4ClassLoader.php',
+        'Symfony\\Component\\ClassLoader\\WinCacheClassLoader' => __DIR__ . '/..' . '/symfony/class-loader/WinCacheClassLoader.php',
+        'Symfony\\Component\\ClassLoader\\XcacheClassLoader' => __DIR__ . '/..' . '/symfony/class-loader/XcacheClassLoader.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Command\\Command' => __DIR__ . '/..' . '/symfony/console/Command/Command.php',
         'Symfony\\Component\\Console\\Command\\HelpCommand' => __DIR__ . '/..' . '/symfony/console/Command/HelpCommand.php',

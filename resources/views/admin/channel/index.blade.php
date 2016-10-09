@@ -73,7 +73,7 @@
                                 <td class="hidden-phone">{{ $data->target_text }}</td>
                                 <td class="hidden-phone">
                                     <a class="btn btn-primary btn-xs ajax-update" href="{{ url('admin/channel/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
-                                    <a class="btn btn-danger btn-xs ajax-confirm" href="{{ url('admin/channel/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
+                                    <a class="btn btn-danger btn-xs ajax-confirm destroy" href="{{ url('admin/channel/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
                                 </td>
                             </tr>
                         @endforeach

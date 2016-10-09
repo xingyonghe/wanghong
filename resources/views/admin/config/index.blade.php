@@ -39,7 +39,7 @@
                             </div>
                             <div class="dataTables_filter" id="sample_1_filter">
                                 <label>
-                                    导航名称：<input type="text" name="title" aria-controls="sample_1" value="{{ $pages['title'] }}" class="form-control">
+                                    配置名称：<input type="text" name="name" aria-controls="sample_1" value="{{ $pages['name'] }}" class="form-control">
                                 </label>
                             </div>
                             {!!Form::close()!!}
@@ -69,7 +69,7 @@
                                 <td class="center hidden-phone">{{ $data->type_text }}</td>
                                 <td class="hidden-phone">
                                     <a class="btn btn-primary btn-xs" href="{{ url('admin/config/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
-                                    <a class="btn btn-danger btn-xs ajax-confirm" href="{{ url('admin/config/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
+                                    <a class="btn btn-danger btn-xs ajax-confirm destroy" href="{{ url('admin/config/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
                                 </td>
                             </tr>
                         @endforeach

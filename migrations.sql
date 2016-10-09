@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : 本地
 Source Server Version : 50547
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : wanghong
 
 Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-09-30 00:44:48
+Date: 2016-10-09 22:40:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,13 +27,34 @@ CREATE TABLE `migrations` (
 -- ----------------------------
 -- Records of migrations
 -- ----------------------------
-INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table', '1');
+INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table', '8');
 INSERT INTO `migrations` VALUES ('2016_09_21_015708_create_sys_admins_table', '1');
 INSERT INTO `migrations` VALUES ('2016_09_22_044928_create_sys_menus_table', '2');
 INSERT INTO `migrations` VALUES ('2016_09_24_022506_create_sys_auth_groups_table', '3');
 INSERT INTO `migrations` VALUES ('2016_09_24_072156_create_sys_auth_rules_table', '4');
 INSERT INTO `migrations` VALUES ('2016_09_29_122814_create_sys_channels_table', '5');
 INSERT INTO `migrations` VALUES ('2016_09_29_172837_create_sys_configs_table', '6');
+INSERT INTO `migrations` VALUES ('2016_10_01_221315_create_pictures_table', '7');
+
+-- ----------------------------
+-- Table structure for picture
+-- ----------------------------
+DROP TABLE IF EXISTS `picture`;
+CREATE TABLE `picture` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `path` varchar(255) NOT NULL DEFAULT '' COMMENT '路径',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '图片链接',
+  `md5` char(32) NOT NULL DEFAULT '' COMMENT '文件md5',
+  `sha1` char(40) NOT NULL DEFAULT '' COMMENT '文件 sha1编码',
+  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='图片表';
+
+-- ----------------------------
+-- Records of picture
+-- ----------------------------
+INSERT INTO `picture` VALUES ('10', '/uploads/picture/2016-10-05/57f3e0875cea5.jpg', '', '4b3e861148ae405179edb35982ecc441', 'a9fdf2f5269fa58c4bff5dfa9725b17569d3dfa4', '2016-10-05 01:01:59');
+INSERT INTO `picture` VALUES ('11', '/uploads/picture/2016-10-05/57f3e08e0563f.png', '', 'f0cace382f445e02c550afd6dfc40cdc', '9469f75a2a917f9cc52b76c7eb13de3fd193f59c', '2016-10-05 01:02:06');
 
 -- ----------------------------
 -- Table structure for sys_admin
@@ -78,7 +99,7 @@ CREATE TABLE `sys_auth_group` (
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '用户组状态:0禁用，1正常',
   `rules` varchar(500) NOT NULL DEFAULT '' COMMENT '用户组拥有的规则id，多个规则 , 隔开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='用户组';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='用户组';
 
 -- ----------------------------
 -- Records of sys_auth_group
@@ -190,16 +211,22 @@ CREATE TABLE `sys_config` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='网站配置';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='网站配置';
 
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
-INSERT INTO `sys_config` VALUES ('1', '网站标题', 'WEB_SITE_TITLE', '0', '1', '0', '网红广告网', '', '网站标题前台显示标题', '2016-09-30 00:12:13', '2016-09-30 00:12:13');
-INSERT INTO `sys_config` VALUES ('2', '网站关键字', 'WEB_SITE_KEYWORD', '0', '2', '0', '网红、广告', '', '网站搜索引擎关键字', '2016-09-30 00:24:28', '2016-09-30 00:42:14');
-INSERT INTO `sys_config` VALUES ('3', '网站描述', 'WEB_SITE_DESCRIPTION', '0', '2', '0', '网红广告平台', '', '网站搜索引擎描述', '2016-09-30 00:25:13', '2016-09-30 00:42:28');
-INSERT INTO `sys_config` VALUES ('4', '配置类型列表', 'CONFIG_TYPE_LIST', '0', '3', '0', '0:数字\r\n1:字符\r\n2:文本\r\n3:数组\r\n4:枚举', '', '主要用于数据解析和页面表单的生成', '2016-09-30 00:27:00', '2016-09-30 00:27:00');
-INSERT INTO `sys_config` VALUES ('5', '配置分组', 'CONFIG_GROUP_LIST', '0', '0', '0', '1:基本设置\r\n2:SEO优化\r\n3:图片管理', '', '配置分组', '2016-09-30 00:28:32', '2016-09-30 00:28:32');
+INSERT INTO `sys_config` VALUES ('1', '网站标题', 'WEB_SITE_TITLE', '0', '2', '2', '网红广告网', '', '网站标题前台显示标题', '2016-09-30 00:12:13', '2016-10-01 10:07:48');
+INSERT INTO `sys_config` VALUES ('2', '网站关键字', 'WEB_SITE_KEYWORD', '0', '3', '2', '网红、广告', '', '网站搜索引擎关键字', '2016-09-30 00:24:28', '2016-10-01 10:07:35');
+INSERT INTO `sys_config` VALUES ('3', '网站描述', 'WEB_SITE_DESCRIPTION', '0', '3', '2', '网红广告平台', '', '网站搜索引擎描述', '2016-09-30 00:25:13', '2016-10-01 10:07:25');
+INSERT INTO `sys_config` VALUES ('4', '配置类型列表', 'CONFIG_TYPE_LIST', '0', '3', '1', '1:数字\r\n2:字符\r\n3:文本\r\n4:枚举\r\n5:图片', '', '主要用于数据解析和页面表单的生成', '2016-09-30 00:27:00', '2016-10-05 10:50:57');
+INSERT INTO `sys_config` VALUES ('5', '配置分组', 'CONFIG_GROUP_LIST', '0', '3', '1', '1:基本\r\n2:系统\r\n3:内容\r\n4:用户', '', '配置分组', '2016-09-30 00:28:32', '2016-10-05 10:50:48');
+INSERT INTO `sys_config` VALUES ('6', '网站LOGO', 'WEB_SITE_LOGO', '0', '5', '2', '11', '', '', '2016-10-01 07:56:17', '2016-10-05 09:27:19');
+INSERT INTO `sys_config` VALUES ('7', '网站域名地址', 'WEB_SITE_URL', '0', '2', '2', 'http://www.wanghong.com', '', '', '2016-10-01 07:57:07', '2016-10-01 10:06:22');
+INSERT INTO `sys_config` VALUES ('8', '允许广告主注册', 'WEB_REGISTER_AD', '0', '4', '4', '1', '0:否\r\n1:是', '', '2016-10-05 10:18:12', '2016-10-05 10:50:33');
+INSERT INTO `sys_config` VALUES ('9', '允许普通会员注册', 'WEB_REGISTER_USER', '0', '4', '4', '1', '0:否\r\n1:是', '', '2016-10-05 10:20:20', '2016-10-05 10:52:11');
+INSERT INTO `sys_config` VALUES ('10', '注册是否需要审核', 'WEB_REGISTER_VERIFY', '0', '4', '4', '0', '0:否\r\n1:是', '', '2016-10-05 10:27:38', '2016-10-05 10:50:18');
+INSERT INTO `sys_config` VALUES ('11', '媒体是否审核', 'USER_MEDIA_VERIFY', '0', '4', '4', '0', '0:否\r\n1:是', '', '2016-10-05 10:30:03', '2016-10-05 11:21:28');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -270,20 +297,56 @@ INSERT INTO `sys_menu` VALUES ('57', '删除', '53', '0', 'admin/config/destroy'
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL COMMENT '用户名',
-  `email` varchar(150) NOT NULL COMMENT '邮箱',
-  `mobile` varchar(100) NOT NULL COMMENT '手机号',
+  `username` varchar(100) NOT NULL COMMENT '用户名:手机号',
+  `is_auth` tinyint(4) NOT NULL DEFAULT '0' COMMENT '手机号是否认证通过:1已认证，0未认证',
+  `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '用户类型:1普通2广告主',
+  `nickname` varchar(100) NOT NULL COMMENT '联系人',
+  `qq` varchar(20) NOT NULL COMMENT 'QQ',
+  `weixin` varchar(150) NOT NULL COMMENT '微信',
+  `freeze` decimal(10,2) NOT NULL COMMENT '冻结金额',
+  `balance` decimal(10,2) NOT NULL COMMENT '余额',
+  `wait_account` decimal(10,2) NOT NULL COMMENT '待结算金额',
+  `finish_account` decimal(10,2) NOT NULL COMMENT '已结算金额',
+  `custom_id` int(11) NOT NULL DEFAULT '0' COMMENT '客服ID',
+  `custom_name` varchar(150) NOT NULL DEFAULT '' COMMENT '客服名称',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态:-1删除、0锁定、1正常、2待审核',
+  `email` varchar(255) NOT NULL COMMENT '邮箱',
   `password` varchar(255) NOT NULL COMMENT '密码',
-  `remember_token` varchar(100) DEFAULT NULL COMMENT '用户名',
+  `remember_token` varchar(100) DEFAULT NULL COMMENT '记住我',
   `reg_time` timestamp NULL DEFAULT NULL COMMENT '注册时间',
-  `reg_ip` char(15) NOT NULL COMMENT '注册ID',
+  `reg_ip` varchar(45) NOT NULL COMMENT '注册IP',
   `login_time` timestamp NULL DEFAULT NULL COMMENT '最后登录时间',
-  `login_ip` char(15) NOT NULL COMMENT '最后登录ID',
+  `login_ip` varchar(45) NOT NULL COMMENT '最后登录IP',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user_email_unique` (`email`),
-  UNIQUE KEY `user_mobile_unique` (`mobile`)
+  UNIQUE KEY `user_username_unique` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息';
 
 -- ----------------------------
 -- Records of user
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for user_ads
+-- ----------------------------
+DROP TABLE IF EXISTS `user_ads`;
+CREATE TABLE `user_ads` (
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `company` varchar(255) NOT NULL COMMENT '公司名称'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='广告主用户扩展信息';
+
+-- ----------------------------
+-- Records of user_ads
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for user_personal
+-- ----------------------------
+DROP TABLE IF EXISTS `user_personal`;
+CREATE TABLE `user_personal` (
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `medias` int(11) NOT NULL COMMENT '媒体资源数量'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='普通用户扩展信息';
+
+-- ----------------------------
+-- Records of user_personal
 -- ----------------------------

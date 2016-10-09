@@ -64,4 +64,51 @@ function int_to_string(&$data,$map=array('status'=>array(1=>'正常',-1=>'删除
 //    return $breadcrumb;
 //}
 
+/**
+ * 分析枚举类型配置值
+ * @param $string
+ * @return array
+ */
+function parse_config_attr($string) {
+    $array = preg_split('/[,;\r\n]+/', trim($string, ",;\r\n"));
+    if(strpos($string,':')){
+        $value  =   array();
+        foreach ($array as $val) {
+            list($k, $v) = explode(':', $val);
+            $value[$k]   = $v;
+        }
+    }else{
+        $value  =   $array;
+    }
+    return $value;
+}
+
+/**
+ * 获取网站配置
+ * @param $name 配置标识
+ * @return mixed
+ */
+function C($name){
+    $config = Cache::get('CONFIG_LIST');
+    if(empty($config)){
+        $config = \App\Models\SysConfig::get()->pluck('value', 'name');
+        Cache::forever('CONFIG_LIST',$config);//永久保存
+    }
+    return $config[$name];
+}
+
+/**
+ * 获取图片指定字段的值配置
+ * @param $file_id 图片自增ID
+ * @param string $filed 指定字段
+ * @return string
+ */
+function get_cover($file_id,$filed='path'){
+    if(empty($file_id)){
+        return '';
+    }
+    $resault = \App\Models\Picture::select($filed)->find($file_id);
+    return $resault->path;
+}
+
 

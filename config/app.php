@@ -165,6 +165,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,//表单依赖
         Barryvdh\Debugbar\ServiceProvider::class,//Debugbar调试
         Intervention\Image\ImageServiceProvider::class,//图片处理
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,//提示助手
 //        App\Providers\MenuServiceProvider::class,//菜单服务提供者
 
         /*

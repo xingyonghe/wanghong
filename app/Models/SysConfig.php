@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
+use Cache;
 
 class SysConfig extends Model{
 
@@ -17,8 +18,7 @@ class SysConfig extends Model{
      */
     protected function getLists($map = array()){
         $list = $this->where($map)->orderBy('created_at', 'desc')->paginate(10);
-        int_to_string($list,array('group'=>array(0=>'基本设置',1=>'SEO优化'),
-            'type'=>array(0=>'数字',1=>'字符',2=>'文本',3=>'数组',4=>'枚举',5=>'图片')));
+        int_to_string($list,array('group'=>parse_config_attr(C('CONFIG_GROUP_LIST')), 'type'=>parse_config_attr(C('CONFIG_TYPE_LIST'))));
         return $list;
     }
 
@@ -45,6 +45,7 @@ class SysConfig extends Model{
         if($resualt === false){
             return false;
         }
+        Cache::forget('CONFIG_LIST');
         return $request;
     }
 }

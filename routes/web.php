@@ -39,6 +39,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('/', 'LoginController@showLoginForm');//登录
     Route::post('login', 'LoginController@login');//登录提交
     Route::get('logout', 'LoginController@logout');//退出登录
+
+
     //
     Route::group(['middleware'=>['admin.auth','menu']],function (){
         //首页
@@ -67,8 +69,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         Route::get ('config/destroy/{id}', 'ConfigController@destroy');       //删除配置
         Route::get ('config/sort',         'ConfigController@sort');          //配置排序
         Route::post('config/postSort',     'ConfigController@postSort');      //更新排序
-        Route::get ('config/setting',      'ConfigController@setting');       //网站设置
+        Route::get ('config/setting/{group?}',      'ConfigController@setting');       //网站设置
         Route::post('config/post',         'ConfigController@post');          //更新设置
+
+
         /**--**--**--**--**--**--**--**--**--**用户**--**--**--**--**--**--**--**--**--**--**/
 
         //权限管理
@@ -97,3 +101,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
     });
 });
+
+/**
+ * 公共路由
+ */
+Route::post('picture/upload', 'PictureController@upload');          //图片上传

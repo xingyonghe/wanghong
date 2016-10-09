@@ -102,6 +102,20 @@ $(function(){
         return false;
     });
 
+
+    $('body').on('click','.img-see',function () {
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            area: ['516'],
+            skin: 'layer-ext-admin', //没有背景色
+            shadeClose: true,
+            content: '<img src="'+$(this).attr('src')+'">',
+        });
+        return false;
+    });
+
     //ajax get请求
     $('.ajax-get').click(function(){
         var target = $(this).attr('href');

@@ -51,19 +51,19 @@
                     <div class="form-group ">
                         <label for="curl" class="control-label col-lg-2">配置值</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control " placeholder="配置值" type="text" name="value" />{{old('value')}}</textarea>
+                            <textarea class="form-control " rows="6" placeholder="配置值" type="text" name="value" />{{old('value')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="curl" class="control-label col-lg-2">配置项</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control " placeholder="如果是枚举型 需要配置该项" type="text" name="extra" />{{old('extra')}}</textarea>
+                            <textarea class="form-control " rows="6" placeholder="如果是枚举型 需要配置该项" type="text" name="extra" />{{old('extra')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label for="curl" class="control-label col-lg-2">配置说明</label>
                         <div class="col-lg-10">
-                            <textarea class="form-control " placeholder="配置备注说明" type="text" name="remark" />{{old('remark')}}</textarea>
+                            <textarea class="form-control " rows="6" placeholder="配置备注说明" type="text" name="remark" />{{old('remark')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
