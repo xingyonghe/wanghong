@@ -53,6 +53,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         Route::get ('menu/edit/{id}',   'MenuController@edit');         //修改
         Route::post('menu/update',      'MenuController@update');       //更新
         Route::get ('menu/destroy/{id}','MenuController@destroy');      //删除
+        Route::get ('menu/batch/{pid?}','MenuController@batch');        //批量新增
+        Route::post('menu/batchUpdate', 'MenuController@batchUpdate');  //批量更新
+
         //导航管理
         Route::get ('channel/index',       'ChannelController@index');        //列表
         Route::get ('channel/add',         'ChannelController@add');          //新增
@@ -73,7 +76,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         Route::post('config/post',         'ConfigController@post');          //更新设置
 
 
-        /**--**--**--**--**--**--**--**--**--**用户**--**--**--**--**--**--**--**--**--**--**/
+        /**--**--**--**--**--**--**--**--**--**管理员**--**--**--**--**--**--**--**--**--**--**/
 
         //权限管理
         Route::get ('auth/index',              'AuthController@index');        //列表
@@ -93,12 +96,33 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         Route::get ('admin/forbid/{id}',       'AdminController@forbid');       //禁用
         Route::get ('admin/resume/{id}',       'AdminController@resume');       //启用
         Route::get ('admin/destroy/{id}',      'AdminController@destroy');      //删除
-        Route::get ('admin/destroy/{id}',      'AdminController@destroy');      //删除
         Route::get ('admin/resetpass',         'AdminController@resetpass');    //重置密码
         Route::post('admin/updatepass',        'AdminController@updatepass');   //更新密码
 
+        /**--**--**--**--**--**--**--**--**--**用户管理**--**--**--**--**--**--**--**--**--**--**/
+        Route::get ('personal/index',              'PersonalController@index');        //普通会员管理
+        Route::get ('personal/add',                'PersonalController@add');          //添加
+        Route::get ('personal/edit/{id}',          'PersonalController@edit');         //修改
+        Route::post('personal/post',               'PersonalController@post');         //更新
+        Route::post('personal/update',             'PersonalController@update');       //新增
+        Route::get ('personal/destroy/{id}',       'PersonalController@destroy');      //删除
+        Route::get ('personal/forbid/{id}',        'PersonalController@forbid');       //禁用
+        Route::get ('personal/resume/{id}',        'PersonalController@resume');       //启用
+        Route::get ('personal/verify/{id}',        'PersonalController@verify');       //审核
+        Route::get ('personal/addCustom/{id}',     'PersonalController@addCustom');    //添加客服
+        Route::post('personal/postCustom',         'PersonalController@postCustom');   //更新客服
 
-
+        Route::get ('advertiser/index',            'AdvertiserController@index');        //广告主管理
+        Route::get ('advertiser/add',              'AdvertiserController@add');          //添加
+        Route::get ('advertiser/edit/{id}',        'AdvertiserController@edit');         //修改
+        Route::post('advertiser/post',             'AdvertiserController@post');         //更新
+        Route::post('advertiser/update',           'AdvertiserController@update');       //新增
+        Route::get ('advertiser/destroy/{id}',     'AdvertiserController@destroy');      //删除
+        Route::get ('advertiser/forbid/{id}',      'AdvertiserController@forbid');       //禁用
+        Route::get ('advertiser/resume/{id}',      'AdvertiserController@resume');       //启用
+        Route::get ('advertiser/verify/{id}',      'AdvertiserController@verify');       //审核
+        Route::get ('advertiser/addCustom/{id}',   'AdvertiserController@addCustom');    //添加客服
+        Route::post('advertiser/postCustom',       'AdvertiserController@postCustom');   //更新客服
     });
 });
 

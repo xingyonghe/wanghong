@@ -7,7 +7,7 @@ use Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class SysAdmin extends Authenticatable{
+class User extends Authenticatable{
     
     use Notifiable;
 
@@ -70,15 +70,6 @@ class SysAdmin extends Authenticatable{
             return false;
         }
         return $request;
-    }
-
-    /**
-     * 获取客服
-     * @return mixed
-     */
-    protected function getCustom(){
-        $lists = $this->where(array(['id','>',1]))->pluck('nickname', 'id')->toArray();
-        return $lists;
     }
 
 }

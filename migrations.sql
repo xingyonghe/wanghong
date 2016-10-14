@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : 本地
 Source Server Version : 50547
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : wanghong
 
 Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-10-09 22:40:47
+Date: 2016-10-14 18:04:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -77,16 +77,9 @@ CREATE TABLE `sys_admin` (
 -- ----------------------------
 -- Records of sys_admin
 -- ----------------------------
-INSERT INTO `sys_admin` VALUES ('1', 'admin', '$2y$10$ymrgELHNpTgRrYs6OrJxL.o7/LypgOCT691be6xVRGBfZP8RYnpIm', '超管', '1', 'n2VB20mqvyOuMRzWNvU26jxYRWl8yOtAxFooMKJM5T18t3TC6rQ4h4B9KoYJ', '2016-09-23 00:18:44', '2016-09-29 16:32:19', '127.0.0.1', '1');
+INSERT INTO `sys_admin` VALUES ('1', 'admin', '$2y$10$ymrgELHNpTgRrYs6OrJxL.o7/LypgOCT691be6xVRGBfZP8RYnpIm', '超管', '1', '57JvfFJBHPWHS2tL2izuzPxw425yuLR9JJUF6Y1NxGILP2CHUDgipPRP4lPC', '2016-09-23 00:18:44', '2016-10-14 17:35:20', '127.0.0.1', '1');
 INSERT INTO `sys_admin` VALUES ('2', 'xingyonghe', '$2y$10$IcTAd4v/7ztQTWlOscO0N.2Oor0SzkhIACOF7V3MY4rUQhJPF2/cS', '永和', '1', null, '2016-09-25 03:03:53', null, '', '0');
 INSERT INTO `sys_admin` VALUES ('3', 'xingyingfeng', '$2y$10$TXhGksJwGBDR80lTxxtezeUcYBJkkhj56m4rHxF83G/mvHa6o6/Oe', '颖楓', '0', '85qgsQutUUs8SnR5hsx5jwfcTOIS50e4fLqOyj3IH1VjnGZvIoJ8fQJAF1oa', '2016-09-25 03:04:29', null, '', '0');
-INSERT INTO `sys_admin` VALUES ('4', 'test', '$2y$10$0D3cgZAFIDQf4IKj0yM./eiPCzB12hPz5FKkCoiwyOPZIL9PJLFQK', '测试', '1', 'P5e4Ak2uku02Dq636zEML1G0obSG750SVFqev34rED33LrZFx6pU9GIgbz3f', '2016-09-25 11:07:32', '2016-09-27 12:35:47', '127.0.0.1', '0');
-INSERT INTO `sys_admin` VALUES ('6', 'test001', '$2y$10$l/aO1NUM6rFY.LDRr0WkpuGAbZlKXUapDxAPe/crWKxu8T1IFgybC', 'abalabala', '-1', null, '2016-09-28 16:44:37', null, '', '3');
-INSERT INTO `sys_admin` VALUES ('7', 'testtest', '$2y$10$JRaN4h7ULBXluHBUoI74WOFDKf42DZp2dFL8D9lS6fHzC2nmIZCci', 'admin', '-1', null, '2016-09-28 17:29:44', null, '', '2');
-INSERT INTO `sys_admin` VALUES ('10', 'testtest', '$2y$10$SWovYqCLU2YA83mQvFnkxO5oiA1C4x/ePQen6QE0xu4wpFG13wvL2', 'admin1', '1', null, '2016-09-28 18:01:53', null, '', '3');
-INSERT INTO `sys_admin` VALUES ('11', 'testtest', '$2y$10$4uJhRV.bjX9x7jWH4Sg89uReJ9VVCF5Wvvti.kGGDc/W/H6IvD/o2', 'admindd', '1', null, '2016-09-28 18:02:26', null, '', '0');
-INSERT INTO `sys_admin` VALUES ('12', 'testtest', '$2y$10$JGm78L.X6l59fueDt38Y2e6/0VjgYCu.GQY.HaoytC5tWlQ14JKwS', 'adminsss', '1', null, '2016-09-28 18:02:48', null, '', '0');
-INSERT INTO `sys_admin` VALUES ('13', 'testtest1', '$2y$10$olt3DAd1qXp53J4IjbkIu.A0Z9Q7dtlo91n6vqItTyjZoZY8yGphK', 'adminsd', '1', null, '2016-09-28 18:20:25', null, '', '3');
 
 -- ----------------------------
 -- Table structure for sys_auth_group
@@ -104,7 +97,7 @@ CREATE TABLE `sys_auth_group` (
 -- ----------------------------
 -- Records of sys_auth_group
 -- ----------------------------
-INSERT INTO `sys_auth_group` VALUES ('1', '超级管理员', '拥有网站所有权限', '1', '[\"84\",\"86\",\"77\",\"78\",\"79\",\"80\",\"81\",\"82\",\"83\",\"76\",\"88\",\"89\",\"90\",\"91\",\"92\",\"93\",\"94\",\"95\",\"96\",\"103\",\"97\",\"98\",\"85\",\"87\",\"74\",\"99\",\"100\",\"101\",\"102\",\"75\",\"104\",\"105\",\"106\",\"107\",\"108\",\"109\",\"112\",\"113\",\"110\",\"114\",\"115\",\"111\",\"116\"]');
+INSERT INTO `sys_auth_group` VALUES ('1', '超级管理员', '拥有网站所有权限', '1', '[\"84\",\"86\",\"77\",\"78\",\"79\",\"80\",\"81\",\"82\",\"83\",\"76\",\"88\",\"89\",\"90\",\"91\",\"92\",\"93\",\"94\",\"95\",\"96\",\"103\",\"97\",\"98\",\"126\",\"117\",\"118\",\"119\",\"120\",\"121\",\"122\",\"123\",\"135\",\"136\",\"137\",\"127\",\"128\",\"129\",\"130\",\"131\",\"132\",\"133\",\"134\",\"138\",\"139\",\"140\",\"87\",\"74\",\"99\",\"100\",\"101\",\"102\",\"124\",\"125\",\"75\",\"104\",\"105\",\"106\",\"107\",\"108\",\"109\",\"112\",\"113\",\"110\",\"114\",\"115\",\"111\",\"116\"]');
 INSERT INTO `sys_auth_group` VALUES ('2', '测试分组2', '用来test的分组2', '1', '');
 INSERT INTO `sys_auth_group` VALUES ('3', '测试分组3', '用来test的分组3', '1', '[\"84\",\"86\",\"77\",\"78\",\"80\",\"81\",\"82\",\"83\",\"76\",\"88\",\"89\",\"90\",\"91\",\"92\",\"93\",\"94\",\"95\",\"96\",\"97\",\"98\",\"85\",\"87\",\"74\",\"99\",\"100\",\"101\",\"102\",\"75\"]');
 
@@ -118,7 +111,7 @@ CREATE TABLE `sys_auth_rule` (
   `name` varchar(100) NOT NULL DEFAULT '' COMMENT '规则唯一英文标识',
   `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '类型:1url，2主菜单',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COMMENT='权限规则';
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COMMENT='权限规则';
 
 -- ----------------------------
 -- Records of sys_auth_rule
@@ -134,7 +127,6 @@ INSERT INTO `sys_auth_rule` VALUES ('81', '用户组更新', 'admin/auth/updateG
 INSERT INTO `sys_auth_rule` VALUES ('82', '用户组删除', 'admin/auth/destroyGroup', '1');
 INSERT INTO `sys_auth_rule` VALUES ('83', '更新用户组权限', 'admin/auth/writeGroup', '1');
 INSERT INTO `sys_auth_rule` VALUES ('84', '首页', 'admin/index/index', '2');
-INSERT INTO `sys_auth_rule` VALUES ('85', '用户列表', 'admin/user/index', '1');
 INSERT INTO `sys_auth_rule` VALUES ('86', '用户', 'admin/auth/group', '2');
 INSERT INTO `sys_auth_rule` VALUES ('87', '系统', 'admin/menu/index', '2');
 INSERT INTO `sys_auth_rule` VALUES ('88', '新增成员', 'admin/auth/add', '1');
@@ -166,6 +158,30 @@ INSERT INTO `sys_auth_rule` VALUES ('113', '更新设置', 'admin/config/post', 
 INSERT INTO `sys_auth_rule` VALUES ('114', '新增', 'admin/config/add', '1');
 INSERT INTO `sys_auth_rule` VALUES ('115', '编辑', 'admin/config/edit', '1');
 INSERT INTO `sys_auth_rule` VALUES ('116', '删除', 'admin/config/destroy', '1');
+INSERT INTO `sys_auth_rule` VALUES ('117', '添加', 'admin/personal/add', '1');
+INSERT INTO `sys_auth_rule` VALUES ('118', '编辑', 'admin/personal/edit', '1');
+INSERT INTO `sys_auth_rule` VALUES ('119', '更新', 'admin/personal/update', '1');
+INSERT INTO `sys_auth_rule` VALUES ('120', '删除', 'admin/personal/destroy', '1');
+INSERT INTO `sys_auth_rule` VALUES ('121', '禁用', 'admin/personal/forbid', '1');
+INSERT INTO `sys_auth_rule` VALUES ('122', '启用', 'admin/personal/resume', '1');
+INSERT INTO `sys_auth_rule` VALUES ('123', '审核', 'admin/personal/verify', '1');
+INSERT INTO `sys_auth_rule` VALUES ('124', '批量新增', 'admin/menu/batch', '1');
+INSERT INTO `sys_auth_rule` VALUES ('125', '批量更新', 'admin/menu/batchUpdate', '1');
+INSERT INTO `sys_auth_rule` VALUES ('126', '用户列表', 'admin/personal/index', '1');
+INSERT INTO `sys_auth_rule` VALUES ('127', '广告主', 'admin/advertiser/index', '1');
+INSERT INTO `sys_auth_rule` VALUES ('128', '添加', 'admin/advertiser/add', '1');
+INSERT INTO `sys_auth_rule` VALUES ('129', '编辑', 'admin/advertiser/edit', '1');
+INSERT INTO `sys_auth_rule` VALUES ('130', '新增', 'admin/advertiser/update', '1');
+INSERT INTO `sys_auth_rule` VALUES ('131', '删除', 'admin/advertiser/destroy', '1');
+INSERT INTO `sys_auth_rule` VALUES ('132', '禁用', 'admin/advertiser/forbid', '1');
+INSERT INTO `sys_auth_rule` VALUES ('133', '启用', 'admin/advertiser/resume', '1');
+INSERT INTO `sys_auth_rule` VALUES ('134', '审核', 'admin/advertiser/verify', '1');
+INSERT INTO `sys_auth_rule` VALUES ('135', '新增', 'admin/personal/post', '1');
+INSERT INTO `sys_auth_rule` VALUES ('136', '添加客服', 'admin/personal/addCustom', '1');
+INSERT INTO `sys_auth_rule` VALUES ('137', '更新客服', 'admin/personal/postCustom', '1');
+INSERT INTO `sys_auth_rule` VALUES ('138', '更新', 'admin/advertiser/post', '1');
+INSERT INTO `sys_auth_rule` VALUES ('139', '添加客服', 'admin/advertiser/addCustom', '1');
+INSERT INTO `sys_auth_rule` VALUES ('140', '更新客服', 'admin/advertiser/postCustom', '1');
 
 -- ----------------------------
 -- Table structure for sys_channel
@@ -242,14 +258,14 @@ CREATE TABLE `sys_menu` (
   `group` varchar(50) NOT NULL DEFAULT '' COMMENT '分组',
   `icon` varchar(50) NOT NULL DEFAULT '' COMMENT 'class样式名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COMMENT='系统菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COMMENT='系统菜单';
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
 INSERT INTO `sys_menu` VALUES ('1', '首页', '0', '1', 'admin/index/index', '0', '', 'icon-home');
 INSERT INTO `sys_menu` VALUES ('2', '用户', '0', '2', 'admin/auth/group', '0', '', 'icon-user');
-INSERT INTO `sys_menu` VALUES ('3', '用户列表', '2', '1', 'admin/user/index', '0', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('3', '用户列表', '2', '1', 'admin/personal/index', '0', '用户管理', '');
 INSERT INTO `sys_menu` VALUES ('4', '系统', '0', '3', 'admin/menu/index', '0', '', 'icon-cogs');
 INSERT INTO `sys_menu` VALUES ('5', '菜单管理', '4', '0', 'admin/menu/index', '0', '系统设置', '');
 INSERT INTO `sys_menu` VALUES ('6', '导航管理', '4', '0', 'admin/channel/index', '0', '系统设置', '');
@@ -290,6 +306,29 @@ INSERT INTO `sys_menu` VALUES ('54', '新增', '53', '0', 'admin/config/add', '1
 INSERT INTO `sys_menu` VALUES ('55', '编辑', '53', '0', 'admin/config/edit', '1', '系统设置', '');
 INSERT INTO `sys_menu` VALUES ('56', '更新', '53', '0', 'admin/config/update', '1', '系统设置', '');
 INSERT INTO `sys_menu` VALUES ('57', '删除', '53', '0', 'admin/config/destroy', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('58', '广告主', '2', '2', 'admin/advertiser/index', '0', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('59', '添加', '3', '0', 'admin/personal/add', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('60', '编辑', '3', '0', 'admin/personal/edit', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('61', '更新', '3', '0', 'admin/personal/update', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('62', '删除', '3', '0', 'admin/personal/destroy', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('63', '禁用', '3', '0', 'admin/personal/forbid', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('64', '启用', '3', '0', 'admin/personal/resume', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('65', '审核', '3', '0', 'admin/personal/verify', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('66', '批量新增', '5', '0', 'admin/menu/batch', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('67', '批量更新', '5', '0', 'admin/menu/batchUpdate', '1', '系统设置', '');
+INSERT INTO `sys_menu` VALUES ('68', '添加', '58', '0', 'admin/advertiser/add', '1', '用户管理 ', '');
+INSERT INTO `sys_menu` VALUES ('69', '编辑', '58', '0', 'admin/advertiser/edit', '1', '用户管理 ', '');
+INSERT INTO `sys_menu` VALUES ('70', '新增', '58', '0', 'admin/advertiser/update', '1', '用户管理 ', '');
+INSERT INTO `sys_menu` VALUES ('71', '删除', '58', '0', 'admin/advertiser/destroy', '1', '用户管理 ', '');
+INSERT INTO `sys_menu` VALUES ('72', '禁用', '58', '0', 'admin/advertiser/forbid', '1', '用户管理 ', '');
+INSERT INTO `sys_menu` VALUES ('73', '启用', '58', '0', 'admin/advertiser/resume', '1', '用户管理 ', '');
+INSERT INTO `sys_menu` VALUES ('74', '审核', '58', '0', 'admin/advertiser/verify', '1', '用户管理 ', '');
+INSERT INTO `sys_menu` VALUES ('75', '新增', '3', '0', 'admin/personal/post', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('76', '添加客服', '3', '0', 'admin/personal/addCustom', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('77', '更新客服', '3', '0', 'admin/personal/postCustom', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('78', '更新', '58', '0', 'admin/advertiser/post', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('79', '添加客服', '58', '0', 'admin/advertiser/addCustom', '1', '用户管理', '');
+INSERT INTO `sys_menu` VALUES ('80', '更新客服', '58', '0', 'admin/advertiser/postCustom', '1', '用户管理', '');
 
 -- ----------------------------
 -- Table structure for user
@@ -303,10 +342,10 @@ CREATE TABLE `user` (
   `nickname` varchar(100) NOT NULL COMMENT '联系人',
   `qq` varchar(20) NOT NULL COMMENT 'QQ',
   `weixin` varchar(150) NOT NULL COMMENT '微信',
-  `freeze` decimal(10,2) NOT NULL COMMENT '冻结金额',
-  `balance` decimal(10,2) NOT NULL COMMENT '余额',
-  `wait_account` decimal(10,2) NOT NULL COMMENT '待结算金额',
-  `finish_account` decimal(10,2) NOT NULL COMMENT '已结算金额',
+  `freeze` decimal(10,2) DEFAULT NULL COMMENT '冻结金额',
+  `balance` decimal(10,2) DEFAULT NULL COMMENT '余额',
+  `wait_account` decimal(10,2) DEFAULT NULL COMMENT '待结算金额',
+  `finish_account` decimal(10,2) DEFAULT NULL COMMENT '已结算金额',
   `custom_id` int(11) NOT NULL DEFAULT '0' COMMENT '客服ID',
   `custom_name` varchar(150) NOT NULL DEFAULT '' COMMENT '客服名称',
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态:-1删除、0锁定、1正常、2待审核',
@@ -314,16 +353,17 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL COMMENT '密码',
   `remember_token` varchar(100) DEFAULT NULL COMMENT '记住我',
   `reg_time` timestamp NULL DEFAULT NULL COMMENT '注册时间',
-  `reg_ip` varchar(45) NOT NULL COMMENT '注册IP',
+  `reg_ip` varchar(45) DEFAULT NULL COMMENT '注册IP',
   `login_time` timestamp NULL DEFAULT NULL COMMENT '最后登录时间',
-  `login_ip` varchar(45) NOT NULL COMMENT '最后登录IP',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_username_unique` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息';
+  `login_ip` varchar(45) DEFAULT NULL COMMENT '最后登录IP',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('6', '13667635645', '0', '1', '邢永和', '365754061', '1342234898', null, null, null, null, '2', '永和', '1', '1342234898@qq.com', '$2y$10$FniPdndlhN7Or9lkfmNbIO3tqTFalxtztm8U2yNIMAPDCAJutxcl.', null, '2016-10-14 15:06:40', '127.0.0.1', null, null);
+INSERT INTO `user` VALUES ('7', '15826021109', '0', '1', '唐吉思', '1342234899', 'tangjisi', null, null, null, null, '2', '永和', '1', 'tangjisi@sina.cn', '$2y$10$P38B8R1s.zKbzJYQpt/M/Oc2/H6H48DXE5wl8I6IGEH.fz6jAO4JG', null, '2016-10-14 15:07:20', '127.0.0.1', null, null);
 
 -- ----------------------------
 -- Table structure for user_ads
@@ -344,9 +384,11 @@ CREATE TABLE `user_ads` (
 DROP TABLE IF EXISTS `user_personal`;
 CREATE TABLE `user_personal` (
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
-  `medias` int(11) NOT NULL COMMENT '媒体资源数量'
+  `medias` int(11) NOT NULL DEFAULT '0' COMMENT '媒体资源数量'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='普通用户扩展信息';
 
 -- ----------------------------
 -- Records of user_personal
 -- ----------------------------
+INSERT INTO `user_personal` VALUES ('6', '0');
+INSERT INTO `user_personal` VALUES ('7', '0');

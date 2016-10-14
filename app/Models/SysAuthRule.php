@@ -45,7 +45,7 @@ class SysAuthRule extends Model{
                 unset($data[$key]);
                 unset($rules[$index]);
                 $diff[$rule['id']]=$rule;//把最新的菜单结果放入新的容器中
-            }elseif($rule['status']==1){
+            }else{
                 $ids[] = $rule['id'];
             }
         }

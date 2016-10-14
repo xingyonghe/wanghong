@@ -13,6 +13,15 @@ class AppServiceProvider extends ServiceProvider{
      * @return void
      */
     public function boot(){
+        //金额
+        Validator::extend('money',function ($attribute,$value,$parameters){
+            return preg_match('/^\d+(\.\d+)?$/',$value);
+        });
+        //手机
+        Validator::extend('mobile',function ($attribute,$value,$parameters){
+            return preg_match('/^1[34578]{1}\d{9}$/',$value);
+        });
+        
         /**
          * 自定义多个复选框
          * @author xingyonghe
@@ -26,7 +35,7 @@ class AppServiceProvider extends ServiceProvider{
             $html = '';
             $cheked = explode(',',$cheked);
             foreach ($list as $value => $display) {
-                if(in_array($value,$cheked)){
+                if(checked && in_array($value,$cheked)){
                     $html .= Form::checkbox($name,$value,true,$options).$display;
                 }else{
                     $html .= Form::checkbox($name,$value,null,$options).$display;

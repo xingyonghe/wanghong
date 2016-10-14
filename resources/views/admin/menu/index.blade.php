@@ -23,11 +23,11 @@
                                 新增 <i class="fa icon-plus"></i>
                             </a>
                         </div>
-                        {{--<div class="btn-group">--}}
-                            {{--<a href="{{ url('admin/menu/batch') }}" class="btn btn-info ajax-delete confirm">--}}
-                                {{--导入 <i class="fa icon-skype"></i>--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
+                        <div class="btn-group">
+                            <a href="{{ url('admin/menu/batch/'.$pages['pid']) }}" class="btn btn-info ajax-update">
+                                导入 <i class="fa icon-location-arrow"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div id="sample_1_wrapper" class="dataTables_wrapper form-inline" role="grid">

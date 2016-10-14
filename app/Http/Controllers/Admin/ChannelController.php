@@ -40,20 +40,6 @@ class ChannelController extends Controller{
     }
 
     /**
-     * 批量导航新增
-     */
-    public function batch(){
-
-    }
-
-    /**
-     * 批量导航更新
-     */
-    public function batchUpdate(){
-
-    }
-
-    /**
      * 导航修改
      */
     public function edit($id){

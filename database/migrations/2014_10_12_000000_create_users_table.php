@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration{
         Schema::create('user', function (Blueprint $table) {
             $table->engine = 'InnoDB COMMENT="用户基本信息"';
             $table->increments('id');
-            $table->string('username',100)->unique()->comment('用户名:手机号');
+            $table->string('username',100)->comment('用户名:手机号');
             $table->tinyInteger('is_auth')->default('0')->comment('手机号是否认证通过:1已认证，0未认证');
             $table->tinyInteger('type')->default('1')->comment('用户类型:1普通2广告主');
             $table->string('nickname',100)->comment('联系人');

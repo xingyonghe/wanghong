@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\SysMenu;
-use App\Http\Requests;
+use Illuminate\Http\Request as HttpRequest;
 use App\Http\Controllers\Controller;
 use Response;
 use Request;
@@ -46,15 +46,36 @@ class MenuController extends Controller{
     /**
      * 批量菜单新增
      */
-    public function batch(){
-
+    public function batch($pid){
+        if(Request::ajax()){
+            $view = view('admin.menu.batch',compact('pid'));
+            return Response::json(array('html'=>$view->render(),'status'=>1,'title'=>'批量新增菜单'));
+        }else{
+            return redirect()->back()->with('error','请求超时');
+        }
     }
 
     /**
      * 批量菜单更新
      */
-    public function batchUpdate(){
-
+    public function batchUpdate(HttpRequest $request){
+        $tree = $request->menus;
+        $lists = explode(',',str_replace(array("\r\n","\n","\r"),',',$tree));
+        if($lists == array('0'=>'')){
+            return Response::json(array('error'=> '请按格式填写批量导入的至少一条菜单信息','status'=>0));
+        }
+        foreach ($lists as $key => $item) {
+            $record = explode('|', $item);
+            SysMenu::create(array(
+                'title'=>$record[0],
+                'url'=>$record[2],
+                'pid'=>$request->pid,
+                'sort'=>$record[1],
+                'hide'=>$record[3],
+                'group'=>$record[4]?$record[4]:'',
+            ));
+        }
+        return Response::json(array('success'=> '菜单批量新增成功','status'=>1,'url'=>URL::previous()));
     }
 
     /**
