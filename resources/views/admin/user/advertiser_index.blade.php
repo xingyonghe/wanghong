@@ -4,7 +4,7 @@
 @section('script')
     <script type="text/javascript">
         $(function () {
-            highlight_subnav("{{ url('admin/personal/index') }}");
+            highlight_subnav("{{ url('admin/advertiser/index') }}");
         })
     </script>
 @stop
@@ -14,12 +14,12 @@
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    用户列表
+                    广告主列表
                 </header>
                 <div class="panel-body">
                     <div class="clearfix">
                         <div class="btn-group">
-                            <a href="{{ url('admin/personal/add') }}" class="btn btn-primary ajax-update">
+                            <a href="{{ url('admin/advertiser/add') }}" class="btn btn-primary ajax-update">
                                 新增 <i class="fa icon-plus"></i>
                             </a>
                         </div>
@@ -28,7 +28,7 @@
                 <div id="sample_1_wrapper" class="dataTables_wrapper form-inline" role="grid">
                     <div class="row">
                         <div class="col-sm-12">
-                            {!! Form::open(['url' => 'admin/personal/index','method'=>'get']) !!}
+                            {!! Form::open(['url' => 'admin/advertiser/index','method'=>'get']) !!}
                             <div class="dataTables_filter" id="sample_1_filter">
                                 <button class="btn btn-primary" type="submit"><i class="fa icon-search"></i>搜索</button>
                             </div>
@@ -49,9 +49,9 @@
                             <th class="hidden-phone">用户名</th>
                             <th class="hidden-phone">联系人</th>
                             <th class="hidden-phone">QQ号码</th>
-                            <th class="hidden-phone">资源媒体</th>
-                            <th class="hidden-phone">待结算金额</th>
-                            <th class="hidden-phone">已结算金额</th>
+                            <th class="hidden-phone">公司名称</th>
+                            <th class="hidden-phone">待审核的派单</th>
+                            <th class="hidden-phone">发布的派单</th>
                             <th class="hidden-phone">余额</th>
                             <th class="hidden-phone">所属客服</th>
                             <th class="hidden-phone">状态</th>
@@ -66,15 +66,15 @@
                                 <td>{{ $data->username }}</td>
                                 <td>{{ $data->nickname }}</td>
                                 <td>{{ $data->qq }}</td>
-                                <td>{{ $data->medias }}</td>
-                                <td>{{ $data->wait_account ?? 0 }}</td>
-                                <td>{{ $data->finish_account ?? 0 }}</td>
-                                <td>{{ $data->balance ?? 0 }} </td>
+                                <td>{{ $data->company }}</td>
+                                <td>{{ $data->balance }}</td>
+                                <td>{{ $data->balance }}</td>
+                                <td>{{ $data->balance }} </td>
                                 <td>
                                     @if($data->custom_id)
                                         <a href="{{ url('admin/admin/show',[$data->custom_id]) }}">{{ $data->custom_name }}</a>
                                     @else
-                                        <a href="{{ url('admin/personal/addCustom',[$data->id]) }}" class="btn btn-info btn-xs ajax-update">
+                                        <a href="{{ url('admin/advertiser/addCustom',[$data->id]) }}" class="btn btn-info btn-xs ajax-update">
                                             <i class="icon-plus-sign"></i> 添加
                                         </a>
                                     @endif
@@ -83,15 +83,15 @@
                                 <td class="hidden-phone">
                                     <!--正常状态-->
                                     @if($data->status == 1)
-                                        <a class="btn btn-primary btn-xs" href="{{ url('admin/personal/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
-                                        <a class="btn btn-warning btn-xs ajax-confirm forbid" href="{{ url('admin/personal/forbid',[$data->id]) }}"><i class="icon-info-sign"></i> 禁用</a>
-                                        <a class="btn btn-danger btn-xs ajax-confirm destroy" href="{{ url('admin/personal/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
+                                        <a class="btn btn-primary btn-xs" href="{{ url('admin/advertiser/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
+                                        <a class="btn btn-warning btn-xs ajax-confirm forbid" href="{{ url('admin/advertiser/forbid',[$data->id]) }}"><i class="icon-info-sign"></i> 禁用</a>
+                                        <a class="btn btn-danger btn-xs ajax-confirm destroy" href="{{ url('admin/advertiser/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
                                     @endif
                                     <!--禁用状态-->
                                     @if($data->status == 0)
-                                        <a class="btn btn-primary btn-xs" href="{{ url('admin/personal/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
-                                        <a class="btn btn-success btn-xs ajax-confirm resume" href="{{ url('admin/personal/resume',[$data->id]) }}"><i class=" icon-ok-circle"></i> 启用</a>
-                                        <a class="btn btn-danger btn-xs ajax-confirm destroy" href="{{ url('admin/personal/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
+                                        <a class="btn btn-primary btn-xs" href="{{ url('admin/advertiser/edit',[$data->id]) }}"><i class="icon-pencil"></i> 修改</a>
+                                        <a class="btn btn-success btn-xs ajax-confirm resume" href="{{ url('admin/advertiser/resume',[$data->id]) }}"><i class=" icon-ok-circle"></i> 启用</a>
+                                        <a class="btn btn-danger btn-xs ajax-confirm destroy" href="{{ url('admin/advertiser/destroy',[$data->id]) }}"><i class="icon-trash "></i> 删除</a>
                                     @endif
                                 </td>
                             </tr>

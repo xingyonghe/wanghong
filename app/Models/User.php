@@ -23,12 +23,20 @@ class User extends Model{
      * 后台用户列表
      * @return mixed
      */
-    protected function getAdminLists($map){
-        $list = $this->where($map)
-            ->whereIn('status',['0','1'])
-            ->leftJoin('user_personal', 'user.id', '=', 'user_personal.user_id')
-            ->orderBy('reg_time','desc')
-            ->paginate(10);
+    protected function getAdminLists($map,$type=1){
+        if($type == 1){
+            $list = $this->where($map)
+                ->whereIn('status',['0','1'])
+                ->leftJoin('user_personal', 'user.id', '=', 'user_personal.user_id')
+                ->orderBy('reg_time','desc')
+                ->paginate(10);
+        }else{
+            $list = $this->where($map)
+                ->whereIn('status',['0','1'])
+                ->leftJoin('user_ads', 'user.id', '=', 'user_ads.user_id')
+                ->orderBy('reg_time','desc')
+                ->paginate(10);
+        }
 
         int_to_string($list,array(
             'status' => array(
@@ -53,36 +61,48 @@ class User extends Model{
             $this->status = 1;//后台添加的账户不用审核
             $this->reg_time = date('Y-m-d H:i:s');
             $this->reg_ip = $request->ip();
-            DB::beginTransaction();
-            if($this->save() && UserPersonal::create(array('user_id'=>$this->id))){
-                $resualt = true;
-                DB::commit();//如果处理成功,通过 commit 的方法提交事务
+            if($this->type ==1){
+                DB::beginTransaction();
+                if($this->save() && UserPersonal::create(array('user_id'=>$this->id))){
+                    $resualt = true;
+                    DB::commit();//如果处理成功,通过 commit 的方法提交事务
+                }else{
+                    $resualt = false;
+                    DB::rollback();//如果处理失败,通过 rollback 的方法回滚事务
+                }
             }else{
-                $resualt = false;
-                DB::rollback();//如果处理失败,通过 rollback 的方法回滚事务
+                DB::beginTransaction();
+                if($this->save() && UserAdvertiser::create(array('user_id'=>$this->id,'company'=>$request->company))){
+                    $resualt = true;
+                    DB::commit();//如果处理成功,通过 commit 的方法提交事务
+                }else{
+                    $resualt = false;
+                    DB::rollback();//如果处理失败,通过 rollback 的方法回滚事务
+                }
             }
+
 
         }else{
             //编辑
             $info = $this->findOrFail($request->id);
-            $resualt = $info->update(Input::get());
+            if($info->type ==1){
+                $resualt = $info->update(Input::get());
+            }else{
+                $_info = UserAdvertiser::where(array(['user_id',$request->id]))->first();
+                $_info->company = $request->company;
+                DB::beginTransaction();
+                if($info->update(Input::get()) && $_info->save()){
+                    $resualt = true;
+                    DB::commit();//如果处理成功,通过 commit 的方法提交事务
+                }else{
+                    $resualt = false;
+                    DB::rollback();//如果处理失败,通过 rollback 的方法回滚事务
+                }
+            }
         }
         if($resualt === false){
             return false;
         }
         return $request;
     }
-
-
-    /**
-     * 重置密码
-     */
-    protected function resetPassword($request){
-        $resualt = $this->where(array(['username','=',$request->username]))->update(array('password'=>bcrypt($request->password)));
-        if($resualt === false){
-            return false;
-        }
-        return $request;
-    }
-
 }

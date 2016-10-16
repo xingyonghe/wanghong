@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request as HttpRequest;
-use App\Http\Requests;
 use Request;
 use App\Http\Controllers\Controller;
 use App\Models\SysAdmin;
@@ -52,7 +51,7 @@ class PersonalController extends Controller{
         if(empty($id) ||!is_numeric($id)){
             return redirect()->back()->with('error','参数错误！');
         }
-        $info = User::where(array(['type',1]))->whereIn('status',['-1','0','1'])->leftJoin('user_personal', 'user.id', '=', 'user_personal.user_id')->find($id);
+        $info = User::where(array(['type',1]))->whereIn('status',['0','1'])->leftJoin('user_personal', 'user.id', '=', 'user_personal.user_id')->find($id);
         if(empty($info)){
             return redirect()->back()->with('error','抱歉,您要查找的数据不存在！');
         }
@@ -67,9 +66,8 @@ class PersonalController extends Controller{
     public function update(PersonalRequest $request){
         $info = User::where(array(['username','=',$request->username],['status','>','-1']))->first();
         if($info){
-            return Response::json(array('error'=> '该手机号用户已存在','status'=>0));
+            return Response::json(array('error'=> '该手机号已经注册','status'=>0));
         }
-        $request->type = 1;
         $res = User::updateData($request);
         if($res){
             return Response::json(array('success'=> '用户信息添加成功','status'=>1,'url'=>URL::previous()));
@@ -151,7 +149,7 @@ class PersonalController extends Controller{
     public function addCustom($id){
         if(Request::ajax()){
             $customs = SysAdmin::getCustom();
-            $view = view('admin.user.personal_add_custom',compact('customs','id'));
+            $view = view('admin.user.add_custom',compact('customs','id'));
             return Response::json(array('html'=>$view->render(),'title'=>'添加客服','status'=>1));
         }else{
             return redirect()->back()->with('error','请求超时');

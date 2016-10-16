@@ -100,6 +100,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         Route::post('admin/updatepass',        'AdminController@updatepass');   //更新密码
 
         /**--**--**--**--**--**--**--**--**--**用户管理**--**--**--**--**--**--**--**--**--**--**/
+        //普通会员
         Route::get ('personal/index',              'PersonalController@index');        //普通会员管理
         Route::get ('personal/add',                'PersonalController@add');          //添加
         Route::get ('personal/edit/{id}',          'PersonalController@edit');         //修改
@@ -111,7 +112,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         Route::get ('personal/verify/{id}',        'PersonalController@verify');       //审核
         Route::get ('personal/addCustom/{id}',     'PersonalController@addCustom');    //添加客服
         Route::post('personal/postCustom',         'PersonalController@postCustom');   //更新客服
-
+        //广告主
         Route::get ('advertiser/index',            'AdvertiserController@index');        //广告主管理
         Route::get ('advertiser/add',              'AdvertiserController@add');          //添加
         Route::get ('advertiser/edit/{id}',        'AdvertiserController@edit');         //修改
@@ -123,6 +124,21 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         Route::get ('advertiser/verify/{id}',      'AdvertiserController@verify');       //审核
         Route::get ('advertiser/addCustom/{id}',   'AdvertiserController@addCustom');    //添加客服
         Route::post('advertiser/postCustom',       'AdvertiserController@postCustom');   //更新客服
+
+        /**--**--**--**--**--**--**--**--**--**内容管理**--**--**--**--**--**--**--**--**--**--**/
+        //分类管理
+        Route::get ('article/category',          'ArticleController@index');         //分类列表
+        Route::get ('category/add',              'CategoryController@add');          //新增
+        Route::get ('category/edit/{id}',        'CategoryController@edit');         //修改
+        Route::post('category/update',           'CategoryController@update');       //更新
+        Route::get ('category/destroy/{id}',     'CategoryController@destroy');      //删除
+        //内容管理
+        Route::get ('article/index',             'ArticleController@index');        //列表
+        Route::get ('article/add',               'ArticleController@add');          //新增
+        Route::get ('article/edit/{id}',         'ArticleController@edit');         //修改
+        Route::post('article/update',            'ArticleController@update');       //更新
+        Route::get ('article/destroy/{id}',      'ArticleController@destroy');      //删除
+
     });
 });
 

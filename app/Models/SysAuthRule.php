@@ -39,6 +39,7 @@ class SysAuthRule extends Model{
         $ids    = array();//保存需要删除的节点的id
         foreach ($rules as $index=>$rule){
             $key = strtolower($rule['name'].$rule['type']);
+//            dump($key);
             if ( isset($data[$key]) ) {//如果数据库中的规则与配置的节点匹配,说明是需要更新的节点
                 $data[$key]['id'] = $rule['id'];//为需要更新的节点补充id值
                 $update[] = $data[$key];

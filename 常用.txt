@@ -1,0 +1,10 @@
+分类：
+
+新增|0|admin/catregory/add|1|模块管理
+编辑|0|admin/catregory/edit|1|模块管理
+删除|0|admin/category/destroy|1|模块管理
+更新|0|admin/category/update|1|模块管理
+
+
+1342234898蜀国微信群欢迎各位新老玩家，这里有礼包、红包，还有各种老司机
+

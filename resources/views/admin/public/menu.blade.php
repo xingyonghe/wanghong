@@ -8,7 +8,7 @@
 
                 <li class="sub-menu">
                     <a href="javascript:void(0);" class="">
-                        <i class="icon-book"></i>
+                        <i class="icon-tags"></i>
                         <span>{{ $key }}</span>
                         <span class="arrow"></span>
                     </a>

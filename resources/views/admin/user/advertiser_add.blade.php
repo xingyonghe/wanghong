@@ -4,7 +4,7 @@
             <div class="panel-body">
                 <div class=" form">
                     {!! Form::open(['url' => 'admin/personal/update','class'=>'cmxform form-horizontal tasi-form form-datas','autocomplete'=>'off']) !!}
-                    <input   name="type" value="1" type="hidden"/>
+                    <input   name="type" value="2" type="hidden"/>
                     <div class="form-group ">
                         <label for="cname" class="control-label col-lg-2">用户名</label>
                         <div class="col-lg-10">
@@ -21,6 +21,12 @@
                         <label for="cname" class="control-label col-lg-2">联系人</label>
                         <div class="col-lg-10">
                             <input class=" form-control" placeholder="联系人名称" name="nickname" type="text" value="{{ old('nickname') }}"/>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="curl" class="control-label col-lg-2">公司名称</label>
+                        <div class="col-lg-10">
+                            <input class="form-control " placeholder="输入公司名称" type="text" name="company" value="{{ old('company') }}"/>
                         </div>
                     </div>
                     <div class="form-group ">

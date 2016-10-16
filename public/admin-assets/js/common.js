@@ -8,7 +8,7 @@ $(function(){
     });
 
     //更新操作
-    $('.ajax-update').click(function(){
+    $('body').on('click','.ajax-update',function(){
         layer.closeAll();
         var target = $(this).attr('href');
         var that = this;
