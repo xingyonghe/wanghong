@@ -127,7 +127,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
         /**--**--**--**--**--**--**--**--**--**内容管理**--**--**--**--**--**--**--**--**--**--**/
         //分类管理
-        Route::get ('article/category',          'ArticleController@index');         //分类列表
+        Route::get ('article/category',          'ArticleController@category');         //分类列表
         Route::get ('category/add',              'CategoryController@add');          //新增
         Route::get ('category/edit/{id}',        'CategoryController@edit');         //修改
         Route::post('category/update',           'CategoryController@update');       //更新

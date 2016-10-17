@@ -9,7 +9,7 @@ use URL;
 use App\Models\Article;
 use Illuminate\Support\Facades\Input;
 
-class ArticleController extends Controller{
+class CategoryController extends Controller{
     /**
      * 列表
      */
@@ -81,11 +81,6 @@ class ArticleController extends Controller{
         }else{
             return redirect()->back()->with('error','删除信息失败');
         }
-    }
-
-    public function category(){
-        $info = array();
-        return view('admin.article.category',compact('info'));
     }
 
 
