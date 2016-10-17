@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : 本地
 Source Server Version : 50547
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : wanghong
 
 Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-10-17 00:05:01
+Date: 2016-10-17 17:37:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,6 +48,7 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '分类名称',
+  `sort` int(10) NOT NULL DEFAULT '0' COMMENT '排序',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '上级分类ID',
   `model` varchar(30) NOT NULL DEFAULT '' COMMENT '模块分组',
   `created_at` timestamp NULL DEFAULT NULL,
