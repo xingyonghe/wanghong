@@ -20,7 +20,7 @@ class AdminRequest extends FormRequest{
             'password' => 'required|min:6|confirmed',
         ];
     }
-
+    
     public function messages(){
         return [
             'username.required'   => '请填写账号名称',

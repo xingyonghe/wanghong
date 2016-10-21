@@ -44,13 +44,13 @@
                         <div class="form-group ">
                             <label for="curl" class="control-label col-lg-2">描述</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control " rows="6" placeholder="请填写描述，不填从内容中默认生成" name="descrition" />{{ $info['descrition'] ??old('descrition') }}</textarea>
+                                <textarea class="form-control " rows="6" placeholder="请填写描述，不填从内容中默认生成" name="descrition" />{{ $info['descrition'] ?? old('descrition') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group ">
                             <label for="curl" class="control-label col-lg-2">内容</label>
                             <div class="col-lg-10">
-                                <textarea  id="content" name="content" />{{ $info['content'] ??old('content') }}</textarea>
+                                <textarea  id="content" name="content" />{{ $info['content'] ?? old('content') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group ">

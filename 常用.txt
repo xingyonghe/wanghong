@@ -10,7 +10,7 @@
 
 关于新增和更新的说明：
 save()方法即可用作新增也可用作更新，
-create(array())方法用作新增，update(array())方法用作新增，array()可以是$request->all(），也可以是Input::get();因为是等价的
+create(array())方法用作新增，update(array())方法用作更新，array()可以是$request->all(），也可以是Input::get();因为是等价的
 $fillable白名单$guarded黑名单，定义在$fillable中的属性可以通过批量赋值进行赋值，而定义在$guarded中的属性在批量赋值时会被过滤掉，新增和更新都会生效
 当save()方法用于更新模型时，要更新模型数据，先要获取该模型实例，然后修改模型属性，再调用save方法保存即可
 

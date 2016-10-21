@@ -2,15 +2,24 @@
 
 namespace App\Models;
 
-class Article extends CommonModel{
+use Illuminate\Database\Eloquent\Model;
 
-    protected $table = 'article';
-    protected $fillable = [
-        'title','catid', 'descrition', 'author', 'quote', 'content'
-    ];
-    protected $guarded = [
-        'id', 'view', 'status', 'created_at', 'updated_at'
-    ];
+class CommonModel extends Model{
+
+    //定义错误信息
+    protected $error   = '';
+
+    /**
+     * 列表查询
+     * @param int $limit
+     * @param array $map
+     * @param array $order
+     * @return mixed
+     */
+    protected function adminLists($map = array(), $order = 'created_at', $sort = 'desc', $page = 10){
+        $list = $this->where($map)->orderBy($order, $sort)->paginate($page);
+        return $list;
+    }
 
     /**
      * 更新/新增数据
@@ -18,9 +27,6 @@ class Article extends CommonModel{
      * @return bool
      */
     protected function updateData($data){
-        if(empty($data['descrition'])){
-            $data['descrition'] = msubstr(strip_tags($data['content']),0,150);
-        }
         if(empty($data['id'])){
             //新增
             $resualt = $this->create($data);
@@ -37,5 +43,28 @@ class Article extends CommonModel{
             }
         }
         return $data;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 返回模型的错误信息
+     * @return string
+     */
+    protected function getError(){
+        return $this->error;
     }
 }

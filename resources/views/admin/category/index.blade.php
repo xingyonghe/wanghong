@@ -68,7 +68,7 @@
 @section('script')
     <script type="text/javascript">
         $(function () {
-            highlight_subnav("{{ url('admin/article/category') }}");
+            highlight_subnav("{{ url('admin/'.$model.'/category') }}");
             $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
             $('.tree li.parent_li > span').on('click', function (e) {
                 var children = $(this).parent('li.parent_li').find(' > ul > li');
@@ -95,13 +95,8 @@
                 <div class="panel-body">
                     <div class="clearfix">
                         <div class="btn-group">
-                            <a href="{{ url('admin/article/add') }}" class="btn btn-primary">
+                            <a url="{{ url('admin/category/add',[$model]) }}" class="btn btn-primary ajax-update">
                                 新增 <i class="fa icon-plus"></i>
-                            </a>
-                        </div>
-                        <div class="btn-group">
-                            <a href="{{ url('admin/article/batch') }}" class="btn btn-info ajax-update">
-                                导入 <i class="fa icon-location-arrow"></i>
                             </a>
                         </div>
                     </div>
