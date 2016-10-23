@@ -2,63 +2,42 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Input;
-
-class Article extends Model{
+class Article extends CommonModel{
 
     protected $table = 'article';
     protected $fillable = [
-        'title', 'descrition', 'view', 'author', 'quote', 'content'
+        'title','catid', 'descrition', 'author', 'quote', 'content'
+    ];
+    protected $guarded = [
+        'id', 'view', 'status', 'created_at', 'updated_at'
     ];
 
     /**
-     * 列表查询
-     * @param int $limit
-     * @param array $map
-     * @param array $order
-     * @return mixed
-     */
-    protected function getAdminLists($map){
-        $list = $this->where($map)->orderBy('created_at', 'desc')->paginate(10);;
-        int_to_string($list,array(
-            'status' => array(
-                0=>'<span class="label label-info">锁定</span>',
-                1=>'<span class="label label-success">正常</span>',
-            ),
-        ));
-        return $list;
-    }
-
-    /**
      * 更新/新增数据
-     * @param $request
+     * @param $data 表单数据
      * @return bool
      */
-    protected function updateData($request){
-        $this->fill($request->all());
-
-        if(empty($request->id)){
+    public function updateData($data){
+        if(empty($data['descrition'])){
+            $data['descrition'] = msubstr(strip_tags($data['content']),0,150);
+        }
+        if(empty($data['id'])){
             //新增
-            if(empty($this->descrition)){
-                $this->descrition = msubstr(strip_tags($this->content),0,150);
+            $resualt = $this->create($data);
+            if($resualt === false){
+                $this->error = '信息新增失败';
+                return false;
             }
-            $resualt = $this->save();
-
         }else{
-
             //编辑
-            $info = $this->findOrFail($request->id);
-            $resualt = $info->update(Input::get());
-
+            $info = $this->find($data['id']);
+            if(empty($info) || $info->update($data)===false){
+                $this->error = '信息修改失败';
+                return false;
+            }
         }
-        if($resualt === false){
-            return false;
-        }
-        return $request;
+        return $data;
     }
-
-
 
 
 }

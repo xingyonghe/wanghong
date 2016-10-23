@@ -36,6 +36,16 @@
                     <div class=" form">
                         {!! Form::open(['url' => 'admin/article/update','class'=>'cmxform form-horizontal tasi-form form-datas','autocomplete'=>'off']) !!}
                         <div class="form-group ">
+                            <label for="curl" class="control-label col-lg-2">分类</label>
+                            <div class="col-lg-10">
+                                <select class="form-control m-bot15" name="catid">
+                                    @foreach($trees as $menu)
+                                        <option value="{{ $menu['id'] }}" @if(old('catid')==$menu['id']) selected @endif @if(isset($info['catid']) && $info['catid']==$menu['id']) selected @endif>{{ $menu['title_show'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group ">
                             <label for="cname" class="control-label col-lg-2">标题</label>
                             <div class="col-lg-10">
                                 <input class=" form-control" placeholder="请填写标题" name="title" type="text" value="{{ $info['title'] ?? old('title') }}" />
@@ -44,13 +54,13 @@
                         <div class="form-group ">
                             <label for="curl" class="control-label col-lg-2">描述</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control " rows="6" placeholder="请填写描述，不填从内容中默认生成" name="descrition" />{{ $info['descrition'] ??old('descrition') }}</textarea>
+                                <textarea class="form-control " rows="6" placeholder="请填写描述，不填从内容中默认生成" name="descrition" />{{ $info['descrition'] ?? old('descrition') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group ">
                             <label for="curl" class="control-label col-lg-2">内容</label>
                             <div class="col-lg-10">
-                                <textarea  id="content" name="content" />{{ $info['content'] ??old('content') }}</textarea>
+                                <textarea  id="content" name="content" />{{ $info['content'] ?? old('content') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group ">

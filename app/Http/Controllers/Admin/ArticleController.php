@@ -2,24 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Response;
-use URL;
-use App\Models\Article;
-use Illuminate\Support\Facades\Input;
+use App\Http\Requests\Admin\ArticleRequest;
+use App\Http\Controllers\CommonController;//公用控制器
 
-class ArticleController extends Controller{
+class ArticleController extends CommonController{
+
+    protected $model = '';//分类模块分组
+
+    public function __construct(){
+        $this->model = 'article';
+    }
+
     /**
      * 列表
      */
     public function index(){
         $map = array(['status','>',0]);
-        $title = Input::get('title') ?? '';
-        if(!empty($title)){
-            $map[] = ['title',$title];
+        $title = request()->input('title');
+        if($title){
+            $map[] = ['title','like','%'.$title.'%'];
         }
-        $datas = Article::getAdminLists($map);
+        $datas = D('Article')->adminLists($map);
+        int_to_string($datas,array(
+            'status' => array(
+                0=>'<span class="label label-info">锁定</span>',
+                1=>'<span class="label label-success">正常</span>',
+            ),
+        ));
         $pages = array(
             'title' => $title
         );
@@ -31,7 +40,8 @@ class ArticleController extends Controller{
      * @return mixed
      */
     public function add(){
-        return view('admin.article.edit');
+        $trees = D('Category')->getTree($this->model);
+        return view('admin.article.edit',compact('trees'));
     }
 
     /**
@@ -43,12 +53,12 @@ class ArticleController extends Controller{
         if(empty($id) ||!is_numeric($id)){
             return redirect()->back()->with('error','参数错误！');
         }
-        $info = Article::find($id);
+        $info = D('Article')->find($id);
         if(empty($info)){
             return redirect()->back()->with('error','抱歉,您要查找的数据不存在！');
         }
-
-        return view('admin.article.edit',compact('info'));
+        $trees = D('Category')->getTree($this->model);
+        return view('admin.article.edit',compact('info','trees'));
     }
 
     /**
@@ -56,12 +66,12 @@ class ArticleController extends Controller{
      * @param AdminRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request){
-        $resualt = Article::updateData($request);
+    public function update(ArticleRequest $request){
+        $resualt = D('Article')->updateData($request->all());
         if($resualt){
-            return redirect('admin/article/index')->withSuccess($resualt->id?'文章信息修改成功!':'文章信息添加成功!');
+            return redirect('admin/article/index')->withSuccess($resualt['id']?'文章信息修改成功!':'文章信息添加成功!');
         }else{
-            return redirect()->back()->with('error',$resualt->id?'文章信息修改失败!':'文章信息添加失败!');
+            return redirect()->back()->with('error',Article::getError());
         }
     }
 
@@ -75,13 +85,15 @@ class ArticleController extends Controller{
         if(empty($id) ||!is_numeric($id)){
             return redirect()->back()->with('error','参数错误！');
         }
-        $resualt = Article::where(array(['id',$id]))->update(array('status'=>-1));
+        $resualt = D('Article')->where(array(['id',$id]))->update(array('status'=>-1));
         if($resualt){
             return redirect()->back()->withSuccess('删除信息成功!');
         }else{
             return redirect()->back()->with('error','删除信息失败');
         }
     }
+
+
 
 
 }

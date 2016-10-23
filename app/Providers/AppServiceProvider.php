@@ -21,7 +21,10 @@ class AppServiceProvider extends ServiceProvider{
         Validator::extend('mobile',function ($attribute,$value,$parameters){
             return preg_match('/^1[34578]{1}\d{9}$/',$value);
         });
-        
+        //正整数
+        Validator::extend('positive',function ($attribute,$value,$parameters){
+            return preg_match('/^\+?[1-9]\d*$/',$value);
+        });
         /**
          * 自定义多个复选框
          * @author xingyonghe

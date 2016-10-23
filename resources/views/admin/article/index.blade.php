@@ -46,6 +46,7 @@
                             <th style="width:8px;">
                                 <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/></th>
                             <th>ID</th>
+                            <th class="hidden-phone">分类</th>
                             <th class="hidden-phone">标题</th>
                             <th class="hidden-phone">作者</th>
                             <th class="hidden-phone">来源</th>
@@ -60,6 +61,7 @@
                             <tr class="odd gradeX">
                                 <td><input type="checkbox" class="checkboxes" value="{{ $data->id }}"/></td>
                                 <td>{{ $data->id }}</td>
+                                <td>{{ get_category_name($data->catid) }}</td>
                                 <td>{{ $data->title }}</td>
                                 <td class="hidden-phone">{{ $data->author }}</td>
                                 <td class="hidden-phone">{{ $data->quote }}</td>

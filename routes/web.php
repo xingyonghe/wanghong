@@ -1,35 +1,26 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-Route::get('/home/image', function(){
-    $img = Image::make('JS.png')->resize(800, 600);
-    return $img->response('jpg');
-});
+//入口
+Route::get('/', 'Home\IndexController@index');
+//登陆
+Route::get('login', 'Member\LoginController@login');
+//注册
+Route::get('register', 'Member\RegisterController@showRegistrationForm');
+Route::post('register', 'Member\RegisterController@register');
 
 /**
  * 前台路由组
  */
+Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
+
+});
 
 /**
  * 会员中心路由组
  */
+Route::group(['prefix'=>'user','namespace'=>'Member'],function(){
+
+});
 
 /**
  * 后台路由组
@@ -127,17 +118,30 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
         /**--**--**--**--**--**--**--**--**--**内容管理**--**--**--**--**--**--**--**--**--**--**/
         //分类管理
-        Route::get ('article/category',          'ArticleController@index');         //分类列表
-        Route::get ('category/add',              'CategoryController@add');          //新增
-        Route::get ('category/edit/{id}',        'CategoryController@edit');         //修改
-        Route::post('category/update',           'CategoryController@update');       //更新
-        Route::get ('category/destroy/{id}',     'CategoryController@destroy');      //删除
+        Route::get ('category/add/{model}', 'CategoryController@add');          //新增
+        Route::get ('category/edit/{id}',          'CategoryController@edit');         //修改
+        Route::post('category/update',             'CategoryController@update');       //更新
+        Route::get ('category/destroy/{id}',       'CategoryController@destroy');      //删除
+
         //内容管理
-        Route::get ('article/index',             'ArticleController@index');        //列表
-        Route::get ('article/add',               'ArticleController@add');          //新增
-        Route::get ('article/edit/{id}',         'ArticleController@edit');         //修改
-        Route::post('article/update',            'ArticleController@update');       //更新
-        Route::get ('article/destroy/{id}',      'ArticleController@destroy');      //删除
+        Route::get ('article/index',               'ArticleController@index');        //列表
+        Route::get ('article/add',                 'ArticleController@add');          //新增
+        Route::get ('article/edit/{id}',           'ArticleController@edit');         //修改
+        Route::post('article/update',              'ArticleController@update');       //更新
+        Route::get ('article/destroy/{id}',        'ArticleController@destroy');      //删除
+        Route::get ('article/category',            'ArticleController@category');     //分类列表
+
+
+
+
+
+
+
+
+
+
+
+
 
     });
 });

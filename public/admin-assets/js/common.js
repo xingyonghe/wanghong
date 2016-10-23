@@ -10,7 +10,7 @@ $(function(){
     //更新操作
     $('body').on('click','.ajax-update',function(){
         layer.closeAll();
-        var target = $(this).attr('href');
+        var target = $(this).attr('href') || $(this).attr('url');
         var that = this;
         $.get(target).success(function(data){
             if(data.status == 1){

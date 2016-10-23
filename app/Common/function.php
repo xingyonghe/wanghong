@@ -141,4 +141,57 @@ function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true) {
     return $suffix ? $slice.'...' : $slice;
 }
 
+/**
+ * 获取分类信息并缓存分类
+ * @param  integer $id    分类ID
+ * @param  string  $field 要获取的字段名
+ * @return string         分类信息
+ */
+function get_category($id, $field = null){
+    static $list;
+    /* 非法分类ID */
+    if(empty($id) || !is_numeric($id)){
+        return '';
+    }
+
+    /* 读取缓存数据 */
+    if(empty($list)){
+        $list = Cache::get('CATEGORY_LIST');
+    }
+
+    /* 获取分类名称 */
+    if(!isset($list[$id])){
+        $cate = \App\Models\Category::find($id);
+        if(empty($cate)){ //不存在分类，或分类被禁用
+            return '';
+        }
+        $list[$id] = $cate;
+        Cache::forever('CATEGORY_LIST',$list);//更新缓存
+    }
+    return is_null($field) ? $list[$id] : $list[$id][$field];
+}
+
+/* 根据ID获取分类标识 */
+function get_category_name($id){
+    return get_category($id, 'name');
+}
+
+/**
+ * 实例化模型类
+ * @return Model
+ */
+function D($name='') {
+    if(empty($name)){
+        $class = '\\App\Models\\CommonModel';
+    }else{
+        $class = '\\App\Models\\'.$name;
+        if(!class_exists($class)) {
+            throw new InvalidArgumentException('D方法实例化没找到模型类'.$class);
+        }
+    }
+    $model = new $class();
+    return new $model();
+}
+
+
 
