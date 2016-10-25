@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\Home;
 
 use App\User;
 use Validator;
@@ -37,10 +37,31 @@ class RegisterController extends Controller{
         $this->middleware('guest');
     }
 
+    /**
+     * 注册页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showRegistrationForm(){
-        return view('member.user.register');
+        return view('home.auth.register');
     }
 
+    /**
+     * 注册提交
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function register(){
+        $validator = $this->validator(request()->all())->validate();
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error',$validator->messages()->first());
+        }
+        event(new Registered($user = $this->create(request()->all())));
+
+        $this->guard()->login($user);
+
+        return redirect($this->redirectPath());
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -48,11 +69,26 @@ class RegisterController extends Controller{
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data){
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+        $rules = [
+            'type' => 'required',
+            'username' => 'required|unique:user',
             'password' => 'required|min:6|confirmed',
-        ]);
+            'nickname' => 'required',
+            'qq'       => 'required',
+            'protocol' => 'accepted'
+        ];
+        $msgs = [
+            'type.required' => '类型必须选择',
+            'username.required' => '请填写你要注册的手机号码',
+            'username.unique' => '改手机号已经注册',
+            'password.required' => '请输入密码',
+            'password.min' => '密码最少6位',
+            'password.confirmed' => '确认密码不一致',
+            'nickname.required' => '请填写联系人姓名',
+            'qq.required' => '请填写QQ号码',
+            'protocol.accepted' => '您还没有阅读和同意注册协议',
+        ];
+        return Validator::make($data,$rules,$msgs );
     }
 
     /**

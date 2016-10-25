@@ -1,5 +1,10 @@
-@extends('layouts.app')
+@extends('home.public.base')
+@section('style')
 
+@endsection
+@section('script')
+
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
@@ -7,12 +12,19 @@
             <div class="panel panel-default">
                 <div class="panel-heading">注 册</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('register') }}">
+                    <form class="form-horizontal data-form" role="form" method="POST" action="{{ route('home.register') }}">
                         {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">注册类型</label>
+                            <div class="col-md-6">
+                                {!! Form::radios("type", [1=>'主播',2=>'广告主'], old('type')) !!}
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label for="name" class="col-md-4 control-label">手机号</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  autofocus>
+                                <input id="name" type="text" class="form-control" name="username" autofocus>
                                 <input type="button" name="code" id="get-code" value="获取验证码" style="margin-top: 10px">
                             </div>
                         </div>
@@ -20,7 +32,7 @@
                         <div class="form-group">
                             <label for="name" class="col-md-4 control-label">验证码</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  autofocus>
+                                <input type="text" class="form-control" name="code" >
                             </div>
                         </div>
 
@@ -41,7 +53,7 @@
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">联系人</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" >
+                                <input id="nickname" type="email" class="form-control" name="nickname" >
                             </div>
                         </div>
 
@@ -56,27 +68,27 @@
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">QQ号</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" >
+                                <input id="qq" type="text" class="form-control" name="qq" >
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">微信号</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" >
+                                <input id="weixin" type="text" class="form-control" name="weixin" >
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label"></label>
                             <div class="col-md-6">
-                                <input type="checkbox"  name="email" value="1" >注册协议
+                                <input type="checkbox" name="protocol" value="1" >注册协议
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary ajax-post">
                                     注册
                                 </button>
                             </div>

@@ -1,18 +1,22 @@
 <?php
 
-//入口
-Route::get('/', 'Home\IndexController@index');
-//登陆
-Route::get('login', 'Member\LoginController@login');
-//注册
-Route::get('register', 'Member\RegisterController@showRegistrationForm');
-Route::post('register', 'Member\RegisterController@register');
+
 
 /**
  * 前台路由组
  */
-Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
+Route::group(['namespace'=>'Home'],function(){
+    //入口
+    Route::get('/', 'IndexController@index')->name('home.index');
+    //登陆
+    Route::get('login', 'LoginController@showLoginForm')->name('home.login-form');
+    Route::post('login', 'LoginController@login')->name('home.login');
+    //注册
+    Route::get('register', 'RegisterController@showRegistrationForm')->name('home.register-form');
+    Route::post('register', 'RegisterController@register')->name('home.register');
+    Route::group(['prefix'=>'home'],function(){
 
+    });
 });
 
 /**

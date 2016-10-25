@@ -67,8 +67,8 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="top-right links">
-                <a href="{{ url('login') }}">Login</a>
-                <a href="{{ url('register') }}">Register</a>
+                <a href="{{ route('home.login-form') }}">Login</a>
+                <a href="{{ route('home.register-form') }}">Register</a>
             </div>
 
             <div class="content">
