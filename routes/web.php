@@ -7,13 +7,16 @@
  */
 Route::group(['namespace'=>'Home'],function(){
     //入口
-    Route::get('/', 'IndexController@index')->name('home.index');
+    Route::get('/', 'IndexController@index')->name('home.index.index');
     //登陆
-    Route::get('login', 'LoginController@showLoginForm')->name('home.login-form');
-    Route::post('login', 'LoginController@login')->name('home.login');
+    Route::get('login', 'LoginController@showLoginForm')->name('auth.login.form');
+    Route::post('login', 'LoginController@login')->name('auth.login.post');
+    Route::get('logout', 'LoginController@logout')->name('auth.login.logout');
     //注册
-    Route::get('register', 'RegisterController@showRegistrationForm')->name('home.register-form');
-    Route::post('register', 'RegisterController@register')->name('home.register');
+    Route::get('register', 'RegisterController@showRegistrationForm')->name('auth.register.form');
+    Route::post('register', 'RegisterController@register')->name('auth.register.post');
+    //忘记密码
+    Route::get('registers', 'RegisterController@aaaa')->name('auth.password.reset');
     Route::group(['prefix'=>'home'],function(){
 
     });
@@ -22,8 +25,8 @@ Route::group(['namespace'=>'Home'],function(){
 /**
  * 会员中心路由组
  */
-Route::group(['prefix'=>'user','namespace'=>'Member'],function(){
-
+Route::group(['prefix'=>'user','namespace'=>'Member','middleware'=>['login']],function(){
+    Route::get('index/index', 'IndexController@index')->name('user.index.index');
 });
 
 /**

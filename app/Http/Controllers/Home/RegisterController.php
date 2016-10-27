@@ -54,7 +54,7 @@ class RegisterController extends Controller{
         $data['reg_ip']      = request()->ip();
         $user = D('User')::create($data);
         if($user->exists){
-            return $this->ajaxReturn('恭喜您，注册成功',1,route('home.login-form'));
+            return $this->ajaxReturn('恭喜您，注册成功',1,route('auth.login.form'));
         }
         return $this->ajaxReturn('注册失败',0);
     }

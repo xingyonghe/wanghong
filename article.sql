@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : 本地
 Source Server Version : 50547
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : wanghong
 
 Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-10-27 17:56:52
+Date: 2016-10-28 00:07:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -425,7 +425,7 @@ CREATE TABLE `user` (
   `login_time` timestamp NULL DEFAULT NULL COMMENT '最后登录时间',
   `login_ip` varchar(45) DEFAULT NULL COMMENT '最后登录IP',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息';
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息';
 
 -- ----------------------------
 -- Records of user
@@ -434,7 +434,8 @@ INSERT INTO `user` VALUES ('7', '15826021109', '0', '1', '唐吉思', '134223489
 INSERT INTO `user` VALUES ('10', '15826021108', '0', '2', '唐平', '', '', '0.00', '0.00', '3', '颖楓', '1', '', '$2y$10$y35S71eQ6u4xPnK59x8kcuJep/glGeBngNHQwd93nqj/vVV3g1CJa', null, '2016-10-15 12:30:34', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('11', '15826021189', '0', '2', '斯蒂芬', '56485254', 'huituo', '0.00', '0.00', '0', '', '1', '526498@qq.com', '$2y$10$aaIyKaV/IvBWnHl/8z8iguXR7.j7IqjkluN4dmgBMnmm66NWqnTbS', null, '2016-10-15 12:38:57', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('12', '13667635689', '0', '2', '单簧管', '2312312312', '', '0.00', '0.00', '3', '颖楓', '1', '', '$2y$10$NQeOkY7vxjxOpY8IvVlas.6zPwRSzjrj/Eh8r.LHjPl2heHg.XxdC', null, '2016-10-15 13:02:36', '127.0.0.1', null, null);
-INSERT INTO `user` VALUES ('21', '13667635645', '1', '1', 'dsfas', '123213123', '', '0.00', '0.00', '2', '永和', '2', '', '$2y$10$3CDW1Tz/TCHMYEj44Fb5TeAECnrWtquiI1PacCouyAZ71D2k5bfdi', null, '2016-10-27 17:55:01', '127.0.0.1', null, null);
+INSERT INTO `user` VALUES ('21', '13667635645', '1', '1', 'dsfas', '123213123', '', '0.00', '0.00', '2', '永和', '2', '', '$2y$10$3CDW1Tz/TCHMYEj44Fb5TeAECnrWtquiI1PacCouyAZ71D2k5bfdi', 'BBHWNtnQyNRXeJSGDDtdyA5dDZmW5AVcKyqn0ChsEQ2qsm4I9KWIsutGY5iY', '2016-10-27 17:55:01', '127.0.0.1', '2016-10-27 23:08:34', '127.0.0.1');
+INSERT INTO `user` VALUES ('22', '13667635622', '1', '1', '唐瓶', '342234898', '', '0.00', '0.00', '3', '颖楓', '1', '', '$2y$10$NXYaxvjHQEId.vJ2QtLQ9eMfeHZWvhiVzwDkrh3jAWiOVRiXcmtZm', 'LxMYXEHeQ0IgiVTHwrtzQxonWGWp7AVdE1eOY0R5PPYqiBnshnpAFKrLGLYm', '2016-10-27 21:10:25', '127.0.0.1', null, null);
 
 -- ----------------------------
 -- Table structure for user_ads

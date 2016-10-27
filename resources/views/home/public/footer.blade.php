@@ -6,7 +6,6 @@
     <script src="{{ asset('home-assets/js/jquery-1.8.3.min.js') }}"></script>
     <!-- 自定义js -->
     <script src="{{ asset('home-assets/js/common.js') }}"></script>
-
     <script src="{{ asset('public-static/layer/layer.js') }}"></script>
 </footer>
 <!--footer section end-->

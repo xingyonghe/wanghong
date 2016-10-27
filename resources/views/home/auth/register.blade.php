@@ -62,10 +62,10 @@
                 target = form.get(0).action;
                 that = this;
                 query = form.serialize();
-                // $(that).addClass('disabled').attr('autocomplete','off').prop('disabled',true);
+                 $(that).addClass('disabled').attr('autocomplete','off').prop('disabled',true);
                 $.post(target,query).success(function(data){
-                    // $(that).removeClass('disabled').prop('disabled',false);
                     if (data.status==1){
+                        $(that).removeClass('disabled').prop('disabled',false);
                         var endtime = 5;
                         var _title = endtime+'秒后即将跳转';
                         layer.open({
@@ -88,6 +88,7 @@
                             layer.title(endtime+'秒后即将跳转');
                         }, "1000");
                     }else{
+                        $(that).removeClass('disabled').prop('disabled',false);
                         if(data.id){
                             showError(data.info,data.id,1);
                         }
@@ -105,7 +106,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">注 册</div>
                 <div class="panel-body">
-                    <form class="form-horizontal data-form" role="form" method="POST" action="{{ route('home.register') }}">
+                    <form class="form-horizontal data-form" action="{{ route('auth.register.post') }}" method="POST" >
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="name" class="col-md-4 control-label">注册类型</label>

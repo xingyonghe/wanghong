@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\CommonController;
 
 class IndexController extends CommonController{
 
     public function index(){
-//        dd(\Auth::guest());
-        return view('home.index.index');
+        return view('member.index.index');
     }
 
 
