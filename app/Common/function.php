@@ -181,6 +181,11 @@ function get_category_name($id){
  * @return Model
  */
 function D($name='') {
+    static $_model = array();
+    if(isset($_model[$name])){
+        return $_model[$name];
+    }
+
     if(empty($name)){
         $class = '\\App\Models\\CommonModel';
     }else{
@@ -190,7 +195,8 @@ function D($name='') {
         }
     }
     $model = new $class();
-    return new $model();
+    $_model[$name]  =  $model;
+    return $model;
 }
 
 

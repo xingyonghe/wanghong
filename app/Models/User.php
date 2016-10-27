@@ -6,14 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
 use Request;
 use DB;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\UserPersonal;
 
-class User extends Model{
+class User extends Authenticatable{
+    use Notifiable;
     public $timestamps = false;//模型不需要更新/新增时间
     protected $table = 'user';
     protected $dateFormat = 'U';
     protected $fillable = [
-        'username','nickname','qq','weixin','email','password','type'
+        'username','nickname','qq','weixin','email','password','type','custom_id','custom_name', 'is_auth','status','reg_time','reg_ip'
+    ];
+    protected $guarded = [
+        'id', 'freeze', 'balance','login_time','login_ip'
     ];
     protected $hidden = [
         'password', 'remember_token',

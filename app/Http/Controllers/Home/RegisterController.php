@@ -2,37 +2,10 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\User;
-use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller{
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct(){
         $this->middleware('guest');
     }
@@ -42,7 +15,16 @@ class RegisterController extends Controller{
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showRegistrationForm(){
-        return view('home.auth.register');
+        $type = [1 => '主播', 2=> '广告主'];//注册角色
+        $checkd = 1;//默认选中
+        if(empty(C('WEB_REGISTER_AD'))){
+            unset($type[2]);
+        }
+        if(empty(C('WEB_REGISTER_USER'))){
+            unset($type[1]);
+            $checkd = 2;
+        }
+        return view('home.auth.register',compact('type','checkd'));
     }
 
     /**
@@ -50,58 +32,78 @@ class RegisterController extends Controller{
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function register(){
-        $validator = $this->validator(request()->all())->validate();
+        //数据验证
+        $validator = $this->validator(request()->all());
         if ($validator->fails()) {
-            return redirect()->back()
-                ->withInput()
-                ->with('error',$validator->messages()->first());
+            return $this->ajaxValidator($validator);
         }
-        event(new Registered($user = $this->create(request()->all())));
 
-        $this->guard()->login($user);
-
-        return redirect($this->redirectPath());
+        //随机分配客服信息
+        $admin = D('SysAdmin')->where(array(['id','>',1]))->orderBy(\DB::raw('RAND()'))->take(1)->first();
+        $data = request()->all();
+        $data['password']    = bcrypt($data['password']);
+        $data['custom_id']   = $admin['id'];
+        $data['custom_name'] = $admin['nickname'];
+        $data['is_auth']     = 1;
+        if(C('WEB_REGISTER_VERIFY')){
+            $data['status']  = 2;
+        }else{
+            $data['status']  = 1;
+        }
+        $data['reg_time']    = date('Y-m-d H:i:s',time());
+        $data['reg_ip']      = request()->ip();
+        $user = D('User')::create($data);
+        if($user->exists){
+            return $this->ajaxReturn('恭喜您，注册成功',1,route('home.login-form'));
+        }
+        return $this->ajaxReturn('注册失败',0);
     }
     /**
-     * Get a validator for an incoming registration request.
-     *
+     * 表单验证
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data){
-        $rules = [
-            'type' => 'required',
-            'username' => 'required|unique:user',
-            'password' => 'required|min:6|confirmed',
-            'nickname' => 'required',
-            'qq'       => 'required',
-            'protocol' => 'accepted'
-        ];
-        $msgs = [
-            'type.required' => '类型必须选择',
-            'username.required' => '请填写你要注册的手机号码',
-            'username.unique' => '改手机号已经注册',
-            'password.required' => '请输入密码',
-            'password.min' => '密码最少6位',
-            'password.confirmed' => '确认密码不一致',
-            'nickname.required' => '请填写联系人姓名',
-            'qq.required' => '请填写QQ号码',
-            'protocol.accepted' => '您还没有阅读和同意注册协议',
-        ];
-        return Validator::make($data,$rules,$msgs );
+        if($data['type'] == 2){
+            $rules = [
+                'username' => 'required|mobile|unique:user',
+                'password' => 'required|min:6|confirmed',
+                'nickname' => 'required',
+                'company'  => 'required',
+                'protocol' => 'accepted'
+            ];
+            $msgs = [
+                'username.required' => '请填写你要注册的手机号码',
+                'username.mobile'   => '手机号格式错误',
+                'username.unique'   => '手机号已经注册',
+                'password.required' => '请输入密码',
+                'password.min'      => '密码最少6位',
+                'password.confirmed'=> '确认密码不一致',
+                'nickname.required' => '请填写联系人姓名',
+                'company.unique'    => '请填写公司名称',
+                'protocol.accepted' => '您还没有阅读和同意注册协议',
+            ];
+        }else{
+            $rules = [
+                'username' => 'required|mobile|unique:user',
+                'password' => 'required|min:6|confirmed',
+                'nickname' => 'required',
+                'qq'       => 'required',
+                'protocol' => 'accepted'
+            ];
+            $msgs = [
+                'username.required' => '请填写你要注册的手机号码',
+                'username.mobile' => '手机号格式错误',
+                'username.unique' => '手机号已经注册',
+                'password.required' => '请输入密码',
+                'password.min' => '密码最少6位',
+                'password.confirmed' => '确认密码不一致',
+                'nickname.required' => '请填写联系人姓名',
+                'qq.required' => '请填写QQ号码',
+                'protocol.accepted' => '您还没有阅读和同意注册协议',
+            ];
+        }
+        return validator()->make($data,$rules,$msgs);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data){
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-    }
 }
