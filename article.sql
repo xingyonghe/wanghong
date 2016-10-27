@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : 本地
 Source Server Version : 50547
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : wanghong
 
 Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-10-23 22:20:37
+Date: 2016-10-27 17:56:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,17 +32,15 @@ CREATE TABLE `article` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='文章';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='文章';
 
 -- ----------------------------
 -- Records of article
 -- ----------------------------
-INSERT INTO `article` VALUES ('1', '扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.', '1', '扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. ', '0', '星澭和', '新闻网', '<p><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"background-color: rgb(255, 255, 255); color: rgb(51, 51, 51); font-family: arial; font-size: 13px;\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span></p>', '1', '2016-10-16 23:46:16', '2016-10-17 00:02:28');
-INSERT INTO `article` VALUES ('2', '很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()', '2', '很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.很多网站首页都有一片文章的一小部分....', '0', '速度', '嘻嘻嘻', '<p><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span></p>', '1', '2016-10-16 23:50:07', '2016-10-16 23:59:42');
-INSERT INTO `article` VALUES ('3', 'PHP中过滤html标签  似的发射点犯得上', '1', 'UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协...', '0', '地方撒', '嘻嘻嘻', '<p><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。</span><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。</span><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。</span><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。</span><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。手动阀手动阀士大夫舒服撒地方士大夫撒旦发生大31231231</span></p>', '1', '2016-10-16 23:54:03', '2016-10-17 00:01:21');
-INSERT INTO `article` VALUES ('5', 'laravel吐槽系列之一', '2', '最近项目中经常使用到了laravel框架，对于这个框架之前只是弱弱地接触了一点，没有深入接触，这下有时间好好研究它了（主要是不得不研究了）。说实话，laravel让我打开眼界了，之前对框架的使用一直停留在yii1.X阶段。总之那句话说的对，刚接触laravel的phper就只有两个反应，一个是捡到宝...', '0', '叶剑峰', '轩脉刃de刀光剑影', '<p><span style=\"color: rgb(51, 51, 51); font-family: Georgia, \">最近项目中经常使用到了laravel框架，对于这个框架之前只是弱弱地接触了一点，没有深入接触，这下有时间好好研究它了（主要是不得不研究了）。说实话，laravel让我打开眼界了，之前对框架的使用一直停留在yii1.X阶段。总之那句话说的对，刚接触laravel的phper就只有两个反应，一个是捡到宝了，一个是觉得它是垃圾。我能，就属于后者，所以现在在努力让自己爱上laravel。但是一切总是有那么硌人的地方，我就想写写一些东西来吐槽laravel。</span><br/></p><p>一共有28个需要Install的，这个导致的结果是初始化可运行的项目大小有25M之大。</p><p>这么bigger than bigger的玩意，首先会带来部署上的不便利。</p><p>部署laravel项目的时候会有两种方式，一种是只发布除了vendor之外的项目相关的文件，然后运行composer进行vender的更新，另外一种是直接将vendor进入版本库，使用版本库的发布将所有代码发布到线上机器去。我个人倾向第二种，能把代码库中的文件直接放到服务器上就能运行的多牛逼。但是这样子，代码库就变得超大了，不大便利了。</p><p>&nbsp;</p><p>其次，这么多的vendor导致的是文档查阅的不方便。</p><p>一个框架好用不好用，文档是一个至关重要的环节。但是引用的第三方库一多了，很多使用文档官方就没有足够详细的文档说明了，然后美其名告诉你，这个是引用第三方库的，给你个链接，你去第三方库的说明文档中看把。但是你要知道，在开发过程中，文档是需要有统一性的，每一个说明文档的展示和查询规则都是有惯性的。你给个链接让我去一个不一样布局的网页，我的思维还需要进行跳跃和查找。</p><p><br/></p>', '1', '2016-10-21 15:32:04', '2016-10-21 15:43:55');
-INSERT INTO `article` VALUES ('6', '啊发士大夫的撒旦发射点犯得上发', '1', 'asdfadfadsfsdafdsafdfsaadfadsf...', '0', 'asdf', 'ddd', '<p>asdfadfadsfsdafdsafdfsaadfadsf撒法是打发打发</p>', '1', '2016-10-22 00:55:51', '2016-10-22 11:28:38');
-INSERT INTO `article` VALUES ('7', '发士大夫撒地方', '2', '士大夫撒旦飞洒地方', '0', '是否', '是否', '<p>啊发大师傅大师傅士大夫撒反对撒地方</p>', '1', '2016-10-22 10:59:41', '2016-10-22 11:28:32');
+INSERT INTO `article` VALUES ('1', '扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.', '0', '扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.扫描二维码登录微信. ', '0', '星澭和', '新闻网', '<p><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"background-color: rgb(255, 255, 255); color: rgb(51, 51, 51); font-family: arial; font-size: 13px;\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; background-color: rgb(255, 255, 255);\">扫描二维码登录微信. 登录手机微信. 手机上安装并登录微信.</span></p>', '1', '2016-10-16 23:46:16', '2016-10-17 00:02:28');
+INSERT INTO `article` VALUES ('2', '很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()', '0', '很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.很多网站首页都有一片文章的一小部分....', '0', '速度', '嘻嘻嘻', '<p><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span><span style=\"color: rgb(157, 122, 58); font-family: \">很多网站首页都有一片文章的一小部分.在这里就要使用strip_tags()把html标签去除掉.但但是汉字的话我们还要考虑是什么编码，因为正常切割字段串很容易把最后一个汉字切成一半.</span></p>', '1', '2016-10-16 23:50:07', '2016-10-16 23:59:42');
+INSERT INTO `article` VALUES ('3', 'PHP中过滤html标签  似的发射点犯得上', '0', 'UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协...', '0', '地方撒', '嘻嘻嘻', '<p><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。</span><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。</span><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。</span><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。</span><span style=\"color: rgb(51, 51, 51); font-family: \">UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。手动阀手动阀士大夫舒服撒地方士大夫撒旦发生大31231231</span></p>', '1', '2016-10-16 23:54:03', '2016-10-17 00:01:21');
+INSERT INTO `article` VALUES ('5', 'laravel吐槽系列之一', '0', '最近项目中经常使用到了laravel框架，对于这个框架之前只是弱弱地接触了一点，没有深入接触，这下有时间好好研究它了（主要是不得不研究了）。说实话，laravel让我打开眼界了，之前对框架的使用一直停留在yii1.X阶段。总之那句话说的对，刚接触laravel的phper就只有两个反应，一个是捡到宝...', '0', '叶剑峰', '轩脉刃de刀光剑影', '<p><span style=\"color: rgb(51, 51, 51); font-family: Georgia, \">最近项目中经常使用到了laravel框架，对于这个框架之前只是弱弱地接触了一点，没有深入接触，这下有时间好好研究它了（主要是不得不研究了）。说实话，laravel让我打开眼界了，之前对框架的使用一直停留在yii1.X阶段。总之那句话说的对，刚接触laravel的phper就只有两个反应，一个是捡到宝了，一个是觉得它是垃圾。我能，就属于后者，所以现在在努力让自己爱上laravel。但是一切总是有那么硌人的地方，我就想写写一些东西来吐槽laravel。</span><br/></p><p>一共有28个需要Install的，这个导致的结果是初始化可运行的项目大小有25M之大。</p><p>这么bigger than bigger的玩意，首先会带来部署上的不便利。</p><p>部署laravel项目的时候会有两种方式，一种是只发布除了vendor之外的项目相关的文件，然后运行composer进行vender的更新，另外一种是直接将vendor进入版本库，使用版本库的发布将所有代码发布到线上机器去。我个人倾向第二种，能把代码库中的文件直接放到服务器上就能运行的多牛逼。但是这样子，代码库就变得超大了，不大便利了。</p><p>&nbsp;</p><p>其次，这么多的vendor导致的是文档查阅的不方便。</p><p>一个框架好用不好用，文档是一个至关重要的环节。但是引用的第三方库一多了，很多使用文档官方就没有足够详细的文档说明了，然后美其名告诉你，这个是引用第三方库的，给你个链接，你去第三方库的说明文档中看把。但是你要知道，在开发过程中，文档是需要有统一性的，每一个说明文档的展示和查询规则都是有惯性的。你给个链接让我去一个不一样布局的网页，我的思维还需要进行跳跃和查找。</p><p><br/></p>', '1', '2016-10-21 15:32:04', '2016-10-21 15:43:55');
 
 -- ----------------------------
 -- Table structure for category
@@ -57,13 +55,11 @@ CREATE TABLE `category` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COMMENT='分类';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='分类';
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '新闻', '2', '0', 'article', '2016-10-21 21:21:36', '2016-10-21 23:46:10');
-INSERT INTO `category` VALUES ('2', '公告', '1', '0', 'article', '2016-10-21 21:21:41', '2016-10-22 10:09:11');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -302,10 +298,10 @@ INSERT INTO `sys_config` VALUES ('4', '配置类型列表', 'CONFIG_TYPE_LIST', 
 INSERT INTO `sys_config` VALUES ('5', '配置分组', 'CONFIG_GROUP_LIST', '0', '3', '1', '1:基本\r\n2:系统\r\n3:内容\r\n4:用户', '', '配置分组', '2016-09-30 00:28:32', '2016-10-05 10:50:48');
 INSERT INTO `sys_config` VALUES ('6', '网站LOGO', 'WEB_SITE_LOGO', '0', '5', '2', '11', '', '', '2016-10-01 07:56:17', '2016-10-05 09:27:19');
 INSERT INTO `sys_config` VALUES ('7', '网站域名地址', 'WEB_SITE_URL', '0', '2', '2', 'http://www.wanghong.com', '', '', '2016-10-01 07:57:07', '2016-10-01 10:06:22');
-INSERT INTO `sys_config` VALUES ('8', '允许广告主注册', 'WEB_REGISTER_AD', '0', '4', '4', '1', '0:否\r\n1:是', '', '2016-10-05 10:18:12', '2016-10-05 10:50:33');
-INSERT INTO `sys_config` VALUES ('9', '允许普通会员注册', 'WEB_REGISTER_USER', '0', '4', '4', '1', '0:否\r\n1:是', '', '2016-10-05 10:20:20', '2016-10-05 10:52:11');
-INSERT INTO `sys_config` VALUES ('10', '注册是否需要审核', 'WEB_REGISTER_VERIFY', '0', '4', '4', '0', '0:否\r\n1:是', '', '2016-10-05 10:27:38', '2016-10-05 10:50:18');
-INSERT INTO `sys_config` VALUES ('11', '媒体是否审核', 'USER_MEDIA_VERIFY', '0', '4', '4', '0', '0:否\r\n1:是', '', '2016-10-05 10:30:03', '2016-10-05 11:21:28');
+INSERT INTO `sys_config` VALUES ('8', '允许广告主注册', 'WEB_REGISTER_AD', '0', '4', '4', '1', '0:不允许\r\n1:允许', '', '2016-10-05 10:18:12', '2016-10-27 13:56:20');
+INSERT INTO `sys_config` VALUES ('9', '允许普通会员注册', 'WEB_REGISTER_USER', '0', '4', '4', '1', '0:不允许\r\n1:允许', '', '2016-10-05 10:20:20', '2016-10-27 13:56:04');
+INSERT INTO `sys_config` VALUES ('10', '注册是否需要审核', 'WEB_REGISTER_VERIFY', '0', '4', '4', '1', '0:不需要\r\n1:需要', '', '2016-10-05 10:27:38', '2016-10-27 13:55:49');
+INSERT INTO `sys_config` VALUES ('11', '新增媒体是否需要审核', 'USER_MEDIA_VERIFY', '0', '4', '4', '0', '0:不需要\r\n1:需要', '', '2016-10-05 10:30:03', '2016-10-27 13:56:38');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -410,35 +406,35 @@ INSERT INTO `sys_menu` VALUES ('91', '更新', '83', '0', 'admin/article/update'
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL COMMENT '用户名:手机号',
+  `username` varchar(100) NOT NULL DEFAULT '' COMMENT '用户名:手机号',
   `is_auth` tinyint(4) NOT NULL DEFAULT '0' COMMENT '手机号是否认证通过:1已认证，0未认证',
   `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '用户类型:1普通2广告主',
-  `nickname` varchar(100) NOT NULL COMMENT '联系人',
-  `qq` varchar(20) NOT NULL COMMENT 'QQ',
-  `weixin` varchar(150) NOT NULL COMMENT '微信',
-  `freeze` decimal(10,2) DEFAULT '0.00' COMMENT '冻结金额',
-  `balance` decimal(10,2) DEFAULT '0.00' COMMENT '余额',
+  `nickname` varchar(100) NOT NULL DEFAULT '' COMMENT '联系人',
+  `qq` varchar(20) NOT NULL DEFAULT '' COMMENT 'QQ',
+  `weixin` varchar(150) NOT NULL DEFAULT '' COMMENT '微信',
+  `freeze` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '冻结金额',
+  `balance` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '余额',
   `custom_id` int(11) NOT NULL DEFAULT '0' COMMENT '客服ID',
   `custom_name` varchar(150) NOT NULL DEFAULT '' COMMENT '客服名称',
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态:-1删除、0锁定、1正常、2待审核',
-  `email` varchar(255) NOT NULL COMMENT '邮箱',
-  `password` varchar(255) NOT NULL COMMENT '密码',
+  `email` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `password` varchar(255) NOT NULL DEFAULT '' COMMENT '密码',
   `remember_token` varchar(100) DEFAULT NULL COMMENT '记住我',
   `reg_time` timestamp NULL DEFAULT NULL COMMENT '注册时间',
   `reg_ip` varchar(45) DEFAULT NULL COMMENT '注册IP',
   `login_time` timestamp NULL DEFAULT NULL COMMENT '最后登录时间',
   `login_ip` varchar(45) DEFAULT NULL COMMENT '最后登录IP',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('6', '13667635645', '0', '1', '邢永和', '365754061', '1342234898', '0.00', '0.00', '2', '永和', '1', '1342234898@qq.com', '$2y$10$FniPdndlhN7Or9lkfmNbIO3tqTFalxtztm8U2yNIMAPDCAJutxcl.', null, '2016-10-14 15:06:40', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('7', '15826021109', '0', '1', '唐吉思', '1342234899', 'tangjisi', '0.00', '0.00', '2', '永和', '1', 'tangjisi@sina.cn', '$2y$10$P38B8R1s.zKbzJYQpt/M/Oc2/H6H48DXE5wl8I6IGEH.fz6jAO4JG', null, '2016-10-14 15:07:20', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('10', '15826021108', '0', '2', '唐平', '', '', '0.00', '0.00', '3', '颖楓', '1', '', '$2y$10$y35S71eQ6u4xPnK59x8kcuJep/glGeBngNHQwd93nqj/vVV3g1CJa', null, '2016-10-15 12:30:34', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('11', '15826021189', '0', '2', '斯蒂芬', '56485254', 'huituo', '0.00', '0.00', '0', '', '1', '526498@qq.com', '$2y$10$aaIyKaV/IvBWnHl/8z8iguXR7.j7IqjkluN4dmgBMnmm66NWqnTbS', null, '2016-10-15 12:38:57', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('12', '13667635689', '0', '2', '单簧管', '2312312312', '', '0.00', '0.00', '3', '颖楓', '1', '', '$2y$10$NQeOkY7vxjxOpY8IvVlas.6zPwRSzjrj/Eh8r.LHjPl2heHg.XxdC', null, '2016-10-15 13:02:36', '127.0.0.1', null, null);
+INSERT INTO `user` VALUES ('21', '13667635645', '1', '1', 'dsfas', '123213123', '', '0.00', '0.00', '2', '永和', '2', '', '$2y$10$3CDW1Tz/TCHMYEj44Fb5TeAECnrWtquiI1PacCouyAZ71D2k5bfdi', null, '2016-10-27 17:55:01', '127.0.0.1', null, null);
 
 -- ----------------------------
 -- Table structure for user_ads
