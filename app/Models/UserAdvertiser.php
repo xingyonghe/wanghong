@@ -12,5 +12,5 @@ class UserAdvertiser extends Model{
     protected $fillable = [
         'user_id','company'
     ];
-
+    
 }

@@ -25,8 +25,15 @@ Route::group(['namespace'=>'Home'],function(){
 /**
  * 会员中心路由组
  */
+//主播中心
 Route::group(['prefix'=>'user','namespace'=>'Member','middleware'=>['login']],function(){
     Route::get('index/index', 'IndexController@index')->name('user.index.index');
+});
+//广告主中心
+Route::group(['prefix'=>'advert','namespace'=>'Abvert','middleware'=>['login']],function(){
+    Route::get('index/index', 'IndexController@index')->name('advert.index.index');
+    Route::get('index/edit', 'IndexController@edit')->name('abvert.index.edit');
+    Route::post('index/update', 'IndexController@update')->name('abvert.index.update');
 });
 
 /**

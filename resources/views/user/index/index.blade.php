@@ -1,4 +1,4 @@
-@extends('member.public.base')
+@extends('user.public.base')
 @section('style')
 <style type="text/css">
     .col-nav .active{

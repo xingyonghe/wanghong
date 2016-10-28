@@ -52,11 +52,22 @@ class RegisterController extends Controller{
         }
         $data['reg_time']    = date('Y-m-d H:i:s',time());
         $data['reg_ip']      = request()->ip();
+        //开启事务
+        \DB::beginTransaction();
         $user = D('User')::create($data);
-        if($user->exists){
-            return $this->ajaxReturn('恭喜您，注册成功',1,route('auth.login.form'));
+        if($data['type'] == 1){
+            $detail = $user->personal()->create($data);
+        }else{
+            $detail = $user->advertiser()->create($data);
         }
-        return $this->ajaxReturn('注册失败',0);
+        if($user->exists && $detail->exists){
+            \DB::commit();
+            return $this->ajaxReturn('恭喜您，注册成功',1,route('auth.login.form'));
+        }else{
+            \DB::rollback();
+            return $this->ajaxReturn('注册失败',0);
+        }
+
     }
     /**
      * 表单验证

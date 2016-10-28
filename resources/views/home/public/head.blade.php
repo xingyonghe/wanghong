@@ -25,14 +25,19 @@
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
-                @if (Auth::guest())
+                @if (auth()->guest())
                     <li><a href="{{ route('auth.login.form') }}">Login</a></li>
                     <li><a href="{{ route('auth.register.form') }}">Register</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="{{ route('user.index.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->nickname }}
-                        </a>
+                        <a>您好，{{ auth()->user()->nickname }} </a>
+                    </li>
+                    <li class="dropdown">
+                        @if(auth()->user()->type == 1)
+                            <a href="{{ route('user.index.index') }}">个人中心</a>
+                        @else
+                            <a href="{{ route('advert.index.index') }}">个人中心</a>
+                        @endif
                     </li>
                     <li class="dropdown">
                         <a href="{{ route('auth.login.logout') }}">退出</a>

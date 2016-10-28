@@ -6,29 +6,11 @@ use App\Http\Controllers\CommonController;
 
 class IndexController extends CommonController{
 
+
     public function index(){
-        return view('member.index.index');
+        $user = D('User')->with('personal')->find(auth()->id());
+        return view('user.index.index');
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

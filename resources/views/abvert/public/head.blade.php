@@ -3,19 +3,14 @@
         <div class="row">
             <div class="span12">
                 <ul class="pull-right">
-                    @if (Auth::guest())
-                        <li><a href="{{ route('auth.login.form') }}">Login</a></li>
-                        <li><a href="{{ route('auth.register.form') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="{{ route('user.index.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                您好，{{ Auth::user()->nickname }}
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="{{ route('auth.login.logout') }}">退出</a>
-                        </li>
-                    @endif
+                    <li class="dropdown">
+                        <a>
+                            您好,广告主，{{ auth()->user()->nickname }}
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="{{ route('auth.login.logout') }}">退出</a>
+                    </li>
                 </ul>
                 <a class="navbar-brand" href="{{ route('home.index.index') }}">
                     <h4>风行<strong>网红</strong></h4>

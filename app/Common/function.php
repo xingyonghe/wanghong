@@ -199,5 +199,22 @@ function D($name='') {
     return $model;
 }
 
+/**
+ * 打印原生sql语句
+ * 在你想打印的sql语句之前使用此方法
+ */
+function sql_dump(){
+    \DB::listen(function ($query) {
+        $bindings = $query->bindings;
+        $i = 0;
+        $rawSql = preg_replace_callback('/\?/', function ($matches) use ($bindings, &$i) {
+            $item = isset($bindings[$i]) ? $bindings[$i] : $matches[0];
+            $i++;
+            return gettype($item) == 'string' ? "'$item'" : $item;
+        }, $query->sql);
+        echo $rawSql."\n<br /><br />\n";
+    });
+}
+
 
 

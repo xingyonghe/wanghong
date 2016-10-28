@@ -17,7 +17,7 @@
     @yield('style')
 </head>
 <body>
-    @include('member.public.head')
+    @include('user.public.head')
     <div class="page">
         <div class="page-container">
             <div class="container">
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    @include('member.public.footer')
+    @include('user.public.footer')
     @yield('script')
 </body>
 </html>

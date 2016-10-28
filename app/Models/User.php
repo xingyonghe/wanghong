@@ -111,4 +111,49 @@ class User extends Authenticatable{
         }
         return $request;
     }
+
+
+    public function personal(){
+        return $this->hasOne('App\Models\UserPersonal','user_id','id');
+    }
+
+    public function advertiser(){
+        return $this->hasOne('App\Models\UserAdvertiser','user_id','id');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

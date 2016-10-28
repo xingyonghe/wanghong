@@ -13,4 +13,8 @@ class UserPersonal extends Model{
     protected $fillable = [
         'user_id','medias'
     ];
+    protected $guarded = [
+        'medias', 'wait_account', 'finish_account'
+    ];
+
 }

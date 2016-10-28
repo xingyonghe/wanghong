@@ -26,26 +26,5 @@ class CommonController extends Controller{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 }
