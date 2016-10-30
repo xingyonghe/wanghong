@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-10-28 00:07:24
+Date: 2016-10-30 22:55:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,13 +96,14 @@ CREATE TABLE `picture` (
   `sha1` char(40) NOT NULL DEFAULT '' COMMENT '文件 sha1编码',
   `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='图片表';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COMMENT='图片表';
 
 -- ----------------------------
 -- Records of picture
 -- ----------------------------
 INSERT INTO `picture` VALUES ('10', '/uploads/picture/2016-10-05/57f3e0875cea5.jpg', '', '4b3e861148ae405179edb35982ecc441', 'a9fdf2f5269fa58c4bff5dfa9725b17569d3dfa4', '2016-10-05 01:01:59');
 INSERT INTO `picture` VALUES ('11', '/uploads/picture/2016-10-05/57f3e08e0563f.png', '', 'f0cace382f445e02c550afd6dfc40cdc', '9469f75a2a917f9cc52b76c7eb13de3fd193f59c', '2016-10-05 01:02:06');
+INSERT INTO `picture` VALUES ('19', '/uploads/avatar/5814714dbb58f.jpg', '', 'eaf504f99d186f97f41477dcfb61d4bf', '417443ca9967f82b4a8fc2f21f5dd4a40bc3c39f', '2016-10-29 17:52:14');
 
 -- ----------------------------
 -- Table structure for sys_admin
@@ -286,7 +287,7 @@ CREATE TABLE `sys_config` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='网站配置';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COMMENT='网站配置';
 
 -- ----------------------------
 -- Records of sys_config
@@ -302,6 +303,7 @@ INSERT INTO `sys_config` VALUES ('8', '允许广告主注册', 'WEB_REGISTER_AD'
 INSERT INTO `sys_config` VALUES ('9', '允许普通会员注册', 'WEB_REGISTER_USER', '0', '4', '4', '1', '0:不允许\r\n1:允许', '', '2016-10-05 10:20:20', '2016-10-27 13:56:04');
 INSERT INTO `sys_config` VALUES ('10', '注册是否需要审核', 'WEB_REGISTER_VERIFY', '0', '4', '4', '1', '0:不需要\r\n1:需要', '', '2016-10-05 10:27:38', '2016-10-27 13:55:49');
 INSERT INTO `sys_config` VALUES ('11', '新增媒体是否需要审核', 'USER_MEDIA_VERIFY', '0', '4', '4', '0', '0:不需要\r\n1:需要', '', '2016-10-05 10:30:03', '2016-10-27 13:56:38');
+INSERT INTO `sys_config` VALUES ('12', '网红资源名称', 'USER_MEDIA_TYPE', '0', '3', '4', '请选择\r\n斗鱼\r\n虎牙\r\n战旗\r\n熊猫\r\n花椒\r\nYY\r\n一直被\r\n映客\r\n战旗\r\n龙珠\r\n全民TV\r\n163CC\r\n火星\r\n繁星', '', '', '2016-10-29 14:43:00', '2016-10-29 18:51:21');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -425,7 +427,7 @@ CREATE TABLE `user` (
   `login_time` timestamp NULL DEFAULT NULL COMMENT '最后登录时间',
   `login_ip` varchar(45) DEFAULT NULL COMMENT '最后登录IP',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息';
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COMMENT='用户基本信息';
 
 -- ----------------------------
 -- Records of user
@@ -435,7 +437,8 @@ INSERT INTO `user` VALUES ('10', '15826021108', '0', '2', '唐平', '', '', '0.0
 INSERT INTO `user` VALUES ('11', '15826021189', '0', '2', '斯蒂芬', '56485254', 'huituo', '0.00', '0.00', '0', '', '1', '526498@qq.com', '$2y$10$aaIyKaV/IvBWnHl/8z8iguXR7.j7IqjkluN4dmgBMnmm66NWqnTbS', null, '2016-10-15 12:38:57', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('12', '13667635689', '0', '2', '单簧管', '2312312312', '', '0.00', '0.00', '3', '颖楓', '1', '', '$2y$10$NQeOkY7vxjxOpY8IvVlas.6zPwRSzjrj/Eh8r.LHjPl2heHg.XxdC', null, '2016-10-15 13:02:36', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('21', '13667635645', '1', '1', 'dsfas', '123213123', '', '0.00', '0.00', '2', '永和', '2', '', '$2y$10$3CDW1Tz/TCHMYEj44Fb5TeAECnrWtquiI1PacCouyAZ71D2k5bfdi', 'BBHWNtnQyNRXeJSGDDtdyA5dDZmW5AVcKyqn0ChsEQ2qsm4I9KWIsutGY5iY', '2016-10-27 17:55:01', '127.0.0.1', '2016-10-27 23:08:34', '127.0.0.1');
-INSERT INTO `user` VALUES ('22', '13667635622', '1', '1', '唐瓶', '342234898', '', '0.00', '0.00', '3', '颖楓', '1', '', '$2y$10$NXYaxvjHQEId.vJ2QtLQ9eMfeHZWvhiVzwDkrh3jAWiOVRiXcmtZm', 'LxMYXEHeQ0IgiVTHwrtzQxonWGWp7AVdE1eOY0R5PPYqiBnshnpAFKrLGLYm', '2016-10-27 21:10:25', '127.0.0.1', null, null);
+INSERT INTO `user` VALUES ('22', '13667635622', '1', '1', '唐瓶d', '342234898', 'sadfsdafsdaf', '0.00', '0.00', '3', '颖楓', '1', 'afdsdaf@qq.com', '$2y$10$3MryRZyvggPydAAEfkfWd.4H//C44u8umvNP6lL.qra/N7CNoxipi', 'UOLqWywzRxNCpiLLiyrqqY2LuyEqawSpHJcb8BYAdANDYUuikyUtVifWCWm1', '2016-10-27 21:10:25', '127.0.0.1', '2016-10-29 12:57:28', '127.0.0.1');
+INSERT INTO `user` VALUES ('23', '13667652103', '1', '2', '沙发党', '12312312313', 'afafdasdfasf', '0.00', '0.00', '2', '永和', '1', 'afsdaff.@q.com', '$2y$10$tWONBoJUfM.qEKeRo3I/ROxEADOdNnmlBriiqWMNqiZueuWq6K5QG', 'Uxt8XZdrn8GMHo03PQNVbhbTND8YrLPEVZIHbRsmpckmvrZbllApPhhRKBz4', '2016-10-29 09:35:13', '127.0.0.1', '2016-10-29 12:41:27', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for user_ads
@@ -452,6 +455,7 @@ CREATE TABLE `user_ads` (
 INSERT INTO `user_ads` VALUES ('10', '');
 INSERT INTO `user_ads` VALUES ('11', '重庆艾克公司');
 INSERT INTO `user_ads` VALUES ('12', '重庆大兮控股');
+INSERT INTO `user_ads` VALUES ('23', '重庆是枕骨');
 
 -- ----------------------------
 -- Table structure for user_personal

@@ -7,15 +7,15 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('member-assets/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('member-assets/js/jquery.knob.js') }}"></script>
-    <script src="{{ asset('member-assets/js/jquery.sparkline.min.js') }}"></script>
-    <script src="{{ asset('member-assets/js/toastr.js') }}"></script>
-    <script src="{{ asset('member-assets/js/jquery.tablesorter.min.js') }}"></script>
-    <script src="{{ asset('member-assets/js/jquery.peity.min.js') }}"></script>
-    <script src="{{ asset('member-assets/js/fullcalendar.min.js') }}"></script>
-    <script src="{{ asset('member-assets/js/gcal.js') }}"></script>
-    <script src="{{ asset('member-assets/js/setup.js') }}"></script>
+    {{--<script src="{{ asset('member-assets/js/bootstrap.js') }}"></script>--}}
+    {{--<script src="{{ asset('member-assets/js/jquery.knob.js') }}"></script>--}}
+    {{--<script src="{{ asset('member-assets/js/jquery.sparkline.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('member-assets/js/toastr.js') }}"></script>--}}
+    {{--<script src="{{ asset('member-assets/js/jquery.tablesorter.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('member-assets/js/jquery.peity.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('member-assets/js/fullcalendar.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('member-assets/js/gcal.js') }}"></script>--}}
+    {{--<script src="{{ asset('member-assets/js/setup.js') }}"></script>--}}
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="{{ asset('member-assets/js/jquery.js') }}"></script>
     <script src="{{ asset('member-assets/js/jquery-1.8.3.min.js') }}"></script>

@@ -44,53 +44,54 @@
             </div>
         </div>
         <div class="span9">
-            <h4 class="header">基本资料</h4>
+            <h4 class="header">修改资料</h4>
             <div id="d3" style="width: 100%; margin-top: -30px"></div><br />
             <div class="span6">
-                <form class="form-horizontal data-form"/>
+                <form class="form-horizontal data-form" action="{{ route('user.index.update') }}" metho="POST"/>
+                    {{ csrf_field() }}
                     <div class="control-group">
                         <label for="inputEmail" class="control-label">认证手机： </label>
                         <div class="controls">
                             <input type="text" disabled value="{{ $user->username }}"/>
-                            @if($user->is_auth)已认证@else未认证@endif
+                             &nbsp;@if($user->is_auth)已认证@else未认证@endif
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputCurrentPassword" class="control-label">联系人： </label>
                         <div class="controls">
-                            <input type="text" disabled value="{{ $user->nickname }}"/>
+                            <input id="nickname" type="text" name="nickname" placeholder="请输入联系人名称" value="{{$user->nickname }}"/>
+                            <strong class="wrong" id="error-nickname"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputPassword" class="control-label">QQ号码： </label>
                         <div class="controls">
-                            <input type="text" disabled value="{{ $user->qq }}"/>
+                            <input id="qq" type="text" name="qq" placeholder="请输入QQ号码" value="{{$user->qq }}"/>
+                            <strong class="wrong" id="error-qq"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputPasswordAgain" class="control-label">微信账号：</label>
                         <div class="controls">
-                            <input type="text" disabled value="{{ $user->weixin }}"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label for="inputPasswordAgain" class="control-label">我的客服：</label>
-                        <div class="controls">
-                            <input type="text" disabled value="{{ $user->custom_name }}"/>
+                            <input id="weixin" type="text" name="weixin" placeholder="请输入微信账号" value="{{$user->weixin }}"/>
+                            <strong class="wrong" id="error-weixin"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputPasswordAgain" class="control-label">E-mail：</label>
                         <div class="controls">
-                            <input type="text" disabled value="{{ $user->email }}"/>
+                            <input id="email" type="text" name="email" placeholder="请输入E-mail" value="{{$user->email }}"/>
+                            <strong class="wrong" id="error-email"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <a class="btn"  href="{{ route('user.index.edit') }}">修改资料</a>
+                            <button class="btn ajax-post" type="submit" >保 存</button>
+                            <button class="btn" onclick="javascript:history.back(-1);return false;" >返 回</button>
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

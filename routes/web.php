@@ -27,13 +27,25 @@ Route::group(['namespace'=>'Home'],function(){
  */
 //主播中心
 Route::group(['prefix'=>'user','namespace'=>'Member','middleware'=>['login']],function(){
-    Route::get('index/index', 'IndexController@index')->name('user.index.index');
+    Route::get('index/index', 'IndexController@index')->name('user.index.index');//基本资料
+    Route::get('index/edit', 'IndexController@edit')->name('user.index.edit');//修改基本资料
+    Route::post('index/update', 'IndexController@update')->name('user.index.update');//更新基本资料
+    Route::get('index/password', 'IndexController@password')->name('user.index.password');//修改密码
+    Route::post('index/reset', 'IndexController@reset')->name('user.index.reset');//更新密码
+
+    Route::get('star/index', 'StarController@index')->name('user.star.index');//网红列表
+    Route::get('star/add', 'StarController@add')->name('user.star.add');//网红新增
+    Route::get('star/edit', 'StarController@edit')->name('user.star.edit');//网红编辑
+    Route::post('star/update', 'StarController@update')->name('user.star.update');//网红更新
+    Route::post('picture/upload', 'PictureController@upload');          //图片上传
 });
 //广告主中心
 Route::group(['prefix'=>'advert','namespace'=>'Abvert','middleware'=>['login']],function(){
-    Route::get('index/index', 'IndexController@index')->name('advert.index.index');
-    Route::get('index/edit', 'IndexController@edit')->name('abvert.index.edit');
-    Route::post('index/update', 'IndexController@update')->name('abvert.index.update');
+    Route::get('index/index', 'IndexController@index')->name('advert.index.index');//基本资料
+    Route::get('index/edit', 'IndexController@edit')->name('advert.index.edit');//修改基本资料
+    Route::post('index/update', 'IndexController@update')->name('advert.index.update');//更新基本资料
+    Route::get('index/password', 'IndexController@password')->name('advert.index.password');//修改密码
+    Route::post('index/reset', 'IndexController@reset')->name('advert.index.reset');//更新密码
 });
 
 /**
@@ -164,3 +176,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
  * 公共路由
  */
 Route::post('picture/upload', 'PictureController@upload');          //图片上传
+
+Route::group(['middleware'=>['login']],function(){
+    Route::post('picture/avatar', 'PictureController@avatar')->name('picture.avatar');          //头像上传
+});

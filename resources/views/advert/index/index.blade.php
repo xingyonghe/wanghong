@@ -1,4 +1,4 @@
-@extends('user.public.base')
+@extends('advert.public.base')
 @section('style')
 <style type="text/css">
     .col-nav .active{
@@ -21,7 +21,7 @@
 @section('script')
     <script type="text/javascript">
         $(function () {
-            highlight_subnav("{{ route('user.index.index') }}");
+            highlight_subnav("{{ route('advert.index.index') }}");
         })
     </script>
 @endsection
@@ -32,13 +32,13 @@
             <div class="sidebar">
                 <ul class="col-nav span3">
                     <li>
-                        <a href="{{ route('user.index.index') }}"><i class="pull-right icon-user"></i>基本资料</a>
+                        <a href="{{ route('advert.index.index') }}"><i class="pull-right icon-user"></i>基本资料</a>
                     </li>
                     <li>
-                        <a href="{{ route('user.index.password') }}"> <i class="pull-right icon-cog"></i>我的账户</a>
+                        <a href="{{ route('advert.index.password') }}"> <i class="pull-right icon-cog"></i>我的账户</a>
                     </li>
                     <li>
-                        <a href="{{ route('user.index.password') }}"> <i class="pull-right icon-star"></i>修改密码</a>
+                        <a href="{{ route('advert.index.password') }}"> <i class="pull-right icon-star"></i>修改密码</a>
                     </li>
                 </ul>
             </div>
@@ -59,6 +59,12 @@
                         <label for="inputCurrentPassword" class="control-label">联系人： </label>
                         <div class="controls">
                             <input type="text" disabled value="{{ $user->nickname }}"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="inputCurrentPassword" class="control-label">公司名称： </label>
+                        <div class="controls">
+                            <input type="text" disabled value="{{ $user->advertiser->company }}"/>
                         </div>
                     </div>
                     <div class="control-group">
@@ -87,7 +93,7 @@
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <a class="btn"  href="{{ route('user.index.edit') }}">修改资料</a>
+                            <a class="btn"  href="{{ route('advert.index.edit') }}">修改资料</a>
                         </div>
                     </div>
                 </form>

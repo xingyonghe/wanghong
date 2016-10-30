@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="{{ asset('member-assets/css/styles.css') }}" />
     <link rel="stylesheet" href="{{ asset('member-assets/css/toastr.css') }}" />
     <link rel="stylesheet" href="{{ asset('member-assets/css/fullcalendar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('member-assets/css/app.css') }}" />
     @yield('style')
 </head>
 <body>
-    @include('abvert.public.head')
+    @include('advert.public.head')
     <div class="page">
         <div class="page-container">
             <div class="container">
@@ -25,7 +26,7 @@
             </div>
         </div>
     </div>
-    @include('abvert.public.footer')
+    @include('advert.public.footer')
     @yield('script')
 </body>
 </html>
