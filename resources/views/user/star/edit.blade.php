@@ -120,7 +120,8 @@
                         <label for="inputPassword" class="control-label">直播平台： </label>
                         <div class="controls">
                             {!! Form::select("platform_select", $mediaType, 0,array('autocomplete'=>'off','id'=>'platform')) !!}
-                            <input id="platform" type="text" name="platform" placeholder="如果没有可选择的，可以在此输入" value="" />
+                            <br/><br/>
+                            <input id="platform" type="text" name="platform" placeholder="没有可选择的，可以在此输入" value="" />
                             <strong class="wrong" id="error-platform"></strong>
                         </div>
                     </div>
@@ -141,7 +142,7 @@
                     <div class="control-group">
                         <label for="inputPasswordAgain" class="control-label">展现形式及报价：</label>
                         <div class="controls">
-                            <textarea name="form_money" id="form_money" placeholder="请输入展现形式及报价:线下活动:10000"></textarea>
+                            <textarea name="form_money" rows="4" style="width: 350px" id="form_money" placeholder="请输入展现形式及报价:线下活动:10000"></textarea>
                             <strong class="wrong" id="error-form_money"></strong>
                         </div>
                     </div>

@@ -20,6 +20,8 @@ class StarController extends CommonController{
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
+        $lists = D('Media')->listing(array(['userid',auth()->id()]));
+        dd($lists);
         return view('user.star.index');
     }
 
@@ -44,31 +46,44 @@ class StarController extends CommonController{
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(){
+        $data = request()->all();
+        if(empty($data['platform'])){
+            $data['platform'] = $data['platform_select'];
+        }
+        unset($data['platform_select']);
         $rules = [
-            'avatar'     => 'required|image',
+            'avatar'     => 'required',
             'username'   => 'required',
+            'type'       => 'required',
             'platform'   => 'required',
             'room_id'    => 'required',
+            'homepage'   => 'required',
             'form_money' => 'required',
         ];
         $msgs = [
             'avatar.required'     => '请上传头像',
             'avatar.image'        => '头像格式不正确',
             'username.required'   => '请填写用户名',
-            'platform.required'   => '请选择资源名称',
-            'room_id.required'   => '请填写直播平台房间号',
+            'type.required'       => '请选择资源类别',
+            'platform.required'   => '请选择直播平台',
+            'room_id.required'    => '请填写直播平台房间号',
+            'homepage.required'   => '请填写直播平台ID',
             'form_money.required' => '请填写展现形式及报价',
         ];
-        $validator = validator()->make(request()->all(),$rules,$msgs);
+        $validator = validator()->make($data,$rules,$msgs);
         if ($validator->fails()) {
             return $this->ajaxValidator($validator);
         }
-        dd(request()->all());
-        $resualt = D('Article')->updateData(request()->all());
+        $data['userid'] = auth()->id();
+        $data['status'] = 1;//正常
+        if(C('USER_MEDIA_VERIFY')){
+            $data['status'] = 2;//需要审核
+        }
+        $resualt = D('Media')->updateData($data);
         if($resualt){
-            return redirect('admin/article/index')->withSuccess($resualt['id']?'文章信息修改成功!':'文章信息添加成功!');
+            return $this->ajaxReturn(isset($resualt['id'])?'网红信息修改成功!':'网红信息添加成功!',1,route('user.star.index'));
         }else{
-            return redirect()->back()->with('error',Article::getError());
+            return $this->ajaxReturn(D('Media')->getError());
         }
     }
 

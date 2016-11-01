@@ -18,9 +18,10 @@ class CreateMediaTable extends Migration{
             $table->integer('userid')->default(0)->comment('所属会员ID');
             $table->integer('avatar')->default(0)->comment('头像');
             $table->tinyInteger('type')->default('1')->comment('资源类别:1直播、2短视频');
-            $table->string('platform',50)->default('1')->comment('直播平台');
+            $table->string('platform',100)->default('')->comment('直播平台');
             $table->string('form_money',150)->default('')->comment('展现形式及报价');
             $table->string('homepage')->default('')->comment('平台ID');
+            $table->string('room_id')->default('')->comment('房间号');
             $table->string('manner')->default('')->comment('主播风格');
             $table->integer('fan')->default(0)->comment('粉丝数');
             $table->integer('online')->default(0)->comment('直播平均人数');

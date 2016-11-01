@@ -12,7 +12,7 @@ class CommonModel extends Model{
     protected $formatTree = array();
 
     /**
-     * 列表查询
+     * 后台列表查询
      * @param int $limit
      * @param array $map
      * @param array $order
@@ -22,6 +22,22 @@ class CommonModel extends Model{
         $list = $this->where($map)->orderBy($order, $sort)->paginate($page);
         return $list;
     }
+
+    /**
+     * 列表查询
+     * @param int $limit
+     * @param array $map
+     * @param array $order
+     * @return mixed
+     */
+    public function listing($map = array(), $order = 'created_at', $sort = 'desc', $page = 10){
+        $list = $this
+            ->where($map)
+            ->orderBy($order, $sort)
+            ->paginate($page);
+        return $list;
+    }
+
 
     /**
      * 更新/新增数据
