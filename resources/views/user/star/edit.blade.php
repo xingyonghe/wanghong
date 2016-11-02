@@ -96,79 +96,91 @@
                     <div class="control-group">
                         <label for="inputCurrentPassword" class="control-label">头像： </label>
                         <div class="controls">
-                            <input type="hidden" name="avatar" class="input-img" value="" id="avatar">
-                            <div class="img" style="width: 60px;height: 60px;background: #d9d9d9 ;">
-                                <img src="/member-assets/img/default.jpg" width="60" height="60" id="photo"/>
-                            </div>
+                            <input type="hidden" name="avatar" class="input-img" value="{{$info->avatar ?? ''}}" id="avatar">
+                            @if(isset($info))
+                                <div class="img" style="width: 60px;height: 60px;background: #d9d9d9 ;">
+                                    <img src="{{ get_cover($info->avatar) }}" width="60" height="60" id="photo"/>
+                                </div>
+                            @else
+                                <div class="img" style="width: 60px;height: 60px;background: #d9d9d9 ;">
+                                    <img src="/member-assets/img/default.jpg" width="60" height="60" id="photo"/>
+                                </div>
+                            @endif
                             <strong class="wrong" id="error-avatar"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputEmail" class="control-label">昵称： </label>
                         <div class="controls">
-                            <input id="username" type="text" name="username" placeholder="请输入网昵称" value="" />
+                            <input id="username" type="text" name="username" placeholder="请输入网昵称" value="{{$info->username ?? ''}}" />
                             <strong class="wrong" id="error-username"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputCurrentPassword" class="control-label">资源类别： </label>
                         <div class="controls">
-                            {!! Form::radios("type", [1=>'直播',2=>'短视频'], 1,array('autocomplete'=>'off')) !!}
+                            {!! Form::radios("type", [1=>'直播',2=>'短视频'], $info->type ?? 1,array('autocomplete'=>'off')) !!}
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputPassword" class="control-label">直播平台： </label>
                         <div class="controls">
-                            {!! Form::select("platform_select", $mediaType, 0,array('autocomplete'=>'off','id'=>'platform')) !!}
+                            {!! Form::select("platform_select", $mediaType, $info->platform ?? '',array('autocomplete'=>'off','id'=>'platform')) !!}
                             <br/><br/>
-                            <input id="platform" type="text" name="platform" placeholder="没有可选择的，可以在此输入" value="" />
+                            @if(isset($info) && in_array($info->platform,$mediaType))
+                                <input id="platform" type="text" name="platform" placeholder="没有可选择的，可以在此输入" value="" />
+                                @else
+                                <input id="platform" type="text" name="platform" placeholder="没有可选择的，可以在此输入" value="{{$info->platform ?? ''}}" />
+                            @endif
+
                             <strong class="wrong" id="error-platform"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputEmail" class="control-label">房间号： </label>
                         <div class="controls">
-                            <input id="room_id" type="text" name="room_id" placeholder="请输入直播平台房间号" value=""/>
+                            <input id="room_id" type="text" name="room_id" placeholder="请输入直播平台房间号" value="{{$info->room_id ?? ''}}"/>
                             <strong class="wrong" id="error-room_id"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputPasswordAgain" class="control-label">平台ID：</label>
                         <div class="controls">
-                            <input id="homepage" type="text" name="homepage" placeholder="请输入直播平台平台ID号" value=""/>
+                            <input id="homepage" type="text" name="homepage" placeholder="请输入直播平台平台ID号" value="{{$info->homepage ?? ''}}"/>
                             <strong class="wrong" id="error-homepage"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputPasswordAgain" class="control-label">展现形式及报价：</label>
                         <div class="controls">
-                            <textarea name="form_money" rows="4" style="width: 350px" id="form_money" placeholder="请输入展现形式及报价:线下活动:10000"></textarea>
+                            <textarea name="form_money" rows="4" style="width: 350px" id="form_money" placeholder="请输入展现形式及报价:线下活动:10000">{{$info->form_money ?? ''}}</textarea>
                             <strong class="wrong" id="error-form_money"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputEmail" class="control-label">粉丝数： </label>
                         <div class="controls">
-                            <input id="fan" type="text" name="fan" placeholder="请输入粉丝数" value=""/>
+                            <input id="fan" type="text" name="fan" placeholder="请输入粉丝数" value="{{$info->fan ?? ''}}"/>
                             <strong class="wrong" id="error-fan"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputEmail" class="control-label">直播平均人数： </label>
                         <div class="controls">
-                            <input id="online" type="text" name="online" placeholder="请输入直播平均人数" value=""/>
+                            <input id="online" type="text" name="online" placeholder="请输入直播平均人数" value="{{$info->online ?? ''}}"/>
                             <strong class="wrong" id="error-online"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="inputEmail" class="control-label">主播风格： </label>
                         <div class="controls">
-                            <input id="manner" type="text" name="manner" placeholder="请输入主播风格" value=""/>
+                            <input id="manner" type="text" name="manner" placeholder="请输入主播风格" value="{{$info->manner ?? ''}}"/>
                             <strong class="wrong" id="error-manner"></strong>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
+                            <input type="hidden" name="id"  value="{{$info->id ?? 0}}"/>
                             <button class="btn ajax-post" type="submit" >保 存</button>
                             <button class="btn" onclick="javascript:history.back(-1);return false;" >返 回</button>
                         </div>

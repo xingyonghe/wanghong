@@ -65,33 +65,13 @@ $(function(){
     //删除确认
     $('body').on('click','.ajax-confirm',function(){
         layer.closeAll();
-        var target = $(this).attr('href');
+        var target = $(this).attr('url');
         if($(this).hasClass('destroy')){
             confirmDialog('确认要删除该信息吗?',target);
         }
-        if($(this).hasClass('forbid')){
-            confirmDialog('确认要禁用该信息吗?',target);
-        }
-        if($(this).hasClass('resume')){
-            confirmDialog('确认要启用该信息吗?',target);
-        }
-
         return false;
     });
 
-
-    $('body').on('click','.img-see',function () {
-        layer.open({
-            type: 1,
-            title: false,
-            closeBtn: 0,
-            area: ['516'],
-            skin: 'layer-ext-admin', //没有背景色
-            shadeClose: true,
-            content: '<img src="'+$(this).attr('src')+'">',
-        });
-        return false;
-    });
 
     /**
      * 确认提示弹出层(上下架信息)
@@ -99,7 +79,7 @@ $(function(){
      * @param msg 提示语
      * @param url 交互跳转地址
      */
-    window.confirmDialog = function(msg,url){
+    window.confirmDialog = function(msg,target){
         layer.open({
             type    : 1,
             skin    : 'layer-ext-admin',
@@ -109,9 +89,33 @@ $(function(){
             btn     : ['确定', '取消'],
             shade   : false,
             content : msg,
-            time    : 20000,
-            yes     : function(){
-                window.location = url;
+            yes     : function(index){
+                layer.close(index);
+                $.get(target,function(data){
+                    layer.open({
+                        type    : 1,
+                        skin    : 'layer-ext-admin',
+                        closeBtn: 1,
+                        title   : '消息提醒',
+                        area    : ['650px'],
+                        btn     : ['确定', '取消'],
+                        shade   : false,
+                        content : data.info,
+                        time    : 3000,
+                        yes     : function(index){
+                            layer.close(index);
+                            if(data.url){
+                                window.location = data.url;
+                            }
+                        },
+                        end     : function(index){
+                            layer.close(index);
+                            if(data.url){
+                                window.location = data.url;
+                            }
+                        }
+                    });
+                },'json');
             }
         });
     }
@@ -119,7 +123,6 @@ $(function(){
     //导航高亮
      window.highlight_subnav = function(url){
          $('.col-nav').find('a[href="'+url+'"]').parents('li').addClass('active');
-         // $('.col-nav').find('a[href="'+url+'"]').parent().closest('li').addClass('active');
     }
 
     /**

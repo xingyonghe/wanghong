@@ -12,22 +12,30 @@ class StarController extends CommonController{
         view()->composer(['user.star.edit','user.star.add'],function($view){
             $view->with('mediaType',parse_config_attr(C('USER_MEDIA_TYPE')));
         });
-
     }
 
     /**
      * 网红列表
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return
      */
     public function index(){
-        $lists = D('Media')->listing(array(['userid',auth()->id()]));
-        dd($lists);
-        return view('user.star.index');
+        $map = array(
+            ['userid',auth()->id()],
+            ['status','>',D('Media')::STATUS_LOCKED]
+        );
+        $order = 'created_at';
+        $sort = 'desc';
+        $limit = 3;
+        $lists = D('Media')->listing($map,$order,$sort,$limit);
+        int_to_string($lists,array(
+            'status' => array(-1=>'删除',0=>'锁定',1=>'正常',2=>'待审核',3=>'未通过'),
+        ));
+        return view('user.star.index',compact('lists'));
     }
 
     /**
      * 网红修改
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return
      */
     public function add(){
         return view('user.star.edit');
@@ -35,15 +43,20 @@ class StarController extends CommonController{
 
     /**
      * 网红修改
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return
      */
-    public function edit(){
-        return view('user.star.edit');
+    public function edit(int $id){
+        //允许修改的状态条件
+        $info = D('Media')
+            ->where('userid',auth()->id())
+            ->whereIn('status',[D('Media')::STATUS_CREATE,D('Media')::STATUS_FAILED])
+            ->findOrFail($id);
+        return view('user.star.edit',compact('info'));
     }
 
     /**
      * 网红列表更新
-     * @return \Illuminate\Http\JsonResponse
+     * @return
      */
     public function update(){
         $data = request()->all();
@@ -74,16 +87,32 @@ class StarController extends CommonController{
         if ($validator->fails()) {
             return $this->ajaxValidator($validator);
         }
-        $data['userid'] = auth()->id();
-        $data['status'] = 1;//正常
-        if(C('USER_MEDIA_VERIFY')){
-            $data['status'] = 2;//需要审核
-        }
         $resualt = D('Media')->updateData($data);
         if($resualt){
             return $this->ajaxReturn(isset($resualt['id'])?'网红信息修改成功!':'网红信息添加成功!',1,route('user.star.index'));
         }else{
             return $this->ajaxReturn(D('Media')->getError());
+        }
+    }
+
+    /**
+     * 删除信息
+     * @param int $id
+     * @return
+     */
+    public function destroy(int $id){
+        $info = D('Media')
+            ->where('userid',auth()->id())
+            ->whereIn('status',[D('Media')::STATUS_CREATE,D('Media')::STATUS_FAILED])
+            ->find($id);
+        if(empty($info)){
+            return $this->ajaxReturn('信息删除失败');
+        }
+        $resualt = $info->update(array('status'=>D('Media')::STATUS_DELETE));
+        if($resualt){
+            return $this->ajaxReturn('信息删除成功',1,url()->previous());
+        }else{
+            return $this->ajaxReturn('信息删除失败');
         }
     }
 

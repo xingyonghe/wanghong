@@ -35,8 +35,11 @@ Route::group(['prefix'=>'user','namespace'=>'Member','middleware'=>['login']],fu
 
     Route::get('star/index', 'StarController@index')->name('user.star.index');//网红列表
     Route::get('star/add', 'StarController@add')->name('user.star.add');//网红新增
-    Route::get('star/edit', 'StarController@edit')->name('user.star.edit');//网红编辑
+    Route::get('star/edit/{id}', 'StarController@edit')->name('user.star.edit')->where('id','\d+');//网红编辑
     Route::post('star/update', 'StarController@update')->name('user.star.update');//网红更新
+    Route::get ('star/destroy/{id}','StarController@destroy')->name('user.star.destroy')->where('id','\d+');      //网红删除
+
+
     Route::post('picture/upload', 'PictureController@upload');          //图片上传
 });
 //广告主中心

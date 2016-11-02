@@ -44,82 +44,65 @@
             <h4 class="header">基本资料</h4>
             <div id="d3" style="width: 100%; margin-top: -30px"></div><br />
             <div class="span6">
+                @if($lists->total())
                 <table class="table table-striped sortable">
                     <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Username</th>
-                        <th>Status</th>
-                        <th>Date Joined</th>
+                        <th>头像</th>
+                        <th>昵称</th>
+                        <th>直播平台</th>
+                        <th>平台ID</th>
+                        <th>添加时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Smith</td>
-                        <td>jsmith@yahoo.com</td>
-                        <td>jsmith</td>
-                        <td><span class="label label-success">Active</span></td>
-                        <td>2012-04-14</td>
-                        <td>
-                            <div class="btn-group">
-                                <button class="btn">Approve</button>
-                                <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Edit Username</a><a href="#">Disable Account</a><a href="#">Destroy</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Susan</td>
-                        <td>Mestas</td>
-                        <td>sm1268@gmail.com</td>
-                        <td>maestromestas</td>
-                        <td><span class="label">Inactive</span></td>
-                        <td>2012-01-02</td>
-                        <td>
-                            <div class="btn-group">
-                                <button class="btn">Approve</button>
-                                <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Edit Username</a><a href="#">Disable Account</a><a href="#">Destroy</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Robert</td>
-                        <td>Jetton</td>
-                        <td>robbyjet@gmail.com</td>
-                        <td>jetsetrob</td>
-                        <td><span class="label label-inverse">Admin</span></td>
-                        <td>2011-11-12</td>
-                        <td>
-                            <div class="btn-group">
-                                <button class="btn">Approve</button>
-                                <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Edit Username</a><a href="#">Disable Account</a><a href="#">Destroy</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                    @foreach($lists as $data)
+                        <tr>
+                            <td>
+                                <div class="img" style="width: 60px;height: 60px;background: #d9d9d9 ;">
+                                    <img src="{{ get_cover($data->avatar) }}" width="60" height="60"/>
+                                </div>
+                            </td>
+                            <td>{{ $data->username }}</td>
+                            <td>{{ $data->platform }}</td>
+                            <td>{{ $data->homepage }}</td>
+                            <td>{{ $data->created_at->format('Y-m-d') }}</td>
+                            <td>{{ $data->status_text }}</td>
+                            <td>
+                                @if($data->status == 1 || $data->status == 3)
+                                    <a href="{{ route('user.star.edit',[$data->id]) }}">编辑</a>
+                                    <a class="ajax-confirm destroy" href="javascript:void(0)" url="{{ route('user.star.destroy',[$data->id]) }}">删除</a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
                 <div class="pagination pagination-centered">
-                    <ul>
-                        <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
+                    {!! $lists->render() !!}
                 </div>
+                @else
+                    <table class="table table-striped sortable">
+                        <thead>
+                            <tr>
+                                <th>头像</th>
+                                <th>昵称</th>
+                                <th>直播平台</th>
+                                <th>平台ID</th>
+                                <th>添加时间</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7">抱歉，您还没有添加任何媒体，赶紧<a href="{{ route('user.star.add') }}">添加</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                @endif
             </div>
         </div>
     </div>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-11-01 17:38:15
+Date: 2016-11-02 17:24:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -88,17 +88,18 @@ CREATE TABLE `media` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='资源媒体';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='资源媒体';
 
 -- ----------------------------
 -- Records of media
 -- ----------------------------
-INSERT INTO `media` VALUES ('1', '小红桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_hongtao', '38', '风趣，幽默', '2500', '2000', '0', '0', '0', '0', '1', '2016-11-01 17:16:02', '2016-11-01 17:16:02');
-INSERT INTO `media` VALUES ('2', '小颖桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '1', '2016-11-01 17:22:46', '2016-11-01 17:22:46');
-INSERT INTO `media` VALUES ('3', '小颖桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '2', '2016-11-01 17:23:17', '2016-11-01 17:23:17');
-INSERT INTO `media` VALUES ('4', '小颖桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '2', '2016-11-01 17:25:24', '2016-11-01 17:25:24');
-INSERT INTO `media` VALUES ('5', '小颖桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '2', '2016-11-01 17:25:33', '2016-11-01 17:25:33');
-INSERT INTO `media` VALUES ('6', '小颖桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '2', '2016-11-01 17:26:17', '2016-11-01 17:26:17');
+INSERT INTO `media` VALUES ('1', '小红桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_hongtao', '38', '风趣，幽默', '2500', '2000', '0', '0', '0', '0', '1', '2016-11-01 17:16:02', '2016-11-02 14:58:50');
+INSERT INTO `media` VALUES ('2', '小颖桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '1', '2016-11-01 17:22:46', '2016-11-02 14:58:46');
+INSERT INTO `media` VALUES ('3', '小颖桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '1', '2016-11-01 17:23:17', '2016-11-02 14:49:38');
+INSERT INTO `media` VALUES ('4', '小颖桃', '21', '20', '1', '战旗', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '1', '2016-11-01 17:25:24', '2016-11-02 14:23:17');
+INSERT INTO `media` VALUES ('5', '小颖桃', '21', '20', '1', '手动阀', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '1', '2016-11-01 17:25:33', '2016-11-02 13:57:00');
+INSERT INTO `media` VALUES ('6', '小颖桃', '21', '20', '1', '撒地方', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '1', '2016-11-01 17:26:17', '2016-11-02 14:58:33');
+INSERT INTO `media` VALUES ('7', '小颖桃', '21', '20', '2', '熊猫', '线下活动：50000\r\n在线直播：100000', 'xiao_yingtao', '38', '风趣，幽默，帅哥', '2500', '2000', '0', '0', '0', '0', '1', '2016-11-02 11:42:41', '2016-11-02 14:49:04');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -136,7 +137,7 @@ CREATE TABLE `picture` (
   `sha1` char(40) NOT NULL DEFAULT '' COMMENT '文件 sha1编码',
   `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COMMENT='图片表';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COMMENT='图片表';
 
 -- ----------------------------
 -- Records of picture
@@ -145,6 +146,7 @@ INSERT INTO `picture` VALUES ('10', '/uploads/picture/2016-10-05/57f3e0875cea5.j
 INSERT INTO `picture` VALUES ('11', '/uploads/picture/2016-10-05/57f3e08e0563f.png', '', 'f0cace382f445e02c550afd6dfc40cdc', '9469f75a2a917f9cc52b76c7eb13de3fd193f59c', '2016-10-05 01:02:06');
 INSERT INTO `picture` VALUES ('19', '/uploads/avatar/5814714dbb58f.jpg', '', 'eaf504f99d186f97f41477dcfb61d4bf', '417443ca9967f82b4a8fc2f21f5dd4a40bc3c39f', '2016-10-29 17:52:14');
 INSERT INTO `picture` VALUES ('20', '/uploads/avatar/58185bc5a4671.png', '', '3425819e5aa909bb637fbbafa6433285', 'fbd46ccbabdc1dfb1e5fe86026d0780fbc34f6a4', '2016-11-01 17:09:26');
+INSERT INTO `picture` VALUES ('21', '/uploads/avatar/581990abab2a1.png', '', '270ed5cc808b5314bc3e89201617efff', '1aaf741753ca12a924a469f0f4a9ebde1299166c', '2016-11-02 15:07:24');
 
 -- ----------------------------
 -- Table structure for sys_admin
@@ -477,7 +479,7 @@ INSERT INTO `user` VALUES ('7', '15826021109', '0', '1', '唐吉思', '134223489
 INSERT INTO `user` VALUES ('10', '15826021108', '0', '2', '唐平', '', '', '0.00', '0.00', '3', '颖楓', '1', '', '$2y$10$y35S71eQ6u4xPnK59x8kcuJep/glGeBngNHQwd93nqj/vVV3g1CJa', null, '2016-10-15 12:30:34', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('11', '15826021189', '0', '2', '斯蒂芬', '56485254', 'huituo', '0.00', '0.00', '0', '', '1', '526498@qq.com', '$2y$10$aaIyKaV/IvBWnHl/8z8iguXR7.j7IqjkluN4dmgBMnmm66NWqnTbS', null, '2016-10-15 12:38:57', '127.0.0.1', null, null);
 INSERT INTO `user` VALUES ('12', '13667635689', '0', '2', '单簧管', '2312312312', '', '0.00', '0.00', '3', '颖楓', '1', '', '$2y$10$NQeOkY7vxjxOpY8IvVlas.6zPwRSzjrj/Eh8r.LHjPl2heHg.XxdC', null, '2016-10-15 13:02:36', '127.0.0.1', null, null);
-INSERT INTO `user` VALUES ('21', '13667635645', '1', '1', 'dsfas', '123213123', '', '0.00', '0.00', '2', '永和', '2', '', '$2y$10$3CDW1Tz/TCHMYEj44Fb5TeAECnrWtquiI1PacCouyAZ71D2k5bfdi', 'HClO3wFDtdUGHrSd7VI7jpW3VZoTGWTd9094g1tDtIiXng4bYTXb1NwynpAx', '2016-10-27 17:55:01', '127.0.0.1', '2016-11-01 16:39:13', '127.0.0.1');
+INSERT INTO `user` VALUES ('21', '13667635645', '1', '1', 'dsfas', '123213123', '', '0.00', '0.00', '2', '永和', '2', '', '$2y$10$3CDW1Tz/TCHMYEj44Fb5TeAECnrWtquiI1PacCouyAZ71D2k5bfdi', 'HClO3wFDtdUGHrSd7VI7jpW3VZoTGWTd9094g1tDtIiXng4bYTXb1NwynpAx', '2016-10-27 17:55:01', '127.0.0.1', '2016-11-02 13:49:59', '127.0.0.1');
 INSERT INTO `user` VALUES ('22', '13667635622', '1', '1', '唐瓶d', '342234898', 'sadfsdafsdaf', '0.00', '0.00', '3', '颖楓', '1', 'afdsdaf@qq.com', '$2y$10$3MryRZyvggPydAAEfkfWd.4H//C44u8umvNP6lL.qra/N7CNoxipi', 'UOLqWywzRxNCpiLLiyrqqY2LuyEqawSpHJcb8BYAdANDYUuikyUtVifWCWm1', '2016-10-27 21:10:25', '127.0.0.1', '2016-10-29 12:57:28', '127.0.0.1');
 INSERT INTO `user` VALUES ('23', '13667652103', '1', '2', '沙发党', '12312312313', 'afafdasdfasf', '0.00', '0.00', '2', '永和', '1', 'afsdaff.@q.com', '$2y$10$tWONBoJUfM.qEKeRo3I/ROxEADOdNnmlBriiqWMNqiZueuWq6K5QG', 'Uxt8XZdrn8GMHo03PQNVbhbTND8YrLPEVZIHbRsmpckmvrZbllApPhhRKBz4', '2016-10-29 09:35:13', '127.0.0.1', '2016-10-29 12:41:27', '127.0.0.1');
 
